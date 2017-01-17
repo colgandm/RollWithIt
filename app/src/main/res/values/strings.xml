@@ -1,0 +1,51 @@
+<resources>
+    <!--Main Activity-->
+    <string name="dice_roller_button">Go to Dice Roller</string>
+    <string name="create_character">Create Character</string>
+
+    <!--Dice Roller Activity-->
+    <string name="roll_result">Result</string>
+    <string name="type_of_dice">Type of Dice</string>
+    <string name="number_of_rolls">Number of Rolls</string>
+    <string name="roll_button">Roll</string>
+
+    <!--Character Creation Activity-->
+    <string name="display_character">Display Character</string>
+    <string name="proficienyBonus">Proficieny Bonus</string>
+    <string name="aroumrClass">Aroumr Class</string>
+    <string name="speed">Speed</string>
+    <string name="hitPoints">Hit Points</string>
+    <string name="level">Level</string>
+    <string name="xp">Experience Points</string>
+    <string name="characterName">Character Name</string>
+    <string name="playerName">Player Name</string>
+
+    <string name="dnDClass">Class</string>
+    <string name="background">Background</string>
+    <string name="race">Race</string>
+    <string name="alignment">Alignment</string>
+
+    <string name="strength">Strength</string>
+    <string name="dexterity">Dexterity</string>
+    <string name="constitution">Constitution</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="wisdom">Wisdom</string>
+    <string name="charisma">Charisma</string>
+
+     <!--Array to store Types of Dice-->
+    <string-array name="dice_array">
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+        <item>10</item>
+        <item>12</item>
+        <item>20</item>
+    </string-array>
+
+    <!--Other-->
+    <string name="app_name">Roll20</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_roller">RollerActivity</string>
+    <string name="title_activity_create_character">CreateCharacter</string>
+
+</resources>
