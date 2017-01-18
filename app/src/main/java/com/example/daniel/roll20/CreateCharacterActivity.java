@@ -1,6 +1,11 @@
 package com.example.daniel.roll20;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,7 +16,22 @@ import android.widget.EditText;
 import com.example.daniel.roll20.dndCharacter.CharAttributes;
 import com.example.daniel.roll20.dndCharacter.Character;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class CreateCharacterActivity extends AppCompatActivity {
+
+    protected Character character = new Character("Toby");
+    protected CharAttributes charAttributes = new CharAttributes();
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    public String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aaTutorial/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +63,12 @@ public class CreateCharacterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void createCharacter() {
-        Character character = new Character("Tobby");
-        CharAttributes charAttributes = new CharAttributes();
+    public void createAndSaveCharacter(View view) {
+        createCharacter();
+        saveCharacterToXml();
+    }
 
+    protected void createCharacter() {
         charAttributes.setStrength(retrieveCharacterAttributes("strength"));
         charAttributes.setDexterity(retrieveCharacterAttributes("dexterity"));
         charAttributes.setConstitution(retrieveCharacterAttributes("constitution"));
@@ -66,10 +88,14 @@ public class CreateCharacterActivity extends AppCompatActivity {
         character.printCharacterSheet();
     }
 
+    private void saveCharacterToXml() {
+        writeToFile("Yo Todd");
+    }
+
     private String retrieveStringCharacterAttributes(String attribute) {
         switch (attribute) {
             case "characterName":
-                return ((EditText)findViewById(R.id.characterName)).getText().toString();
+                return ((EditText) findViewById(R.id.characterName)).getText().toString();
             default:
                 return "default";
         }
@@ -104,11 +130,39 @@ public class CreateCharacterActivity extends AppCompatActivity {
             default:
                 return Integer.valueOf(0);
         }
-
     }
 
-    public void displayCharacter(View view) {
-        createCharacter();
+    public void writeToFile(String data) {
+        verifyStoragePermissions(this);
+
+        File root = android.os.Environment.getExternalStorageDirectory();
+        File dir = new File(root.getAbsolutePath() + "/download");
+        dir.mkdirs();
+        File file = new File(dir, "myData.txt");
+
+        try {
+            FileOutputStream f = new FileOutputStream(file);
+            PrintWriter pw = new PrintWriter(f);
+            pw.println(data);
+            pw.flush();
+            pw.close();
+            f.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
     }
 
 }

@@ -165,13 +165,13 @@
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/CreateCharacterButton1"
+                android:id="@+id/SaveCharacterButton"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:onClick="displayCharacter"
-                android:text="@string/create_character"
+                android:onClick="createAndSaveCharacter"
+                android:text="@string/save_character"
                 app:layout_anchorGravity="center_vertical|center_horizontal" />
         </LinearLayout>
     </ScrollView>

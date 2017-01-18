@@ -26,25 +26,36 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/RollButton"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:onClick="goToDiceRoller"
-            android:text="@string/dice_roller_button"
-            app:layout_anchorGravity="center_vertical|center_horizontal" />
-
-        <Button
             android:id="@+id/CreateCharacterButton"
             android:layout_width="300dp"
             android:layout_height="100dp"
             android:onClick="createCharacter"
             android:text="@string/create_character"
             app:layout_anchorGravity="center_vertical|center_horizontal"
-            android:layout_below="@+id/RollButton"
-            android:layout_alignLeft="@+id/RollButton"
-            android:layout_alignStart="@+id/RollButton" />
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/LoadCharacterButton"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:onClick="loadCharacter"
+            android:text="@string/load_character"
+            app:layout_anchorGravity="center_vertical|center_horizontal"
+            android:layout_below="@+id/CreateCharacterButton"
+            android:layout_alignLeft="@+id/CreateCharacterButton"
+            android:layout_alignStart="@+id/CreateCharacterButton" />
+
+        <Button
+            android:id="@+id/RollButton"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:onClick="goToDiceRoller"
+            android:text="@string/dice_roller_button"
+            app:layout_anchorGravity="center_vertical|center_horizontal"
+            android:layout_above="@+id/CreateCharacterButton"
+            android:layout_alignLeft="@+id/CreateCharacterButton"
+            android:layout_alignStart="@+id/CreateCharacterButton" />
 
     </RelativeLayout>
 
