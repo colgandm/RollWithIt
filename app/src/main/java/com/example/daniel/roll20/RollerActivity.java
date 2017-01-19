@@ -21,7 +21,7 @@ public class RollerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roller);
         initializeSpinner();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -39,7 +39,7 @@ public class RollerActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+        // noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -48,25 +48,26 @@ public class RollerActivity extends AppCompatActivity {
     }
 
     private void initializeSpinner() {
-        //Dice Spinner
-        Spinner diceSpinner = (Spinner) findViewById(R.id.dice_spinner);
-        ArrayAdapter<CharSequence> diceAdapter = ArrayAdapter.createFromResource(this, R.array.dice_array, android.R.layout.simple_spinner_item);
+        // Dice Spinner
+        Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
+        ArrayAdapter<CharSequence> diceAdapter = ArrayAdapter.createFromResource(this, R.array.dice_array,
+            android.R.layout.simple_spinner_item);
         diceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         diceSpinner.setAdapter(diceAdapter);
     }
 
     public void rollDice(View view) {
 
-        Spinner diceSpinner = (Spinner) findViewById(R.id.dice_spinner);
+        Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
         int numOfSides = Integer.parseInt(diceSpinner.getSelectedItem().toString());
 
-        EditText numOfRollText = (EditText) findViewById(R.id.numberOfRolls);
+        EditText numOfRollText = (EditText)findViewById(R.id.numberOfRolls);
         int numOfRolls = Integer.parseInt(numOfRollText.getText().toString());
 
         DiceRoller diceRoller = new DiceRoller();
         int[] result = diceRoller.roll(numOfRolls, numOfSides);
 
-        TextView rollResult = (TextView) findViewById(R.id.roll_result);
+        TextView rollResult = (TextView)findViewById(R.id.roll_result);
         rollResult.setText(prettyPrint(result));
     }
 

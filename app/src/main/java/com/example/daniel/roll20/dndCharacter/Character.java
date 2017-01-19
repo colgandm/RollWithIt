@@ -6,96 +6,46 @@ package com.example.daniel.roll20.dndCharacter;
 
 public class Character {
 
-    private int proficienyBonus;
-    private int aroumrClass;
+    private int proficiencyBonus;
+    private int armourClass;
     private int speed;
     private int hitPoints;
     private int level;
     private int xp;
     private String characterName;
     private String playerName;
+    private String dnDClass;
+    private String background;
+    private String race;
+    private String alignment;
+    private int strength;
+    private int dexterity;
+    private int constitution;
+    private int intelligence;
+    private int wisdom;
+    private int charisma;
 
-    private DnDClass dnDClass;
-    private Background background;
-    private Race race;
-    private Alignment alignment;
-    private CharAttributes charAttributes;
-    private Equipment equipment;
+    public Character() {
+    }
 
     public Character(String characterName) {
         this.characterName = characterName;
     }
 
-    public Equipment getEquipment() {
-        return equipment;
+    public int getProficiencyBonus() {
+        return proficiencyBonus;
     }
 
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
+    public void setProficiencyBonus(int proficiencyBonus) {
+        this.proficiencyBonus = proficiencyBonus;
     }
 
-    public DnDClass getDnDClass() {
-        return dnDClass;
+    public int getArmourClass() {
+        return armourClass;
     }
 
-    public void setDnDClass(DnDClass dnDClass) {
-        this.dnDClass = dnDClass;
-    }
-
-    public Background getBackground() {
-        return background;
-    }
-
-    public void setBackground(Background background) {
-        this.background = background;
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
-    }
-
-    public Alignment getAlignment() {
-        return alignment;
-    }
-
-    public void setAlignment(Alignment alignment) {
-        this.alignment = alignment;
-    }
-
-    public CharAttributes getCharAttributes() {
-        return charAttributes;
-    }
-
-    public void setCharAttributes(CharAttributes charAttributes) {
-        this.charAttributes = charAttributes;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public int getProficienyBonus() {
-        return proficienyBonus;
-    }
-
-    public void setProficienyBonus(int proficienyBonus) {
-        this.proficienyBonus = proficienyBonus;
-    }
-
-    public int getAroumrClass() {
-        return aroumrClass;
-    }
-
-    public void setAroumrClass(int aroumrClass) {
-        this.aroumrClass = aroumrClass;
+    public void setArmourClass(int armourClass) {
+        this.armourClass = armourClass;
     }
 
     public int getSpeed() {
@@ -138,14 +88,105 @@ public class Character {
         this.characterName = characterName;
     }
 
-    public void printCharacterSheet() {
-        System.out.print("Character Name :" + this.characterName + "\n" +
-                "Character Attributes :" + this.charAttributes.printAttributes() + "\n" +
-                "Aroumr Class :" + this.aroumrClass + "\n" +
-                "Proficieny Bonus :" + this.proficienyBonus + "\n" +
-                "Speed :" + this.speed + "\n" +
-                "Hit Points :" + this.hitPoints + "\n" +
-                "Level :" + this.level + "\n" +
-                "Experience Points :" + this.xp + "\n" );
+    public String getPlayerName() {
+        return playerName;
     }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getDnDClass() {
+        return dnDClass;
+    }
+
+    public void setDnDClass(String dnDClass) {
+        this.dnDClass = dnDClass;
+    }
+
+    public String getBackground() {
+        return background;
+    }
+
+    public void setBackground(String background) {
+        this.background = background;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
+    }
+
+    public String getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public int getConstitution() {
+        return constitution;
+    }
+
+    public void setConstitution(int constitution) {
+        this.constitution = constitution;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public int getWisdom() {
+        return wisdom;
+    }
+
+    public void setWisdom(int wisdom) {
+        this.wisdom = wisdom;
+    }
+
+    public int getCharisma() {
+        return charisma;
+    }
+
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
+    public void printAttributes() {
+        String temp = "\n \t Strength :" + String.valueOf(strength) + "\n" + "\t Dexterity :"
+            + String.valueOf(dexterity) + "\n" + "\t Constitution :" + String.valueOf(constitution) + "\n"
+            + "\t Intelligence :" + String.valueOf(intelligence) + "\n" + "\t Wisdom :" + String.valueOf(wisdom) + "\n";
+        System.out.print(temp);
+    }
+
+    public void printCharacterSheet() {
+        System.out.print("Character Name :" + this.characterName + "\n" + "Aroumr Class :" + this.armourClass + "\n"
+            + "Proficieny Bonus :" + this.proficiencyBonus + "\n" + "Speed :" + this.speed + "\n" + "Hit Points :"
+            + this.hitPoints + "\n" + "Level :" + this.level + "\n" + "Experience Points :" + this.xp + "\n");
+    }
+
 }

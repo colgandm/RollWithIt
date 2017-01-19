@@ -14,8 +14,8 @@
     <string name="display_character">Display Character</string>
     <string name="save_character">Save Character</string>
 
-    <string name="proficienyBonus">Proficieny Bonus</string>
-    <string name="aroumrClass">Aroumr Class</string>
+    <string name="proficiencyBonus">Proficieny Bonus</string>
+    <string name="armourClass">Aroumr Class</string>
     <string name="speed">Speed</string>
     <string name="hitPoints">Hit Points</string>
     <string name="level">Level</string>

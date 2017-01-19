@@ -16,12 +16,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
+        // noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -50,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(diceRollerIntent);
     }
 
-    public void createCharacter(View view){
+    public void createCharacter(View view) {
         Intent characterCreationIntent = new Intent(this, CreateCharacterActivity.class);
         startActivity(characterCreationIntent);
     }
 
-    public void loadCharacter(View view){
+    public void loadCharacter(View view) {
         Intent characterDisplayIntent = new Intent(this, CharacterDisplayActivity.class);
         startActivity(characterDisplayIntent);
 

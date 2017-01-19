@@ -2,16 +2,15 @@ package com.example.daniel.roll20;
 
 public class DiceRoller {
 
-
     public int roll(int numberOfSides) {
         int value = randomWithRange(numberOfSides);
         System.out.println("Rolled a d" + numberOfSides + " and got " + value);
         return value;
     }
 
-//    public void roll(int numberOfSides) {
-//        System.out.println("Rolled a d" + numberOfSides + " and got " + randomWithRange(numberOfSides));
-//    }
+    // public void roll(int numberOfSides) {
+    // System.out.println("Rolled a d" + numberOfSides + " and got " + randomWithRange(numberOfSides));
+    // }
 
     public int[] roll(int numberOfDice, int numberOfSides) {
         int[] resultArray = new int[numberOfDice];
@@ -22,11 +21,11 @@ public class DiceRoller {
         return resultArray;
     }
 
-//    public void roll(int numberOfDice, int numberOfSides) {
-//        for (int i = 0; i < numberOfDice; i++) {
-//            System.out.println("Rolled a d" + numberOfSides + " and got " + randomWithRange(numberOfSides));
-//        }
-//    }
+    // public void roll(int numberOfDice, int numberOfSides) {
+    // for (int i = 0; i < numberOfDice; i++) {
+    // System.out.println("Rolled a d" + numberOfSides + " and got " + randomWithRange(numberOfSides));
+    // }
+    // }
 
     public void roll(int numberOfTimes, int numberOfDice, int numberOfSides) {
         for (int i = 0; i < numberOfTimes; i++) {
@@ -39,7 +38,6 @@ public class DiceRoller {
 
     int randomWithRange(int max) {
         int range = ((max - 1) + 1);
-        return (int) (Math.random() * range) + 1;
+        return (int)(Math.random() * range) + 1;
     }
 }
-
