@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 public class CharacterDisplayActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class CharacterDisplayActivity extends AppCompatActivity {
 
     protected void loadCharacterFromFile() throws IOException {
         character = characterMapper.ReadCharacterToFile();
-        character.printCharacterSheet();
+        displayCharacter(character);
     }
 
     public static void verifyStoragePermissions(Activity activity) {
@@ -42,5 +43,11 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         if (permission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         }
+    }
+
+    private void displayCharacter(Character character) {
+        TextView textView = (TextView)findViewById(R.id.TestDisplay);
+        textView.setText(character.getCharacterName());
+
     }
 }
