@@ -59,18 +59,18 @@ public class CharacterMapper {
     private Character MapToCharacter(Map<String, String> characterDetails) {
         Character character = new Character();
 
-        character.setProficiencyBonus(Integer.parseInt(characterDetails.get(PROFICIENCY_BONUS)));
-        character.setArmourClass(Integer.parseInt(characterDetails.get(ARMOUR_CLASS)));
-        character.setSpeed(Integer.parseInt(characterDetails.get(SPEED)));
-        character.setHitPoints(Integer.parseInt(characterDetails.get(HIT_POINTS)));
+        character.setPlayerName(characterDetails.get(PLAYER_NAME));
+        character.setCharacterName(characterDetails.get(CHARACTER_NAME));
+        character.setDnDClass(characterDetails.get(DND_CLASS));
         character.setLevel(Integer.parseInt(characterDetails.get(LEVEL)));
         character.setXp(Integer.parseInt(characterDetails.get(XP)));
-        character.setCharacterName(characterDetails.get(CHARACTER_NAME));
-        character.setPlayerName(characterDetails.get(PLAYER_NAME));
-        character.setDnDClass(characterDetails.get(DND_CLASS));
-        character.setBackground(characterDetails.get(BACKGROUND));
         character.setRace(characterDetails.get(RACE));
+        character.setBackground(characterDetails.get(BACKGROUND));
         character.setAlignment(characterDetails.get(ALIGNMENT));
+        character.setHitPoints(Integer.parseInt(characterDetails.get(HIT_POINTS)));
+        character.setArmourClass(Integer.parseInt(characterDetails.get(ARMOUR_CLASS)));
+        character.setSpeed(Integer.parseInt(characterDetails.get(SPEED)));
+        character.setProficiencyBonus(Integer.parseInt(characterDetails.get(PROFICIENCY_BONUS)));
         character.setStrength(Integer.parseInt(characterDetails.get(STRENGTH)));
         character.setDexterity(Integer.parseInt(characterDetails.get(DEXTERITY)));
         character.setConstitution(Integer.parseInt(characterDetails.get(CONSTITUTION)));
@@ -84,18 +84,18 @@ public class CharacterMapper {
     private Map<String, String> CharacterToMap(Character character) {
 
         Map<String, String> characterDetails = new HashMap<>();
-        characterDetails.put(PROFICIENCY_BONUS, String.valueOf(character.getProficiencyBonus()));
-        characterDetails.put(ARMOUR_CLASS, String.valueOf(character.getArmourClass()));
-        characterDetails.put(SPEED, String.valueOf(character.getSpeed()));
-        characterDetails.put(HIT_POINTS, String.valueOf(character.getHitPoints()));
+        characterDetails.put(PLAYER_NAME, character.getPlayerName());
+        characterDetails.put(CHARACTER_NAME, character.getCharacterName());
+        characterDetails.put(DND_CLASS, character.getDnDClass());
         characterDetails.put(LEVEL, String.valueOf(character.getLevel()));
         characterDetails.put(XP, String.valueOf(character.getXp()));
-        characterDetails.put(CHARACTER_NAME, character.getCharacterName());
-        characterDetails.put(PLAYER_NAME, character.getPlayerName());
-        characterDetails.put(DND_CLASS, character.getDnDClass());
-        characterDetails.put(BACKGROUND, character.getBackground());
         characterDetails.put(RACE, character.getRace());
+        characterDetails.put(BACKGROUND, character.getBackground());
         characterDetails.put(ALIGNMENT, character.getAlignment());
+        characterDetails.put(HIT_POINTS, String.valueOf(character.getHitPoints()));
+        characterDetails.put(ARMOUR_CLASS, String.valueOf(character.getArmourClass()));
+        characterDetails.put(SPEED, String.valueOf(character.getSpeed()));
+        characterDetails.put(PROFICIENCY_BONUS, String.valueOf(character.getProficiencyBonus()));
         characterDetails.put(STRENGTH, String.valueOf(character.getStrength()));
         characterDetails.put(DEXTERITY, String.valueOf(character.getDexterity()));
         characterDetails.put(CONSTITUTION, String.valueOf(character.getConstitution()));

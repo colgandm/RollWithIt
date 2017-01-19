@@ -35,14 +35,11 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     protected void loadCharacterFromFile() throws IOException {
         character = characterMapper.ReadCharacterToFile();
         character.printCharacterSheet();
-
     }
 
     public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         }
     }

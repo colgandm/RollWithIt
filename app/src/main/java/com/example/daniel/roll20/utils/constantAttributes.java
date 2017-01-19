@@ -1,9 +1,5 @@
 package com.example.daniel.roll20.utils;
 
-/**
- * Created by daniel on 19/01/17.
- */
-
 public class constantAttributes {
 
     public static final String CHARACTER_NAME = "characterName";

@@ -1,23 +1,19 @@
 package com.example.daniel.roll20.dndCharacter;
 
-/**
- * Created by daniel on 17/01/17.
- */
-
 public class Character {
 
-    private int proficiencyBonus;
-    private int armourClass;
-    private int speed;
-    private int hitPoints;
+    private String playerName;
+    private String characterName;
+    private String dnDClass;
     private int level;
     private int xp;
-    private String characterName;
-    private String playerName;
-    private String dnDClass;
-    private String background;
     private String race;
+    private String background;
     private String alignment;
+    private int hitPoints;
+    private int armourClass;
+    private int speed;
+    private int proficiencyBonus;
     private int strength;
     private int dexterity;
     private int constitution;
@@ -32,36 +28,28 @@ public class Character {
         this.characterName = characterName;
     }
 
-    public int getProficiencyBonus() {
-        return proficiencyBonus;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void setProficiencyBonus(int proficiencyBonus) {
-        this.proficiencyBonus = proficiencyBonus;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
-    public int getArmourClass() {
-        return armourClass;
+    public String getCharacterName() {
+        return characterName;
     }
 
-    public void setArmourClass(int armourClass) {
-        this.armourClass = armourClass;
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 
-    public int getSpeed() {
-        return speed;
+    public String getDnDClass() {
+        return dnDClass;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int getHitPoints() {
-        return hitPoints;
-    }
-
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
+    public void setDnDClass(String dnDClass) {
+        this.dnDClass = dnDClass;
     }
 
     public int getLevel() {
@@ -80,28 +68,12 @@ public class Character {
         this.xp = xp;
     }
 
-    public String getCharacterName() {
-        return characterName;
+    public String getRace() {
+        return race;
     }
 
-    public void setCharacterName(String characterName) {
-        this.characterName = characterName;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public String getDnDClass() {
-        return dnDClass;
-    }
-
-    public void setDnDClass(String dnDClass) {
-        this.dnDClass = dnDClass;
+    public void setRace(String race) {
+        this.race = race;
     }
 
     public String getBackground() {
@@ -112,20 +84,44 @@ public class Character {
         this.background = background;
     }
 
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
-
     public String getAlignment() {
         return alignment;
     }
 
     public void setAlignment(String alignment) {
         this.alignment = alignment;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public int getArmourClass() {
+        return armourClass;
+    }
+
+    public void setArmourClass(int armourClass) {
+        this.armourClass = armourClass;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getProficiencyBonus() {
+        return proficiencyBonus;
+    }
+
+    public void setProficiencyBonus(int proficiencyBonus) {
+        this.proficiencyBonus = proficiencyBonus;
     }
 
     public int getStrength() {
@@ -178,15 +174,15 @@ public class Character {
 
     public void printAttributes() {
         String temp = "\n \t Strength :" + String.valueOf(strength) + "\n" + "\t Dexterity :"
-            + String.valueOf(dexterity) + "\n" + "\t Constitution :" + String.valueOf(constitution) + "\n"
-            + "\t Intelligence :" + String.valueOf(intelligence) + "\n" + "\t Wisdom :" + String.valueOf(wisdom) + "\n";
+                + String.valueOf(dexterity) + "\n" + "\t Constitution :" + String.valueOf(constitution) + "\n"
+                + "\t Intelligence :" + String.valueOf(intelligence) + "\n" + "\t Wisdom :" + String.valueOf(wisdom) + "\n";
         System.out.print(temp);
     }
 
     public void printCharacterSheet() {
         System.out.print("Character Name :" + this.characterName + "\n" + "Aroumr Class :" + this.armourClass + "\n"
-            + "Proficieny Bonus :" + this.proficiencyBonus + "\n" + "Speed :" + this.speed + "\n" + "Hit Points :"
-            + this.hitPoints + "\n" + "Level :" + this.level + "\n" + "Experience Points :" + this.xp + "\n");
+                + "Proficieny Bonus :" + this.proficiencyBonus + "\n" + "Speed :" + this.speed + "\n" + "Hit Points :"
+                + this.hitPoints + "\n" + "Level :" + this.level + "\n" + "Experience Points :" + this.xp + "\n");
     }
 
 }
