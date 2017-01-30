@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/d20back"
     android:fitsSystemWindows="true"
     tools:context="com.example.daniel.roll20.MainActivity">
 
@@ -29,33 +30,36 @@
             android:id="@+id/CreateCharacterButton"
             android:layout_width="300dp"
             android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
             android:onClick="createCharacter"
             android:text="@string/create_character"
-            app:layout_anchorGravity="center_vertical|center_horizontal"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            app:layout_anchorGravity="center_vertical|center_horizontal" />
 
         <Button
             android:id="@+id/LoadCharacterButton"
             android:layout_width="300dp"
             android:layout_height="100dp"
+            android:layout_alignLeft="@+id/CreateCharacterButton"
+            android:layout_alignStart="@+id/CreateCharacterButton"
+            android:layout_below="@+id/CreateCharacterButton"
+            android:background="@android:color/transparent"
             android:onClick="loadCharacter"
             android:text="@string/load_character"
-            app:layout_anchorGravity="center_vertical|center_horizontal"
-            android:layout_below="@+id/CreateCharacterButton"
-            android:layout_alignLeft="@+id/CreateCharacterButton"
-            android:layout_alignStart="@+id/CreateCharacterButton" />
+            app:layout_anchorGravity="center_vertical|center_horizontal" />
 
         <Button
             android:id="@+id/RollButton"
             android:layout_width="300dp"
             android:layout_height="100dp"
-            android:onClick="goToDiceRoller"
-            android:text="@string/dice_roller_button"
-            app:layout_anchorGravity="center_vertical|center_horizontal"
             android:layout_above="@+id/CreateCharacterButton"
             android:layout_alignLeft="@+id/CreateCharacterButton"
-            android:layout_alignStart="@+id/CreateCharacterButton" />
+            android:layout_alignStart="@+id/CreateCharacterButton"
+            android:background="@android:color/transparent"
+            android:onClick="goToDiceRoller"
+            android:text="@string/dice_roller_button"
+            app:layout_anchorGravity="center_vertical|center_horizontal" />
 
     </RelativeLayout>
 

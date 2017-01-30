@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/d20back"
+    android:fitsSystemWindows="true"
     tools:context="com.example.daniel.roll20.CreateCharacterActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -164,6 +164,7 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
                 android:onClick="createAndSaveCharacter"
                 android:text="@string/save_character"
                 app:layout_anchorGravity="center_vertical|center_horizontal" />
