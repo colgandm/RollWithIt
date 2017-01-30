@@ -8,21 +8,12 @@
         android:id="@+id/numberOfRolls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="48dp"
         android:hint="@string/number_of_rolls"
         android:inputType="number"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <Spinner
-        android:id="@+id/dice_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numberOfRolls"
-        android:layout_alignRight="@+id/numberOfRolls"
-        android:layout_alignEnd="@+id/numberOfRolls"
-        android:layout_toRightOf="@+id/typeOfDice"
-        android:layout_toEndOf="@+id/typeOfDice" />
+        />
 
     <TextView
         android:id="@+id/typeOfDice"
@@ -35,15 +26,28 @@
         android:layout_alignStart="@+id/numberOfRolls"
         android:layout_alignBottom="@+id/dice_spinner" />
 
+    <Spinner
+        android:id="@+id/dice_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberOfRolls"
+        android:layout_alignRight="@+id/numberOfRolls"
+        android:layout_alignEnd="@+id/numberOfRolls"
+        android:layout_toRightOf="@+id/typeOfDice"
+        android:layout_toEndOf="@+id/typeOfDice" />
+
     <Button
         android:id="@+id/RollButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="rollDice"
         android:text="@string/roll_button"
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp"
         android:layout_below="@+id/dice_spinner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp" />
+        android:layout_alignRight="@+id/dice_spinner"
+        android:layout_alignEnd="@+id/dice_spinner"
+        android:layout_marginTop="23dp" />
 
     <TextView
         android:id="@+id/roll_result"
@@ -51,9 +55,12 @@
         android:layout_height="wrap_content"
         android:hint="@string/roll_result"
         android:textAlignment="center"
-        android:layout_above="@+id/roll_total"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" />
+        android:layout_below="@+id/RollButton"
+        android:layout_alignRight="@+id/RollButton"
+        android:layout_alignEnd="@+id/RollButton"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginTop="24dp" />
 
     <TextView
         android:id="@+id/roll_total"
@@ -61,7 +68,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/roll_total"
         android:textAlignment="center"
-        android:layout_marginBottom="62dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/roll_result"
+        android:layout_alignLeft="@+id/roll_result"
+        android:layout_alignStart="@+id/roll_result"
+        android:layout_marginTop="16dp" />
 </RelativeLayout>

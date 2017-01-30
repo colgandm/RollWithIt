@@ -1,9 +1,6 @@
 package com.example.daniel.roll20;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.daniel.roll20.utils.DiceRoller;
 
 public class RollerActivity extends AppCompatActivity {
 
@@ -69,14 +68,25 @@ public class RollerActivity extends AppCompatActivity {
 
         TextView rollResult = (TextView)findViewById(R.id.roll_result);
         rollResult.setText(prettyPrint(result));
+
+        TextView rollTotal = (TextView)findViewById(R.id.roll_total);
+        rollTotal.setText(totalPrint(result));
     }
 
-    private String prettyPrint(int[] result) {
-        String temp = "Results : ";
-        for (int i = 0; i < result.length; i++) {
-            temp += result[i] + " ";
+    private String prettyPrint(int[] results) {
+        String resultString = "Results : ";
+        for (int result : results) {
+            resultString += result + " ";
         }
-        return temp;
+        return resultString;
+    }
+
+    private String totalPrint(int[] results) {
+        int resultsTotal = 0;
+        for (int result : results) {
+            resultsTotal += result;
+        }
+        return "Total : " + String.valueOf(resultsTotal);
     }
 
 }

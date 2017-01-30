@@ -4,8 +4,11 @@
     <string name="create_character">Create Character</string>
     <string name="load_character">Load Character</string>
 
+    <string name="test_string">Test String</string>
+
     <!--Dice Roller Activity-->
     <string name="roll_result">Result</string>
+    <string name="roll_total">Total</string>
     <string name="type_of_dice">Type of Dice</string>
     <string name="number_of_rolls">Number of Rolls</string>
     <string name="roll_button">Roll</string>
@@ -14,8 +17,9 @@
     <string name="display_character">Display Character</string>
     <string name="save_character">Save Character</string>
 
-    <string name="proficiencyBonus">Proficieny Bonus</string>
-    <string name="armourClass">Aroumr Class</string>
+    <string name="proficiencyBonus">Proficiency Bonus</string>
+    <string name="armourClass">Armour Class</string>
+    <string name="initiative">Initiative</string>
     <string name="speed">Speed</string>
     <string name="hitPoints">Hit Points</string>
     <string name="level">Level</string>

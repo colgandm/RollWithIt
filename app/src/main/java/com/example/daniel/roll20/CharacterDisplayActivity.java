@@ -2,6 +2,7 @@ package com.example.daniel.roll20;
 
 import java.io.IOException;
 
+import com.android.debug.hv.ViewServer;
 import com.example.daniel.roll20.dndCharacter.Character;
 import com.example.daniel.roll20.utils.CharacterMapper;
 
@@ -25,6 +26,7 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_display);
+        ViewServer.get(this).addWindow(this);
         verifyStoragePermissions(this);
         try {
             loadCharacterFromFile();
@@ -34,20 +36,76 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     }
 
     protected void loadCharacterFromFile() throws IOException {
-        character = characterMapper.ReadCharacterToFile();
+        character = characterMapper.ReadCharacterFromFile();
         displayCharacter(character);
     }
 
     public static void verifyStoragePermissions(Activity activity) {
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
         if (permission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         }
     }
 
-    private void displayCharacter(Character character) {
-        TextView textView = (TextView)findViewById(R.id.TestDisplay);
-        textView.setText(character.getCharacterName());
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ViewServer.get(this).removeWindow(this);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ViewServer.get(this).setFocusedWindow(this);
+    }
+
+    private void displayCharacter(Character character) {
+        TextView characterName = (TextView)findViewById(R.id.characterName);
+        characterName.setText(character.getCharacterName());
+
+        TextView dndClass = (TextView)findViewById(R.id.dndClass);
+        dndClass.setText(character.getDnDClass());
+
+        TextView background = (TextView)findViewById(R.id.background);
+        background.setText(character.getBackground());
+
+        TextView playerName = (TextView)findViewById(R.id.playerName);
+        playerName.setText(character.getPlayerName());
+
+        TextView Race = (TextView)findViewById(R.id.Race);
+        Race.setText(character.getRace());
+
+        TextView alignment = (TextView)findViewById(R.id.alignment);
+        alignment.setText(character.getAlignment());
+
+        TextView xp = (TextView)findViewById(R.id.xp);
+        xp.setText(String.valueOf(character.getXp()));
+
+        TextView armourClass = (TextView)findViewById(R.id.armourClass);
+        armourClass.setText(String.valueOf(character.getArmourClass()));
+
+        TextView initiative = (TextView)findViewById(R.id.initiative);
+        initiative.setText(String.valueOf(character.getInitiative()));
+
+        TextView speed = (TextView)findViewById(R.id.speed);
+        speed.setText(String.valueOf(character.getSpeed()));
+
+        TextView strength = (TextView)findViewById(R.id.strengthShield);
+        strength.setText(String.valueOf(character.getStrength()));
+
+        TextView dexterity = (TextView)findViewById(R.id.dexterityShield);
+        dexterity.setText(String.valueOf(character.getDexterity()));
+
+        TextView constitution = (TextView)findViewById(R.id.constitutionShield);
+        constitution.setText(String.valueOf(character.getConstitution()));
+
+        TextView intelligence = (TextView)findViewById(R.id.intelligenceShield);
+        intelligence.setText(String.valueOf(character.getIntelligence()));
+
+        TextView wisdom = (TextView)findViewById(R.id.wisdomShield);
+        wisdom.setText(String.valueOf(character.getWisdom()));
+
+        TextView charisma = (TextView)findViewById(R.id.charismaShield);
+        charisma.setText(String.valueOf(character.getCharisma()));
     }
 }

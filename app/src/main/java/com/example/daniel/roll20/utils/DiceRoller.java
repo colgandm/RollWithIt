@@ -1,4 +1,4 @@
-package com.example.daniel.roll20;
+package com.example.daniel.roll20.utils;
 
 public class DiceRoller {
 
@@ -6,7 +6,6 @@ public class DiceRoller {
         int[] resultArray = new int[numberOfDice];
         for (int i = 0; i < numberOfDice; i++) {
             resultArray[i] = randomWithRange(numberOfSides);
-            System.out.println("Rolled a d" + numberOfSides + " and got " + randomWithRange(numberOfSides));
         }
         return resultArray;
     }

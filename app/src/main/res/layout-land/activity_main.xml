@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/dragonback"
+    tools:context="com.example.daniel.roll20.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/CreateCharacterButton"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:onClick="createCharacter"
+            android:text="@string/create_character"
+            app:layout_anchorGravity="center_vertical|center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/LoadCharacterButton"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:onClick="loadCharacter"
+            android:text="@string/load_character"
+            app:layout_anchorGravity="center_vertical|center_horizontal"
+            android:layout_below="@+id/CreateCharacterButton"
+            android:layout_alignLeft="@+id/CreateCharacterButton"
+            android:layout_alignStart="@+id/CreateCharacterButton" />
+
+        <Button
+            android:id="@+id/RollButton"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:onClick="goToDiceRoller"
+            android:text="@string/dice_roller_button"
+            app:layout_anchorGravity="center_vertical|center_horizontal"
+            android:layout_above="@+id/CreateCharacterButton"
+            android:layout_alignLeft="@+id/CreateCharacterButton"
+            android:layout_alignStart="@+id/CreateCharacterButton" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

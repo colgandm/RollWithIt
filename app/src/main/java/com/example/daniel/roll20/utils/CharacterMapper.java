@@ -35,6 +35,7 @@ import com.example.daniel.roll20.dndCharacter.Character;
  * Created by daniel on 19/01/17.
  */
 public class CharacterMapper {
+
     File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
     File file = new File(path, "/" + "characterData.txt");
 
@@ -46,7 +47,7 @@ public class CharacterMapper {
         System.out.println("Success!");
     }
 
-    public Character ReadCharacterToFile() throws IOException {
+    public Character ReadCharacterFromFile() throws IOException {
         Map<String, String> characterDetails = new HashMap<>();
         Properties properties = new Properties();
         properties.load(new FileInputStream(file));

@@ -51,6 +51,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
     public void createAndSaveCharacter(View view) throws IOException {
         createCharacter();
         characterMapper.writeCharacterToFile(character);
+        finish();
     }
 
     protected void createCharacter() {

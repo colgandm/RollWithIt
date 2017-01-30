@@ -20,6 +20,7 @@ public class Character {
     private int intelligence;
     private int wisdom;
     private int charisma;
+    private int initiative;
 
     public Character() {
     }
@@ -172,17 +173,25 @@ public class Character {
         this.charisma = charisma;
     }
 
+    public int getInitiative() {
+        return initiative;
+    }
+
+    public void setInitiative(int initiative) {
+        this.initiative = initiative;
+    }
+
     public void printAttributes() {
         String temp = "\n \t Strength :" + String.valueOf(strength) + "\n" + "\t Dexterity :"
-                + String.valueOf(dexterity) + "\n" + "\t Constitution :" + String.valueOf(constitution) + "\n"
-                + "\t Intelligence :" + String.valueOf(intelligence) + "\n" + "\t Wisdom :" + String.valueOf(wisdom) + "\n";
+            + String.valueOf(dexterity) + "\n" + "\t Constitution :" + String.valueOf(constitution) + "\n"
+            + "\t Intelligence :" + String.valueOf(intelligence) + "\n" + "\t Wisdom :" + String.valueOf(wisdom) + "\n";
         System.out.print(temp);
     }
 
     public void printCharacterSheet() {
         System.out.print("Character Name :" + this.characterName + "\n" + "Aroumr Class :" + this.armourClass + "\n"
-                + "Proficieny Bonus :" + this.proficiencyBonus + "\n" + "Speed :" + this.speed + "\n" + "Hit Points :"
-                + this.hitPoints + "\n" + "Level :" + this.level + "\n" + "Experience Points :" + this.xp + "\n");
+            + "Proficieny Bonus :" + this.proficiencyBonus + "\n" + "Speed :" + this.speed + "\n" + "Hit Points :"
+            + this.hitPoints + "\n" + "Level :" + this.level + "\n" + "Experience Points :" + this.xp + "\n");
     }
 
 }
