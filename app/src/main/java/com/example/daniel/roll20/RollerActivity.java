@@ -26,8 +26,6 @@ public class RollerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roller);
         initializeSpinner();
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
     }
 
     @Override
