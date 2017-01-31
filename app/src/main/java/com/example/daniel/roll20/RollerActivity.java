@@ -1,19 +1,25 @@
 package com.example.daniel.roll20;
 
+import com.example.daniel.roll20.utils.DiceRoller;
+
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-import com.example.daniel.roll20.utils.DiceRoller;
+import android.widget.Toast;
 
 public class RollerActivity extends AppCompatActivity {
+
+    private DiceRoller diceRoller = new DiceRoller();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,11 @@ public class RollerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public static void hideSoftKeyboard(Activity activity, View view) {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+    }
+
     private void initializeSpinner() {
         // Dice Spinner
         Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
@@ -57,13 +68,18 @@ public class RollerActivity extends AppCompatActivity {
 
     public void rollDice(View view) {
 
+        hideSoftKeyboard(this, view);
         Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
         int numOfSides = Integer.parseInt(diceSpinner.getSelectedItem().toString());
 
         EditText numOfRollText = (EditText)findViewById(R.id.numberOfRolls);
+        if (numOfRollText.getText().toString().matches("")) {
+            Toast.makeText(this, "Please enter the number of rolls", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         int numOfRolls = Integer.parseInt(numOfRollText.getText().toString());
 
-        DiceRoller diceRoller = new DiceRoller();
         int[] result = diceRoller.roll(numOfRolls, numOfSides);
 
         TextView rollResult = (TextView)findViewById(R.id.roll_result);

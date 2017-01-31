@@ -1,67 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dragonback">
+    android:background="@drawable/dragonback"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.daniel.roll20.MainActivity">
 
-    <EditText
-        android:id="@+id/numberOfRolls"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:hint="@string/number_of_rolls"
-        android:inputType="number"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/dice_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/numberOfRolls"
-        android:layout_alignRight="@+id/numberOfRolls"
-        android:layout_alignEnd="@+id/numberOfRolls"
-        android:layout_toRightOf="@+id/typeOfDice"
-        android:layout_toEndOf="@+id/typeOfDice" />
+        <EditText
+            android:id="@+id/numberOfRolls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="22dp"
+            android:hint="@string/number_of_rolls"
+            android:inputType="number" />
 
-    <TextView
-        android:id="@+id/typeOfDice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/type_of_dice"
-        android:textAlignment="center"
-        android:layout_below="@+id/numberOfRolls"
-        android:layout_alignLeft="@+id/numberOfRolls"
-        android:layout_alignStart="@+id/numberOfRolls"
-        android:layout_alignBottom="@+id/dice_spinner" />
+        <Spinner
+            android:id="@+id/dice_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/numberOfRolls"
+            android:layout_alignRight="@+id/numberOfRolls"
+            android:layout_below="@+id/numberOfRolls"
+            android:layout_toEndOf="@+id/typeOfDice"
+            android:layout_toRightOf="@+id/typeOfDice" />
 
-    <Button
-        android:id="@+id/RollButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="rollDice"
-        android:text="@string/roll_button"
-        android:layout_below="@+id/dice_spinner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="27dp" />
+        <TextView
+            android:id="@+id/typeOfDice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/dice_spinner"
+            android:layout_alignLeft="@+id/numberOfRolls"
+            android:layout_alignStart="@+id/numberOfRolls"
+            android:layout_below="@+id/numberOfRolls"
+            android:text="@string/type_of_dice"
+            android:textAlignment="center" />
 
-    <TextView
-        android:id="@+id/roll_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/roll_result"
-        android:textAlignment="center"
-        android:layout_above="@+id/roll_total"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp" />
+        <Button
+            android:id="@+id/RollButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dice_spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="27dp"
+            android:onClick="rollDice"
+            android:text="@string/roll_button" />
 
-    <TextView
-        android:id="@+id/roll_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/roll_total"
-        android:textAlignment="center"
-        android:layout_marginBottom="62dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/roll_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/roll_total"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="15dp"
+            android:hint="@string/roll_result"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/roll_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="62dp"
+            android:hint="@string/roll_total"
+            android:textAlignment="center" />
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
