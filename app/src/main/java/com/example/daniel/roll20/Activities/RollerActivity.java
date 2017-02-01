@@ -1,5 +1,6 @@
-package com.example.daniel.roll20;
+package com.example.daniel.roll20.Activities;
 
+import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.utils.DiceRoller;
 
 import android.app.Activity;

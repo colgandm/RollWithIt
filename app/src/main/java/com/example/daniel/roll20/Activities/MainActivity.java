@@ -1,18 +1,13 @@
-package com.example.daniel.roll20;
+package com.example.daniel.roll20.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
+
+import com.example.daniel.roll20.R;
 
 public class MainActivity extends AppCompatActivity {
 

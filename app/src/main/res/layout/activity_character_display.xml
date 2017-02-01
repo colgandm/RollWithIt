@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/d20back"
     android:fitsSystemWindows="true"
-    tools:context="com.example.daniel.roll20.CreateCharacterActivity">
+    tools:context="com.example.daniel.roll20.Activities.CreateCharacterActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,7 +18,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="com.example.daniel.roll20.CharacterDisplayActivity">
+            tools:context="com.example.daniel.roll20.Activities.CharacterDisplayActivity">
 
             <TextView
                 android:id="@+id/characterName"

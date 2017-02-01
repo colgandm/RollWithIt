@@ -1,8 +1,9 @@
-package com.example.daniel.roll20;
+package com.example.daniel.roll20.Activities;
 
 import java.io.IOException;
 
 import com.android.debug.hv.ViewServer;
+import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.dndCharacter.Character;
 import com.example.daniel.roll20.utils.CharacterMapper;
 

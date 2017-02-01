@@ -1,4 +1,4 @@
-package com.example.daniel.roll20;
+package com.example.daniel.roll20.Activities;
 
 import static com.example.daniel.roll20.utils.constantAttributes.ALIGNMENT;
 import static com.example.daniel.roll20.utils.constantAttributes.ARMOUR_CLASS;
@@ -21,6 +21,7 @@ import static com.example.daniel.roll20.utils.constantAttributes.XP;
 
 import java.io.IOException;
 
+import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.dndCharacter.Character;
 import com.example.daniel.roll20.utils.CharacterMapper;
 
