@@ -1,0 +1,99 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.example.daniel.roll20.fragments.CharacterAttributesFragment">
+
+    <TextView
+        android:id="@+id/strength"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/strength"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/strengthShield"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/ic_shield"
+        android:gravity="center"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/dexterity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dexterity"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/dexterityShield"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/ic_shield"
+        android:gravity="center"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/constitution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/constitution"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/constitutionShield"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/ic_shield"
+        android:gravity="center"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/intelligence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intelligence"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/intelligenceShield"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/ic_shield"
+        android:gravity="center"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/wisdom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wisdom"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/wisdomShield"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/ic_shield"
+        android:gravity="center"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/charisma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/charisma"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/charismaShield"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/ic_shield"
+        android:gravity="center"
+        android:textIsSelectable="false" />
+
+</LinearLayout>

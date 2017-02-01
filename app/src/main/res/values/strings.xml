@@ -50,7 +50,6 @@
     </string-array>
 
 
-
     <string-array name="course_descriptions">
         <item>4</item>
         <item>6</item>
@@ -73,5 +72,7 @@
     <string name="course_description">Course Description</string>
     <string name="course_one">Course One</string>
     <string name="course_two">Course Two</string>
+    <string name="fire">Fired</string>
+    <string name="cancel">cancel</string>
 
 </resources>

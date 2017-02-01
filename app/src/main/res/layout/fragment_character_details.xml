@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.example.daniel.roll20.fragments.CharacterDetailsFragment">
+
+    <TextView
+        android:id="@+id/characterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/characterName"
+        android:textIsSelectable="false" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/dndClass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/dnDClass"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/background"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/playerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/playerName"
+                android:textIsSelectable="false" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/alignment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/alignment"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/Race"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/race"
+                android:textIsSelectable="false" />
+
+            <TextView
+                android:id="@+id/xp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/xp"
+                android:textIsSelectable="false" />
+        </TableRow>
+
+
+    </TableLayout>
+</LinearLayout>

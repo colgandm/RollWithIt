@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.android.debug.hv.ViewServer;
 import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.dndCharacter.Character;
+import com.example.daniel.roll20.interfaces.XmlClickable;
 import com.example.daniel.roll20.utils.CharacterMapper;
 
 import android.Manifest;
@@ -13,9 +14,11 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 public class CharacterDisplayActivity extends AppCompatActivity {
+
 
     protected Character character = new Character("Toby");
     private CharacterMapper characterMapper = new CharacterMapper();
@@ -27,7 +30,6 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_display);
-        ViewServer.get(this).addWindow(this);
         verifyStoragePermissions(this);
         try {
             loadCharacterFromFile();
@@ -82,14 +84,14 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         TextView xp = (TextView)findViewById(R.id.xp);
         xp.setText(String.valueOf(character.getXp()));
 
-        TextView armourClass = (TextView)findViewById(R.id.armourClass);
-        armourClass.setText(String.valueOf(character.getArmourClass()));
-
-        TextView initiative = (TextView)findViewById(R.id.initiative);
-        initiative.setText(String.valueOf(character.getInitiative()));
-
-        TextView speed = (TextView)findViewById(R.id.speed);
-        speed.setText(String.valueOf(character.getSpeed()));
+        // TextView armourClass = (TextView)findViewById(R.id.armourClass);
+        // armourClass.setText(String.valueOf(character.getArmourClass()));
+        //
+        // TextView initiative = (TextView)findViewById(R.id.initiative);
+        // initiative.setText(String.valueOf(character.getInitiative()));
+        //
+        // TextView speed = (TextView)findViewById(R.id.speed);
+        // speed.setText(String.valueOf(character.getSpeed()));
 
         TextView strength = (TextView)findViewById(R.id.strengthShield);
         strength.setText(String.valueOf(character.getStrength()));
@@ -109,4 +111,7 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         TextView charisma = (TextView)findViewById(R.id.charismaShield);
         charisma.setText(String.valueOf(character.getCharisma()));
     }
+
+
+
 }
