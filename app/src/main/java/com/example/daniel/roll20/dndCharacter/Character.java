@@ -1,6 +1,11 @@
 package com.example.daniel.roll20.dndCharacter;
 
-public class Character {
+import java.io.Serializable;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Character implements Serializable, Parcelable {
 
     private String playerName;
     private String characterName;
@@ -23,10 +28,58 @@ public class Character {
     private int initiative;
 
     public Character() {
+        super();
+    }
+
+    private Character(Parcel in) {
+        super();
+        this.playerName = in.readString();
+        this.characterName = in.readString();
+        this.dnDClass = in.readString();
+        this.level = in.readInt();
+        this.xp = in.readInt();
+        this.race = in.readString();
+        this.background = in.readString();
+        this.alignment = in.readString();
+        this.hitPoints = in.readInt();
+        this.armourClass = in.readInt();
+        this.speed = in.readInt();
+        this.proficiencyBonus = in.readInt();
+        this.strength = in.readInt();
+        this.dexterity = in.readInt();
+        this.constitution = in.readInt();
+        this.intelligence = in.readInt();
+        this.wisdom = in.readInt();
+        this.charisma = in.readInt();
+        this.initiative = in.readInt();
     }
 
     public Character(String characterName) {
         this.characterName = characterName;
+    }
+
+    public Character(String playerName, String characterName, String dnDClass, int level, int xp, String race,
+            String background, String alignment, int hitPoints, int armourClass, int speed, int proficiencyBonus,
+            int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int initiative) {
+        this.playerName = playerName;
+        this.characterName = characterName;
+        this.dnDClass = dnDClass;
+        this.level = level;
+        this.xp = xp;
+        this.race = race;
+        this.background = background;
+        this.alignment = alignment;
+        this.hitPoints = hitPoints;
+        this.armourClass = armourClass;
+        this.speed = speed;
+        this.proficiencyBonus = proficiencyBonus;
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.constitution = constitution;
+        this.intelligence = intelligence;
+        this.wisdom = wisdom;
+        this.charisma = charisma;
+        this.initiative = initiative;
     }
 
     public String getPlayerName() {
@@ -194,4 +247,44 @@ public class Character {
             + this.hitPoints + "\n" + "Level :" + this.level + "\n" + "Experience Points :" + this.xp + "\n");
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeInt(getArmourClass());
+        parcel.writeInt(getCharisma());
+        parcel.writeInt(getConstitution());
+        parcel.writeInt(getDexterity());
+        parcel.writeInt(getArmourClass());
+        parcel.writeInt(getHitPoints());
+        parcel.writeInt(getInitiative());
+        parcel.writeInt(getIntelligence());
+        parcel.writeInt(getLevel());
+        parcel.writeInt(getProficiencyBonus());
+        parcel.writeInt(getSpeed());
+        parcel.writeInt(getStrength());
+        parcel.writeInt(getWisdom());
+        parcel.writeInt(getXp());
+        parcel.writeString(getAlignment());
+        parcel.writeString(getBackground());
+        parcel.writeString(getCharacterName());
+        parcel.writeString(getDnDClass());
+        parcel.writeString(getPlayerName());
+        parcel.writeString(getRace());
+
+    }
+
+    public static final Parcelable.Creator<Character> CREATOR = new Parcelable.Creator<Character>() {
+
+        public Character createFromParcel(Parcel in) {
+            return new Character(in);
+        }
+
+        public Character[] newArray(int size) {
+            return new Character[size];
+        }
+    };
 }

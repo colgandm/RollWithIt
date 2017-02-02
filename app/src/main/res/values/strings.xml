@@ -39,6 +39,12 @@
     <string name="wisdom">Wisdom</string>
     <string name="charisma">Charisma</string>
 
+
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="edit_attribute">Edit Attribute</string>
+
+
     <!--Array to store Types of Dice-->
     <string-array name="dice_array">
         <item>4</item>
@@ -74,5 +80,7 @@
     <string name="course_two">Course Two</string>
     <string name="fire">Fired</string>
     <string name="cancel">cancel</string>
+    <string name="enter_new_attribute">Enter new attribute value.</string>
+    <string name="new_value">New Value</string>
 
 </resources>

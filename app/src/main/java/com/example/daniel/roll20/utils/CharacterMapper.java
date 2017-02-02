@@ -1,7 +1,5 @@
 package com.example.daniel.roll20.utils;
 
-import android.os.Environment;
-
 import static com.example.daniel.roll20.utils.constantAttributes.ALIGNMENT;
 import static com.example.daniel.roll20.utils.constantAttributes.ARMOUR_CLASS;
 import static com.example.daniel.roll20.utils.constantAttributes.BACKGROUND;
@@ -30,6 +28,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.example.daniel.roll20.dndCharacter.Character;
+
+import android.os.Environment;
 
 /**
  * Created by daniel on 19/01/17.

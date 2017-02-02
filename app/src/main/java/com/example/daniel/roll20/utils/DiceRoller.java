@@ -10,7 +10,7 @@ public class DiceRoller {
         return resultArray;
     }
 
-    int randomWithRange(int max) {
+    private int randomWithRange(int max) {
         int range = ((max - 1) + 1);
         return (int)(Math.random() * range) + 1;
     }

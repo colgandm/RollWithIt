@@ -1,7 +1,6 @@
 package com.example.daniel.roll20.fragments;
 
 import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.interfaces.XmlClickable;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/d20back"
     android:fitsSystemWindows="true"
-    tools:context="com.example.daniel.roll20.Activities.CreateCharacterActivity">
+    tools:context="com.example.daniel.roll20.activities.CreateCharacterActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/ScrollView01"
