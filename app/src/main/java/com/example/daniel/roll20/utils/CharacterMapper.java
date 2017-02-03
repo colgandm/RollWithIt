@@ -36,8 +36,8 @@ import android.os.Environment;
  */
 public class CharacterMapper {
 
-    File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
-    File file = new File(path, "/" + "characterData.txt");
+    private final File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES);
+    final File file = new File(path, "/" + "characterData.txt");
 
     public void writeCharacterToFile(Character character) throws IOException {
         Map<String, String> characterDetails = CharacterToMap(character);

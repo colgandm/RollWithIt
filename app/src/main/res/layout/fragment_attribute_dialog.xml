@@ -3,23 +3,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/btnYes"
+    <TextView
+        android:id="@+id/dialogText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/enter_new_attribute" />
+
+    <EditText
+        android:id="@+id/attributeValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogText"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
         android:hint="@string/new_value"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
         android:inputType="number" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/enter_new_attribute"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

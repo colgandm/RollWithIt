@@ -1,16 +1,22 @@
 package com.example.daniel.roll20.dialogs;
 
 import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.database.CharacterDAO;
-import com.example.daniel.roll20.dndCharacter.Character;
+import com.example.daniel.roll20.activities.CharacterDisplayActivity;
+import com.example.daniel.roll20.fragments.CharacterAttributesFragment;
+import com.example.daniel.roll20.interfaces.AttributeDialogListener;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,39 +24,37 @@ import android.view.LayoutInflater;
 
 public class AttributeDialogFragment extends DialogFragment {
 
-    private CharacterDAO characterDAO;
-    private Character character;
-
-    public AttributeDialogFragment() {
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        characterDAO = new CharacterDAO(getActivity());
+        String attributeName = getArguments().getString("attributeName");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.fragment_attribute_dialog, null))
-            .setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+        final LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.fragment_attribute_dialog, null);
+        TextView textView = (TextView)dialogView.findViewById(R.id.dialogText);
+        textView.setText("Enter new " + attributeName + " value.");
+        builder.setView(dialogView).setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    character = characterDAO.getCharacter().get(0);
-                    character.setPlayerName("BOOM");
-                    characterDAO.update(character);
-                    System.out.println("New Value has been saved!");
-                    saveNewAttribute();
-                }
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                TextView editAttribute = (TextView)dialogView.findViewById(R.id.attributeValue);
+                int attributeValue = Integer.parseInt(editAttribute.getText().toString());
+                saveNewAttribute(attributeValue);
+                dialog.dismiss();
+            }
+        }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
-            }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-
-                public void onClick(DialogInterface dialog, int id) {
-                    System.out.println("Canceled the attribute change!");
-                }
-            });
+            public void onClick(DialogInterface dialog, int id) {
+                System.out.println("Canceled the attribute change!");
+                dialog.cancel();
+            }
+        });
         return builder.create();
     }
 
-    private void saveNewAttribute() {
-        System.out.println("Attribute Updated!");
+
+   private void saveNewAttribute(int attributeValue) {
+        AttributeDialogListener mListener = new CharacterDisplayActivity();
+        mListener.onUpdatedAttribute(attributeValue);
     }
+
 }
