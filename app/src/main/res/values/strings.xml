@@ -81,6 +81,7 @@
     <string name="fire">Fired</string>
     <string name="cancel">cancel</string>
     <string name="enter_new_attribute">Enter new attribute value.</string>
+    <string name="enter_new_detail">Enter new character detail</string>
     <string name="new_value">New Value</string>
 
 </resources>
