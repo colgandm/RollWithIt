@@ -1,19 +1,15 @@
 package com.example.daniel.roll20.dialogs;
 
 import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.activities.CharacterDisplayActivity;
-import com.example.daniel.roll20.fragments.CharacterAttributesFragment;
 import com.example.daniel.roll20.interfaces.AttributeDialogListener;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -24,9 +20,27 @@ import android.widget.TextView;
 
 public class AttributeDialogFragment extends DialogFragment {
 
+
+    private AttributeDialogListener listener;
+    private  String attributeName;
+
+    public static AttributeDialogFragment newInstance() {
+        return new AttributeDialogFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (AttributeDialogListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "attaching d fragment failed!");
+        }
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        String attributeName = getArguments().getString("attributeName");
+        attributeName = getArguments().getString("attributeName");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.fragment_attribute_dialog, null);
@@ -36,9 +50,9 @@ public class AttributeDialogFragment extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                TextView editAttribute = (TextView)dialogView.findViewById(R.id.attributeValue);
+                TextView editAttribute = (TextView) dialogView.findViewById(R.id.attributeValue);
                 int attributeValue = Integer.parseInt(editAttribute.getText().toString());
-                saveNewAttribute(attributeValue);
+                listener.onUpdatedAttribute(attributeValue,attributeName);
                 dialog.dismiss();
             }
         }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -50,11 +64,4 @@ public class AttributeDialogFragment extends DialogFragment {
         });
         return builder.create();
     }
-
-
-   private void saveNewAttribute(int attributeValue) {
-        AttributeDialogListener mListener = new CharacterDisplayActivity();
-        mListener.onUpdatedAttribute(attributeValue);
-    }
-
 }

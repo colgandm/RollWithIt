@@ -15,7 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-public class CharacterDisplayActivity extends FragmentActivity implements AttributeDialogListener{
+public class CharacterDisplayActivity extends FragmentActivity implements AttributeDialogListener {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
@@ -24,6 +24,7 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("Niall is Gay");
         setContentView(R.layout.activity_character_display);
         verifyStoragePermissions(this);
     }
@@ -45,8 +46,9 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
     }
 
     @Override
-    public void onUpdatedAttribute(int value) {
-        CharacterAttributesFragment fragment = (CharacterAttributesFragment) getFragmentManager().findFragmentById(R.id.characterAttributesFragment);
-        fragment.reloadCharacterAttributes(fragment.getView());
+    public void onUpdatedAttribute(int value, String attribute) {
+        CharacterAttributesFragment fragment = (CharacterAttributesFragment)getFragmentManager()
+            .findFragmentById(R.id.characterAttributesFragment);
+        fragment.reloadCharacterAttributes(fragment.getView(), value, attribute);
     }
 }
