@@ -23,10 +23,6 @@ public class AttributeDialogFragment extends DialogFragment {
     private AttributeDialogListener listener;
     private String attributeName;
 
-    public static AttributeDialogFragment newInstance() {
-        return new AttributeDialogFragment();
-    }
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

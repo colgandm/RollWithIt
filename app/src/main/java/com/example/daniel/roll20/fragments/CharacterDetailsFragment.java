@@ -1,12 +1,12 @@
 package com.example.daniel.roll20.fragments;
 
-import static com.example.daniel.roll20.utils.constantAttributes.ALIGNMENT;
-import static com.example.daniel.roll20.utils.constantAttributes.BACKGROUND;
-import static com.example.daniel.roll20.utils.constantAttributes.CHARACTER_NAME;
-import static com.example.daniel.roll20.utils.constantAttributes.DND_CLASS;
-import static com.example.daniel.roll20.utils.constantAttributes.PLAYER_NAME;
-import static com.example.daniel.roll20.utils.constantAttributes.RACE;
-import static com.example.daniel.roll20.utils.constantAttributes.XP;
+import static com.example.daniel.roll20.utils.ConstAttributes.ALIGNMENT;
+import static com.example.daniel.roll20.utils.ConstAttributes.BACKGROUND;
+import static com.example.daniel.roll20.utils.ConstAttributes.CHARACTER_NAME;
+import static com.example.daniel.roll20.utils.ConstAttributes.DND_CLASS;
+import static com.example.daniel.roll20.utils.ConstAttributes.PLAYER_NAME;
+import static com.example.daniel.roll20.utils.ConstAttributes.RACE;
+import static com.example.daniel.roll20.utils.ConstAttributes.XP;
 
 import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.activities.CharacterDisplayActivity;
@@ -72,7 +72,7 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
 
     private void loadCharacterFromDB(View view) {
         if (characterDAO.getCharacter().size() == 0) {
-            Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT);
+            Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT).show();
         } else {
             Character character = characterDAO.getCharacter().get(0);
             displayCharacterDetails(character, view);

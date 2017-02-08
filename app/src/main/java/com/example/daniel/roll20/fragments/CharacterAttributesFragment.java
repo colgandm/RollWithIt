@@ -1,11 +1,11 @@
 package com.example.daniel.roll20.fragments;
 
-import static com.example.daniel.roll20.utils.constantAttributes.CHARISMA;
-import static com.example.daniel.roll20.utils.constantAttributes.CONSTITUTION;
-import static com.example.daniel.roll20.utils.constantAttributes.DEXTERITY;
-import static com.example.daniel.roll20.utils.constantAttributes.INTELLIGENCE;
-import static com.example.daniel.roll20.utils.constantAttributes.STRENGTH;
-import static com.example.daniel.roll20.utils.constantAttributes.WISDOM;
+import static com.example.daniel.roll20.utils.ConstAttributes.CHARISMA;
+import static com.example.daniel.roll20.utils.ConstAttributes.CONSTITUTION;
+import static com.example.daniel.roll20.utils.ConstAttributes.DEXTERITY;
+import static com.example.daniel.roll20.utils.ConstAttributes.INTELLIGENCE;
+import static com.example.daniel.roll20.utils.ConstAttributes.STRENGTH;
+import static com.example.daniel.roll20.utils.ConstAttributes.WISDOM;
 
 import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.activities.CharacterDisplayActivity;
@@ -71,7 +71,7 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
 
     private void loadCharacterFromDB(View view) {
         if (characterDAO.getCharacter().size() == 0) {
-            Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT);
+            Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT).show();
         } else {
             Character character = characterDAO.getCharacter().get(0);
             displayCharacterAttributes(character, view);

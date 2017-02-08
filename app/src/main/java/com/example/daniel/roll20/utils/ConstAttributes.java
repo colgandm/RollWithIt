@@ -1,6 +1,6 @@
 package com.example.daniel.roll20.utils;
 
-public class constantAttributes {
+public class ConstAttributes {
 
     public static final String CHARACTER_NAME = "characterName";
     public static final String PLAYER_NAME = "playerName";

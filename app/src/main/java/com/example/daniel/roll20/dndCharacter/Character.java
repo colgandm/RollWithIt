@@ -242,8 +242,8 @@ public class Character implements Serializable, Parcelable {
     }
 
     public void printCharacterSheet() {
-        System.out.print("Character Name :" + this.characterName + "\n" + "Aroumr Class :" + this.armourClass + "\n"
-            + "Proficieny Bonus :" + this.proficiencyBonus + "\n" + "Speed :" + this.speed + "\n" + "Hit Points :"
+        System.out.print("Character Name :" + this.characterName + "\n" + "Armour Class :" + this.armourClass + "\n"
+            + "Proficiency Bonus :" + this.proficiencyBonus + "\n" + "Speed :" + this.speed + "\n" + "Hit Points :"
             + this.hitPoints + "\n" + "Level :" + this.level + "\n" + "Experience Points :" + this.xp + "\n");
     }
 
