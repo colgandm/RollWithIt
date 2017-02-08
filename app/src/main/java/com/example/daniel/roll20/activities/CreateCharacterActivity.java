@@ -37,11 +37,18 @@ import android.widget.EditText;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CreateCharacterActivity extends AppCompatActivity {
 
-    private Character character;
-    private CharacterDAO characterDAO;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
+    private Character character;
+    private CharacterDAO characterDAO;
+
+    private static void verifyStoragePermissions(Activity activity) {
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private void createCharacter() {
         character.setPlayerName(retrieveStringCharacterAttributes(PLAYER_NAME));
         character.setCharacterName(retrieveStringCharacterAttributes(CHARACTER_NAME));
-        character.setDnDClass(retrieveStringCharacterAttributes(DND_CLASS));
+        character.setDndClass(retrieveStringCharacterAttributes(DND_CLASS));
         character.setLevel(retrieveCharacterAttributes(LEVEL));
         character.setXp(retrieveCharacterAttributes(XP));
         character.setRace(retrieveStringCharacterAttributes(RACE));
@@ -86,7 +93,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
         case CHARACTER_NAME:
             return ((EditText)findViewById(R.id.characterName)).getText().toString();
         case DND_CLASS:
-            return ((EditText)findViewById(R.id.dnDClass)).getText().toString();
+            return ((EditText)findViewById(R.id.dndClass)).getText().toString();
         case RACE:
             return ((EditText)findViewById(R.id.race)).getText().toString();
         case BACKGROUND:
@@ -126,13 +133,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
             return Integer.valueOf(((EditText)findViewById(R.id.charisma)).getText().toString());
         default:
             return 0;
-        }
-    }
-
-    private static void verifyStoragePermissions(Activity activity) {
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         }
     }
 }

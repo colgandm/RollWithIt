@@ -6,9 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 
 class CharacterDBDAO {
 
+    private final Context mContext;
     SQLiteDatabase database;
     private DataBaseHelper dbHelper;
-    private final Context mContext;
 
     CharacterDBDAO(Context context) {
         this.mContext = context;

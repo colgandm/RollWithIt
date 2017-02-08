@@ -35,10 +35,10 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/dnDClass"
+                android:id="@+id/dndClass"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:hint="@string/dnDClass"
+                android:hint="@string/dndClass"
                 android:textSize="14sp" />
 
             <EditText

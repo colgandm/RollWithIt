@@ -25,26 +25,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
+    public static final String CHARACTER_TABLE = "character";
     private static final String DATABASE_NAME = "characterdb";
     private static final int DATABASE_VERSION = 1;
-    private static DataBaseHelper instance;
-
-    public static final String CHARACTER_TABLE = "character";
-
     private static final String CREATE_CHARACTER_TABLE = "CREATE TABLE " + CHARACTER_TABLE + "(" + CHARACTER_NAME
         + " TEXT PRIMARY KEY," + PLAYER_NAME + " TEXT," + BACKGROUND + " TEXT," + ALIGNMENT + " TEXT," + RACE + " TEXT,"
         + DND_CLASS + " TEXT," + PROFICIENCY_BONUS + " INT," + ARMOUR_CLASS + " INT," + SPEED + " INT," + HIT_POINTS
         + " INT," + LEVEL + " INT," + XP + " INT," + STRENGTH + " INT," + DEXTERITY + " INT," + CONSTITUTION + " INT,"
         + INTELLIGENCE + " INT," + WISDOM + " INT," + CHARISMA + " INT" + ")";
+    private static DataBaseHelper instance;
+
+    private DataBaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
     public static synchronized DataBaseHelper getHelper(Context context) {
         if (instance == null)
             instance = new DataBaseHelper(context);
         return instance;
-    }
-
-    private DataBaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

@@ -1,13 +1,5 @@
 package com.example.daniel.roll20.fragments;
 
-import static com.example.daniel.roll20.utils.ConstAttributes.ALIGNMENT;
-import static com.example.daniel.roll20.utils.ConstAttributes.BACKGROUND;
-import static com.example.daniel.roll20.utils.ConstAttributes.CHARACTER_NAME;
-import static com.example.daniel.roll20.utils.ConstAttributes.DND_CLASS;
-import static com.example.daniel.roll20.utils.ConstAttributes.PLAYER_NAME;
-import static com.example.daniel.roll20.utils.ConstAttributes.RACE;
-import static com.example.daniel.roll20.utils.ConstAttributes.XP;
-
 import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.activities.CharacterDisplayActivity;
 import com.example.daniel.roll20.database.CharacterDAO;
@@ -29,6 +21,14 @@ import android.widget.Toast;
  */
 public class CharacterDetailsFragment extends Fragment implements View.OnClickListener {
 
+    private static final String PLAYER_NAME = "Player Name";
+    private static final String CHARACTER_NAME = "Character Name";
+    private static final String RACE = "Race";
+    private static final String DND_CLASS = "Class";
+    private static final String XP = "Experience Points";
+    private static final String ALIGNMENT = "Alignment";
+    private static final String BACKGROUND = "Background";
+
     private CharacterDAO characterDAO;
 
     @Override
@@ -46,22 +46,25 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         String attributeName;
         switch (v.getId()) {
         case R.id.playerName:
-            attributeName = "Player Name";
+            attributeName = PLAYER_NAME;
             break;
         case R.id.characterName:
-            attributeName = "Character Name";
+            attributeName = CHARACTER_NAME;
             break;
-        case R.id.race:
-            attributeName = "Race";
+        case R.id.Race:
+            attributeName = RACE;
             break;
         case R.id.dndClass:
-            attributeName = "Class";
+            attributeName = DND_CLASS;
             break;
         case R.id.xp:
-            attributeName = "Experience Point";
+            attributeName = XP;
+            break;
+        case R.id.background:
+            attributeName = BACKGROUND;
             break;
         case R.id.alignment:
-            attributeName = "Alignment";
+            attributeName = ALIGNMENT;
             break;
         default:
             throw new RuntimeException("Unknown button ID");
@@ -84,7 +87,7 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         characterName.setText(character.getCharacterName());
 
         TextView dndClass = (TextView)view.findViewById(R.id.dndClass);
-        dndClass.setText(character.getDnDClass());
+        dndClass.setText(character.getDndClass());
 
         TextView background = (TextView)view.findViewById(R.id.background);
         background.setText(character.getBackground());
@@ -92,8 +95,8 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         TextView playerName = (TextView)view.findViewById(R.id.playerName);
         playerName.setText(character.getPlayerName());
 
-        TextView Race = (TextView)view.findViewById(R.id.Race);
-        Race.setText(character.getRace());
+        TextView race = (TextView)view.findViewById(R.id.Race);
+        race.setText(character.getRace());
 
         TextView alignment = (TextView)view.findViewById(R.id.alignment);
         alignment.setText(character.getAlignment());
@@ -108,47 +111,50 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         TextView characterName = (TextView)view.findViewById(R.id.characterName);
         characterName.setOnClickListener(this);
 
-        TextView dexterityAtt = (TextView)view.findViewById(R.id.dexterityShield);
-        dexterityAtt.setOnClickListener(this);
+        TextView dndClass = (TextView)view.findViewById(R.id.dndClass);
+        dndClass.setOnClickListener(this);
 
-        TextView constitutionAtt = (TextView)view.findViewById(R.id.constitutionShield);
-        constitutionAtt.setOnClickListener(this);
+        TextView background = (TextView)view.findViewById(R.id.background);
+        background.setOnClickListener(this);
 
-        TextView intelligenceAtt = (TextView)view.findViewById(R.id.intelligenceShield);
-        intelligenceAtt.setOnClickListener(this);
+        TextView playerName = (TextView)view.findViewById(R.id.playerName);
+        playerName.setOnClickListener(this);
 
-        TextView wisdomAtt = (TextView)view.findViewById(R.id.wisdomShield);
-        wisdomAtt.setOnClickListener(this);
+        TextView race = (TextView)view.findViewById(R.id.Race);
+        race.setOnClickListener(this);
 
-        TextView charismaAtt = (TextView)view.findViewById(R.id.charismaShield);
-        charismaAtt.setOnClickListener(this);
+        TextView xp = (TextView)view.findViewById(R.id.xp);
+        xp.setOnClickListener(this);
+
+        TextView alignment = (TextView)view.findViewById(R.id.alignment);
+        alignment.setOnClickListener(this);
     }
 
-    public void reloadCharacterDetails(View view, int value, String attribute) {
+    public void reloadCharacterDetails(View view, String value, String attribute) {
         characterDAO = new CharacterDAO(getActivity());
         Character character = characterDAO.getCharacter().get(0);
 
-        switch (attribute.toLowerCase()) {
+        switch (attribute) {
         case CHARACTER_NAME:
-            character.setStrength(value);
+            character.setCharacterName(value);
             break;
         case DND_CLASS:
-            character.setDexterity(value);
+            character.setDndClass(value);
             break;
         case RACE:
-            character.setConstitution(value);
+            character.setRace(value);
             break;
         case ALIGNMENT:
-            character.setIntelligence(value);
+            character.setAlignment(value);
             break;
         case BACKGROUND:
-            character.setWisdom(value);
-            break;
-        case XP:
-            character.setCharisma(value);
+            character.setBackground(value);
             break;
         case PLAYER_NAME:
-            character.setCharisma(value);
+            character.setPlayerName(value);
+            break;
+        case XP:
+            Log.i("Steady", "XP Attribute");
             break;
         default:
             Log.i("Error", "Unknown Attribute");

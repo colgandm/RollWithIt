@@ -7,9 +7,19 @@ import android.os.Parcelable;
 
 public class Character implements Serializable, Parcelable {
 
+    public static final Parcelable.Creator<Character> CREATOR = new Parcelable.Creator<Character>() {
+
+        public Character createFromParcel(Parcel in) {
+            return new Character(in);
+        }
+
+        public Character[] newArray(int size) {
+            return new Character[size];
+        }
+    };
     private String playerName;
     private String characterName;
-    private String dnDClass;
+    private String dndClass;
     private int level;
     private int xp;
     private String race;
@@ -35,7 +45,7 @@ public class Character implements Serializable, Parcelable {
         super();
         this.playerName = in.readString();
         this.characterName = in.readString();
-        this.dnDClass = in.readString();
+        this.dndClass = in.readString();
         this.level = in.readInt();
         this.xp = in.readInt();
         this.race = in.readString();
@@ -58,12 +68,12 @@ public class Character implements Serializable, Parcelable {
         this.characterName = characterName;
     }
 
-    public Character(String playerName, String characterName, String dnDClass, int level, int xp, String race,
+    public Character(String playerName, String characterName, String dndClass, int level, int xp, String race,
             String background, String alignment, int hitPoints, int armourClass, int speed, int proficiencyBonus,
             int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int initiative) {
         this.playerName = playerName;
         this.characterName = characterName;
-        this.dnDClass = dnDClass;
+        this.dndClass = dndClass;
         this.level = level;
         this.xp = xp;
         this.race = race;
@@ -98,12 +108,12 @@ public class Character implements Serializable, Parcelable {
         this.characterName = characterName;
     }
 
-    public String getDnDClass() {
-        return dnDClass;
+    public String getDndClass() {
+        return dndClass;
     }
 
-    public void setDnDClass(String dnDClass) {
-        this.dnDClass = dnDClass;
+    public void setDndClass(String dndClass) {
+        this.dndClass = dndClass;
     }
 
     public int getLevel() {
@@ -258,20 +268,9 @@ public class Character implements Serializable, Parcelable {
         parcel.writeString(getAlignment());
         parcel.writeString(getBackground());
         parcel.writeString(getCharacterName());
-        parcel.writeString(getDnDClass());
+        parcel.writeString(getDndClass());
         parcel.writeString(getPlayerName());
         parcel.writeString(getRace());
 
     }
-
-    public static final Parcelable.Creator<Character> CREATOR = new Parcelable.Creator<Character>() {
-
-        public Character createFromParcel(Parcel in) {
-            return new Character(in);
-        }
-
-        public Character[] newArray(int size) {
-            return new Character[size];
-        }
-    };
 }

@@ -23,19 +23,19 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_character_display);
-        verifyStoragePermissions(this);
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static void verifyStoragePermissions(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
         if (permission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_character_display);
+        verifyStoragePermissions(this);
     }
 
     public void raiseAttributeDialog(String attributeName) {
@@ -62,7 +62,7 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
     }
 
     @Override
-    public void onUpdatedDetail(int value, String attribute) {
+    public void onUpdatedDetail(String value, String attribute) {
         CharacterDetailsFragment fragment = (CharacterDetailsFragment)getFragmentManager()
             .findFragmentById(R.id.CharacterDetailsFragment);
         fragment.reloadCharacterDetails(fragment.getView(), value, attribute);

@@ -7,7 +7,7 @@ public class ConstAttributes {
     public static final String BACKGROUND = "background";
     public static final String ALIGNMENT = "alignment";
     public static final String RACE = "race";
-    public static final String DND_CLASS = "dnDClass";
+    public static final String DND_CLASS = "dndClass";
     public static final String PROFICIENCY_BONUS = "proficiencyBonus";
     public static final String ARMOUR_CLASS = "armourClass";
     public static final String SPEED = "speed";

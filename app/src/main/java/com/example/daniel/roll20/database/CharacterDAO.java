@@ -42,7 +42,7 @@ public class CharacterDAO extends CharacterDBDAO {
         values.put(BACKGROUND, character.getBackground());
         values.put(ALIGNMENT, character.getAlignment());
         values.put(RACE, character.getRace());
-        values.put(DND_CLASS, character.getDnDClass());
+        values.put(DND_CLASS, character.getDndClass());
         values.put(PROFICIENCY_BONUS, character.getProficiencyBonus());
         values.put(ARMOUR_CLASS, character.getArmourClass());
         values.put(SPEED, character.getSpeed());
@@ -74,7 +74,7 @@ public class CharacterDAO extends CharacterDBDAO {
             character.setBackground(cursor.getString(2));
             character.setAlignment(cursor.getString(3));
             character.setRace(cursor.getString(4));
-            character.setDnDClass(cursor.getString(5));
+            character.setDndClass(cursor.getString(5));
             character.setProficiencyBonus(cursor.getInt(6));
             character.setArmourClass(cursor.getInt(7));
             character.setSpeed(cursor.getInt(8));
@@ -102,7 +102,7 @@ public class CharacterDAO extends CharacterDBDAO {
         values.put(BACKGROUND, character.getBackground());
         values.put(ALIGNMENT, character.getAlignment());
         values.put(RACE, character.getRace());
-        values.put(DND_CLASS, character.getDnDClass());
+        values.put(DND_CLASS, character.getDndClass());
         values.put(PROFICIENCY_BONUS, character.getProficiencyBonus());
         values.put(ARMOUR_CLASS, character.getArmourClass());
         values.put(SPEED, character.getSpeed());

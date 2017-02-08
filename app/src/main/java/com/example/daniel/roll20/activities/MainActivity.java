@@ -3,6 +3,7 @@ package com.example.daniel.roll20.activities;
 import com.example.daniel.roll20.R;
 import com.idescout.sql.SqlScoutServer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,23 +13,19 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+    public MainActivity(Context context) {
+
+    }
+
+    public MainActivity() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SqlScoutServer.create(this, getPackageName());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     public void goToDiceRoller(View view) {

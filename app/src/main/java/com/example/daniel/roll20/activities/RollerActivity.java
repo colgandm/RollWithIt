@@ -19,6 +19,11 @@ public class RollerActivity extends AppCompatActivity {
 
     private final DiceRoller diceRoller = new DiceRoller();
 
+    private static void hideSoftKeyboard(Activity activity, View view) {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +59,6 @@ public class RollerActivity extends AppCompatActivity {
 
         TextView rollTotal = (TextView)findViewById(R.id.roll_total);
         rollTotal.setText(totalPrint(result));
-    }
-
-    private static void hideSoftKeyboard(Activity activity, View view) {
-        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 
     private String prettyPrint(int[] results) {

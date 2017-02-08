@@ -23,11 +23,11 @@
     <string name="speed">Speed</string>
     <string name="hitPoints">Hit Points</string>
     <string name="level">Level</string>
-    <string name="xp">Experience Points</string>
+    <string name="xp">XP</string>
     <string name="characterName">Character Name</string>
     <string name="playerName">Player Name</string>
 
-    <string name="dnDClass">Class</string>
+    <string name="dndClass">Class</string>
     <string name="background">Background</string>
     <string name="race">Race</string>
     <string name="alignment">Alignment</string>
