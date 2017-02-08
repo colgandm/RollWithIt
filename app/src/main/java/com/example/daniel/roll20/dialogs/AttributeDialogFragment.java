@@ -29,7 +29,7 @@ public class AttributeDialogFragment extends DialogFragment {
         try {
             listener = (AttributeDialogListener)context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "attaching d fragment failed!");
+            throw new ClassCastException(context.toString() + "Attaching dialog fragment failed!");
         }
     }
 

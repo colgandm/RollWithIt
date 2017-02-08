@@ -47,7 +47,9 @@ public class DetailsDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int id) {
                 TextView editAttribute = (TextView)dialogView.findViewById(R.id.detailValue);
                 // Need to handle different types
+
                 int attributeValue = Integer.parseInt(editAttribute.getText().toString());
+
                 listener.onUpdatedDetail(attributeValue, detailName);
                 dialog.dismiss();
             }

@@ -23,10 +23,9 @@ class CharacterDBDAO {
         database = dbHelper.getWritableDatabase();
     }
 
-    /*
-     * public void close() {
-     * dbHelper.close();
-     * database = null;
-     * }
-     */
+    public void close() {
+        dbHelper.close();
+        database = null;
+    }
+
 }

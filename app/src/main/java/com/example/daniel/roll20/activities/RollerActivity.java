@@ -7,8 +7,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -28,33 +26,6 @@ public class RollerActivity extends AppCompatActivity {
         initializeSpinner();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        // noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private static void hideSoftKeyboard(Activity activity, View view) {
-        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-    }
-
     private void initializeSpinner() {
         // Dice Spinner
         Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
@@ -65,7 +36,6 @@ public class RollerActivity extends AppCompatActivity {
     }
 
     public void rollDice(View view) {
-
         hideSoftKeyboard(this, view);
         Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
         int numOfSides = Integer.parseInt(diceSpinner.getSelectedItem().toString());
@@ -77,7 +47,6 @@ public class RollerActivity extends AppCompatActivity {
         }
 
         int numOfRolls = Integer.parseInt(numOfRollText.getText().toString());
-
         int[] result = diceRoller.roll(numOfRolls, numOfSides);
 
         TextView rollResult = (TextView)findViewById(R.id.roll_result);
@@ -85,6 +54,11 @@ public class RollerActivity extends AppCompatActivity {
 
         TextView rollTotal = (TextView)findViewById(R.id.roll_total);
         rollTotal.setText(totalPrint(result));
+    }
+
+    private static void hideSoftKeyboard(Activity activity, View view) {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 
     private String prettyPrint(int[] results) {
