@@ -5,5 +5,6 @@ package com.example.daniel.roll20.interfaces;
  */
 
 public interface FragmentListener {
+
     void updatedAttribute(String name, int value);
 }

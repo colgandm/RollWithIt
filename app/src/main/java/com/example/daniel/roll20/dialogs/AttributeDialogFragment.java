@@ -20,9 +20,8 @@ import android.widget.TextView;
 
 public class AttributeDialogFragment extends DialogFragment {
 
-
     private AttributeDialogListener listener;
-    private  String attributeName;
+    private String attributeName;
 
     public static AttributeDialogFragment newInstance() {
         return new AttributeDialogFragment();
@@ -32,7 +31,7 @@ public class AttributeDialogFragment extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (AttributeDialogListener) context;
+            listener = (AttributeDialogListener)context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "attaching d fragment failed!");
         }
@@ -50,9 +49,9 @@ public class AttributeDialogFragment extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                TextView editAttribute = (TextView) dialogView.findViewById(R.id.attributeValue);
+                TextView editAttribute = (TextView)dialogView.findViewById(R.id.attributeValue);
                 int attributeValue = Integer.parseInt(editAttribute.getText().toString());
-                listener.onUpdatedAttribute(attributeValue,attributeName);
+                listener.onUpdatedAttribute(attributeValue, attributeName);
                 dialog.dismiss();
             }
         }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

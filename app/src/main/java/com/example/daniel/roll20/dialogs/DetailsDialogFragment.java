@@ -1,5 +1,8 @@
 package com.example.daniel.roll20.dialogs;
 
+import com.example.daniel.roll20.R;
+import com.example.daniel.roll20.interfaces.AttributeDialogListener;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -11,18 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.interfaces.AttributeDialogListener;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 
 public class DetailsDialogFragment extends DialogFragment {
 
-
     private AttributeDialogListener listener;
-    private  String detailName;
+    private String detailName;
 
     public static DetailsDialogFragment newInstance() {
         return new DetailsDialogFragment();
@@ -32,7 +31,7 @@ public class DetailsDialogFragment extends DialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (AttributeDialogListener) context;
+            listener = (AttributeDialogListener)context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + "attaching d fragment failed!");
         }
@@ -50,8 +49,8 @@ public class DetailsDialogFragment extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-
-                //Need to handle different types
+                TextView editAttribute = (TextView)dialogView.findViewById(R.id.detailValue);
+                // Need to handle different types
                 int attributeValue = Integer.parseInt(editAttribute.getText().toString());
                 listener.onUpdatedDetail(attributeValue, detailName);
                 dialog.dismiss();
