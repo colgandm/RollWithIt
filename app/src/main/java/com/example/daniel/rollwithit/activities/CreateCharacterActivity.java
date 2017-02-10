@@ -22,6 +22,7 @@ import static com.example.daniel.rollwithit.utils.ConstAttributes.XP;
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.database.CharacterDAO;
 import com.example.daniel.rollwithit.dndCharacter.Character;
+import com.example.daniel.rollwithit.utils.DiceRoller;
 
 import android.Manifest;
 import android.app.Activity;
@@ -38,6 +39,7 @@ import android.widget.EditText;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CreateCharacterActivity extends AppCompatActivity {
 
+    private final DiceRoller diceRoller = new DiceRoller();
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
@@ -67,6 +69,27 @@ public class CreateCharacterActivity extends AppCompatActivity {
         }
         characterDAO.close();
         finish();
+    }
+
+    public void rollCharacterAttributes(View view) {
+
+        EditText strength = (EditText)findViewById(R.id.strength);
+        strength.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
+
+        EditText dexterity = (EditText)findViewById(R.id.dexterity);
+        dexterity.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
+
+        EditText constitution = (EditText)findViewById(R.id.constitution);
+        constitution.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
+
+        EditText intelligence = (EditText)findViewById(R.id.intelligence);
+        intelligence.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
+
+        EditText wisdom = (EditText)findViewById(R.id.wisdom);
+        wisdom.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
+
+        EditText charisma = (EditText)findViewById(R.id.charisma);
+        charisma.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
     }
 
     private void createCharacter() {

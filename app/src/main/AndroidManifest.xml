@@ -13,11 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.daniel.rollwithit.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter android:label="@string/test_string">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
@@ -35,31 +36,41 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.daniel.rollwithit.activities.RollerActivity"
+            android:name=".activities.RollerActivity"
             android:label="@string/title_activity_roller"
-            android:parentActivityName="com.example.daniel.rollwithit.activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.daniel.rollwithit.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.daniel.rollwithit.activities.CreateCharacterActivity"
+            android:name=".activities.CreateCharacterActivity"
             android:label="@string/title_activity_create_character"
-            android:parentActivityName="com.example.daniel.rollwithit.activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.daniel.rollwithit.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.daniel.rollwithit.activities.CharacterDisplayActivity"
+            android:name=".activities.CharacterDisplayActivity"
             android:label="@string/title_activity_character_display"
-            android:parentActivityName="com.example.daniel.rollwithit.activities.MainActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.daniel.rollwithit.activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.CharacterDiceRoller"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_character_dice_roller"
+            android:parentActivityName=".activities.CharacterDisplayActivity"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.daniel.rollwithit.activities.CharacterDisplayActivity" />
         </activity>
     </application>
 

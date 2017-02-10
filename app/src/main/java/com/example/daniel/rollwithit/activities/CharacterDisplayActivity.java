@@ -88,4 +88,5 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
     private void setCharacterName(String characterName) {
         this.characterName = characterName;
     }
+
 }

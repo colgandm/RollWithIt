@@ -56,4 +56,9 @@
     <string name="enter_new_detail">Enter new character detail</string>
     <string name="new_value">New Value</string>
 
+    <string name="title_activity_character_dice_roller">CharacterDiceRoller</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="roll_attributes">Roll Attributes</string>
+
 </resources>

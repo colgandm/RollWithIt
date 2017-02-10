@@ -49,6 +49,10 @@ public class RollerActivity extends AppCompatActivity {
         if (numOfRollText.getText().toString().matches("")) {
             Toast.makeText(this, "Please enter the number of rolls", Toast.LENGTH_SHORT).show();
             return;
+        } else if (Integer.valueOf(numOfRollText.getText().toString()) > 100) {
+            // TODO reasonable error message needed
+            Toast.makeText(this, "Please enter a reasonable number of rolls David", Toast.LENGTH_SHORT).show();
+            return;
         }
 
         int numOfRolls = Integer.parseInt(numOfRollText.getText().toString());
