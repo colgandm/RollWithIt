@@ -7,6 +7,8 @@ import static com.example.daniel.roll20.utils.ConstAttributes.INTELLIGENCE;
 import static com.example.daniel.roll20.utils.ConstAttributes.STRENGTH;
 import static com.example.daniel.roll20.utils.ConstAttributes.WISDOM;
 
+import java.util.ArrayList;
+
 import com.example.daniel.roll20.R;
 import com.example.daniel.roll20.activities.CharacterDisplayActivity;
 import com.example.daniel.roll20.database.CharacterDAO;
@@ -33,8 +35,9 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_character_attributes, container, false);
-        characterDAO = new CharacterDAO(getActivity());
-        loadCharacterFromDB(fragmentView);
+        CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
+        characterDAO = new CharacterDAO(activity);
+        loadCharacterFromDB(fragmentView, activity.getCharacterName());
         createButtonOnListeners(fragmentView);
         return fragmentView;
     }
@@ -69,12 +72,17 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         activity.raiseAttributeDialog(attributeName);
     }
 
-    private void loadCharacterFromDB(View view) {
-        if (characterDAO.getCharacter().size() == 0) {
+    private void loadCharacterFromDB(View view, String characterName) {
+        ArrayList<Character> characters = characterDAO.getCharacter();
+        if (characters.size() == 0) {
             Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT).show();
         } else {
-            Character character = characterDAO.getCharacter().get(0);
-            displayCharacterAttributes(character, view);
+            for (Character character : characters) {
+                if (characterName.equals(character.getCharacterName())) {
+                    displayCharacterAttributes(character, view);
+                    break;
+                }
+            }
         }
     }
 

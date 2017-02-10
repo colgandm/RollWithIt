@@ -62,6 +62,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
     public void createAndSaveCharacter(View view) {
         createCharacter();
         characterDAO.save(character);
+        characterDAO.close();
         finish();
     }
 

@@ -31,7 +31,7 @@
             android:layout_alignStart="@+id/CreateCharacterButton"
             android:layout_below="@+id/CreateCharacterButton"
             android:background="@android:color/transparent"
-            android:onClick="loadCharacter"
+            android:onClick="raiseCharacterSelectionDialog"
             android:text="@string/load_character"
             app:layout_anchorGravity="center_vertical|center_horizontal" />
 

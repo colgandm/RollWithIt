@@ -22,6 +22,7 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
+    private String characterName;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static void verifyStoragePermissions(Activity activity) {
@@ -34,6 +35,7 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setCharacterName(getIntent().getStringExtra("characterName"));
         setContentView(R.layout.activity_character_display);
         verifyStoragePermissions(this);
     }
@@ -66,5 +68,13 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
         CharacterDetailsFragment fragment = (CharacterDetailsFragment)getFragmentManager()
             .findFragmentById(R.id.CharacterDetailsFragment);
         fragment.reloadCharacterDetails(fragment.getView(), value, attribute);
+    }
+
+    public String getCharacterName() {
+        return characterName;
+    }
+
+    private void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
 }

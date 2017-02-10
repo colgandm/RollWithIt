@@ -19,8 +19,7 @@
         android:layout_below="@+id/dialogText"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:hint="@string/new_value"
-       />
+        android:hint="@string/new_value" />
 
 
 </RelativeLayout>
