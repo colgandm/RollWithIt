@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
+import android.view.KeyEvent;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CharacterDisplayActivity extends FragmentActivity implements AttributeDialogListener {
@@ -40,6 +42,29 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
         verifyStoragePermissions(this);
     }
 
+    @Override
+    public void onUpdatedAttribute(int value, String attribute) {
+        CharacterAttributesFragment fragment = (CharacterAttributesFragment)getFragmentManager()
+            .findFragmentById(R.id.characterAttributesFragment);
+        fragment.reloadCharacterAttributes(fragment.getView(), value, attribute);
+    }
+
+    @Override
+    public void onUpdatedDetail(String value, String attribute) {
+        CharacterDetailsFragment fragment = (CharacterDetailsFragment)getFragmentManager()
+            .findFragmentById(R.id.CharacterDetailsFragment);
+        fragment.reloadCharacterDetails(fragment.getView(), value, attribute);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Log.i("INFO", "Back button pressed Activity finished");
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
     public void raiseAttributeDialog(String attributeName) {
         Bundle args = new Bundle();
         args.putString("attributeName", attributeName);
@@ -54,20 +79,6 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
         DetailsDialogFragment dialog = new DetailsDialogFragment();
         dialog.setArguments(args);
         dialog.show(getFragmentManager(), "detailsDialog");
-    }
-
-    @Override
-    public void onUpdatedAttribute(int value, String attribute) {
-        CharacterAttributesFragment fragment = (CharacterAttributesFragment)getFragmentManager()
-            .findFragmentById(R.id.characterAttributesFragment);
-        fragment.reloadCharacterAttributes(fragment.getView(), value, attribute);
-    }
-
-    @Override
-    public void onUpdatedDetail(String value, String attribute) {
-        CharacterDetailsFragment fragment = (CharacterDetailsFragment)getFragmentManager()
-            .findFragmentById(R.id.CharacterDetailsFragment);
-        fragment.reloadCharacterDetails(fragment.getView(), value, attribute);
     }
 
     public String getCharacterName() {

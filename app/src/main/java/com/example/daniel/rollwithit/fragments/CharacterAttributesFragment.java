@@ -31,13 +31,16 @@ import android.widget.Toast;
 public class CharacterAttributesFragment extends Fragment implements View.OnClickListener {
 
     private CharacterDAO characterDAO;
+    private String characterName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_character_attributes, container, false);
         CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
         characterDAO = new CharacterDAO(activity);
-        loadCharacterFromDB(fragmentView, activity.getCharacterName());
+        characterName = activity.getCharacterName();
+        Character character = loadCharacterFromDB(characterName);
+        displayCharacterAttributes(character, fragmentView);
         createButtonOnListeners(fragmentView);
         return fragmentView;
     }
@@ -72,21 +75,22 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         activity.raiseAttributeDialog(attributeName);
     }
 
-    private void loadCharacterFromDB(View view, String characterName) {
+    private Character loadCharacterFromDB(String characterName) {
         ArrayList<Character> characters = characterDAO.getCharacter();
         if (characters.size() == 0) {
             Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT).show();
         } else {
             for (Character character : characters) {
                 if (characterName.equals(character.getCharacterName())) {
-                    displayCharacterAttributes(character, view);
-                    break;
+                    return character;
                 }
             }
         }
+        return null;
     }
 
     private void displayCharacterAttributes(Character character, View view) {
+        assert character != null;
         TextView strength = (TextView)view.findViewById(R.id.strengthShield);
         strength.setText(String.valueOf(character.getStrength()));
 
@@ -129,32 +133,31 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
     }
 
     public void reloadCharacterAttributes(View view, int value, String attribute) {
-        characterDAO = new CharacterDAO(getActivity());
-        Character character = characterDAO.getCharacter().get(0);
-
+        Character reloadedCharacter = loadCharacterFromDB(characterName);
+        assert reloadedCharacter != null;
         switch (attribute.toLowerCase()) {
         case STRENGTH:
-            character.setStrength(value);
+            reloadedCharacter.setStrength(value);
             break;
         case DEXTERITY:
-            character.setDexterity(value);
+            reloadedCharacter.setDexterity(value);
             break;
         case CONSTITUTION:
-            character.setConstitution(value);
+            reloadedCharacter.setConstitution(value);
             break;
         case INTELLIGENCE:
-            character.setIntelligence(value);
+            reloadedCharacter.setIntelligence(value);
             break;
         case WISDOM:
-            character.setWisdom(value);
+            reloadedCharacter.setWisdom(value);
             break;
         case CHARISMA:
-            character.setCharisma(value);
+            reloadedCharacter.setCharisma(value);
             break;
         default:
             Log.i("Error", "Unknown Attribute");
         }
-        displayCharacterAttributes(character, view);
+        displayCharacterAttributes(reloadedCharacter, view);
     }
 
 }

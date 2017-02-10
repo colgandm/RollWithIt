@@ -9,7 +9,6 @@
     tools:context="com.example.daniel.rollwithit.activities.CreateCharacterActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/ScrollView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="vertical">
@@ -162,8 +161,6 @@
                 android:id="@+id/SaveCharacterButton"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
                 android:onClick="createAndSaveCharacter"
                 android:text="@string/save_character"

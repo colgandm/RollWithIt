@@ -112,41 +112,41 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private Integer retrieveCharacterAttributes(String attribute) {
         switch (attribute) {
         case LEVEL:
-            return (((EditText)findViewById(R.id.level)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.level)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.level)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.level)).getText().toString());
         case XP:
-            return (((EditText)findViewById(R.id.xp)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.xp)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.xp)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.xp)).getText().toString());
         case HIT_POINTS:
-            return (((EditText)findViewById(R.id.hitPoints)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.hitPoints)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.hitPoints)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.hitPoints)).getText().toString());
         case ARMOUR_CLASS:
-            return (((EditText)findViewById(R.id.armourClass)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.armourClass)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.armourClass)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.armourClass)).getText().toString());
         case SPEED:
-            return (((EditText)findViewById(R.id.speed)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.speed)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.speed)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.speed)).getText().toString());
         case PROFICIENCY_BONUS:
-            return (((EditText)findViewById(R.id.proficiencyBonus)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.proficiencyBonus)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.proficiencyBonus)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.proficiencyBonus)).getText().toString());
         case STRENGTH:
-            return (((EditText)findViewById(R.id.strength)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.strength)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.strength)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.strength)).getText().toString());
         case DEXTERITY:
-            return (((EditText)findViewById(R.id.dexterity)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.dexterity)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.dexterity)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.dexterity)).getText().toString());
         case CONSTITUTION:
-            return (((EditText)findViewById(R.id.constitution)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.constitution)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.constitution)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.constitution)).getText().toString());
         case INTELLIGENCE:
-            return (((EditText)findViewById(R.id.intelligence)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.intelligence)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.intelligence)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.intelligence)).getText().toString());
         case WISDOM:
-            return (((EditText)findViewById(R.id.wisdom)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.wisdom)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.wisdom)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.wisdom)).getText().toString());
         case CHARISMA:
-            return (((EditText)findViewById(R.id.charisma)).getText().toString().isEmpty())
-                ? Integer.valueOf(((EditText)findViewById(R.id.charisma)).getText().toString()) : 0;
+            return (((EditText)findViewById(R.id.charisma)).getText().toString().equalsIgnoreCase("")) ? 0
+                : Integer.valueOf(((EditText)findViewById(R.id.charisma)).getText().toString());
         default:
             return 0;
         }

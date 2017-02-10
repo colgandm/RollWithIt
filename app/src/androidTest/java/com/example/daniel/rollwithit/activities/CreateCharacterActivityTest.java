@@ -1,88 +1,58 @@
-package com.example.daniel.rollwithit;
+package com.example.daniel.rollwithit.activities;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.assertNotNull;
+import static java.lang.Thread.sleep;
+
+import java.util.Random;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.example.daniel.rollwithit.activities.CharacterDisplayActivity;
-import com.example.daniel.rollwithit.activities.CreateCharacterActivity;
-import com.example.daniel.rollwithit.activities.MainActivity;
-import com.example.daniel.rollwithit.activities.RollerActivity;
+import com.example.daniel.rollwithit.R;
 
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 import android.widget.EditText;
 
 @RunWith(AndroidJUnit4.class)
-public class MainActivityTest extends ActivityTestRule {
+public class CreateCharacterActivityTest extends ActivityTestRule {
 
-    private static final String CHARACTER_NAME = "Hippy";
+    // private static final String CHARACTER_NAME = "Hippy";
     private static final String PLAYER_NAME = "Daniel Colgan";
     private static final String BACKGROUND = "Urchin";
     private static final String ALIGNMENT = "LG";
     private static final String RACE = "Elf";
     private static final String DND_CLASS = "Rouge";
-    private static final String PROFICIENCY_BONUS = "3";
-    private static final String ARMOUR_CLASS = "16";
-    private static final String SPEED = "30";
-    private static final String HIT_POINTS = "48";
-    private static final String LEVEL = "8";
-    private static final String XP = "17500";
-    private static final String STRENGTH = "10";
-    private static final String DEXTERITY = "18";
-    private static final String CONSTITUTION = "14";
-    private static final String INTELLIGENCE = "11";
-    private static final String WISDOM = "11";
-    private static final String CHARISMA = "12";
+    // private static final String PROFICIENCY_BONUS = "3";
+    // private static final String ARMOUR_CLASS = "16";
+    // private static final String SPEED = "30";
+    // private static final String HIT_POINTS = "48";
+    // private static final String LEVEL;
+    // private static final String XP = "17500";
+    // private static final String STRENGTH = "10";
+    // private static final String DEXTERITY = "18";
+    // private static final String CONSTITUTION = "14";
+    // private static final String INTELLIGENCE = "11";
+    // private static final String WISDOM = "11";
+    // private static final String CHARISMA = "12";
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
-    public MainActivityTest() {
+    public CreateCharacterActivityTest() {
         super(MainActivity.class);
     }
 
     @Test
-    public void diceRollerActivityCalledSuccessfully() {
-        Instrumentation.ActivityMonitor activityMonitor = getInstrumentation()
-            .addMonitor(RollerActivity.class.getName(), null, false);
-        onView(withId(R.id.RollButton)).perform(click());
-        Activity rollerActivity = getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 5000);
-        assertNotNull(rollerActivity);
-        rollerActivity.finish();
-    }
-
-    @Test
-    public void loadCharacterActivityCalledSuccessfully() {
-        Instrumentation.ActivityMonitor activityMonitor = getInstrumentation()
-            .addMonitor(CharacterDisplayActivity.class.getName(), null, false);
-        onView(withId(R.id.LoadCharacterButton)).perform(click());
-        Activity characterDisplayActivity = getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 5000);
-        assertNotNull(characterDisplayActivity);
-        characterDisplayActivity.finish();
-    }
-
-    @Test
-    public void createCharacterActivityCalledSuccessfully() {
-        Instrumentation.ActivityMonitor activityMonitor = getInstrumentation()
-            .addMonitor(CreateCharacterActivity.class.getName(), null, false);
-        onView(withId(R.id.CreateCharacterButton)).perform(click());
-        Activity createCharacterActivity = getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 5000);
-        assertNotNull(createCharacterActivity);
-        createCharacterActivity.finish();
-    }
-
-    @Test
-    public void successfullyCreateANewCharacter() {
+    public void successfullyCreateAndLoadNewCharacter() {
         Instrumentation.ActivityMonitor activityMonitor = getInstrumentation()
             .addMonitor(CreateCharacterActivity.class.getName(), null, false);
         onView(withId(R.id.CreateCharacterButton)).perform(click());
@@ -90,7 +60,6 @@ public class MainActivityTest extends ActivityTestRule {
         createNewCharacter(createCharacterActivity);
         onView(withId(R.id.SaveCharacterButton)).perform(scrollTo(), click());
         createCharacterActivity.finish();
-        onView(withId(R.id.LoadCharacterButton)).perform(click());
     }
 
     private void createNewCharacter(Activity activity) {
@@ -115,25 +84,47 @@ public class MainActivityTest extends ActivityTestRule {
         activity.runOnUiThread(new Runnable() {
 
             public void run() {
-                characterName.setText(CHARACTER_NAME);
+                characterName.setText(getSaltString());
                 dndClass.setText(DND_CLASS);
                 background.setText(BACKGROUND);
                 playerName.setText(PLAYER_NAME);
                 race.setText(RACE);
                 alignment.setText(ALIGNMENT);
-                strength.setText(String.valueOf(STRENGTH));
-                dexterity.setText(String.valueOf(DEXTERITY));
-                constitution.setText(String.valueOf(CONSTITUTION));
-                intelligence.setText(String.valueOf(INTELLIGENCE));
-                wisdom.setText(String.valueOf(WISDOM));
-                charisma.setText(String.valueOf(CHARISMA));
-                armourClass.setText(String.valueOf(ARMOUR_CLASS));
-                speed.setText(String.valueOf(SPEED));
-                hitPoints.setText(String.valueOf(HIT_POINTS));
-                level.setText(String.valueOf(LEVEL));
-                xp.setText(String.valueOf(XP));
-                proficiencyBonus.setText(String.valueOf(PROFICIENCY_BONUS));
+                strength.setText(String.valueOf(randomWithRange(18)));
+                dexterity.setText(String.valueOf(randomWithRange(18)));
+                constitution.setText(String.valueOf(randomWithRange(18)));
+                intelligence.setText(String.valueOf(randomWithRange(18)));
+                wisdom.setText(String.valueOf(randomWithRange(18)));
+                charisma.setText(String.valueOf(randomWithRange(18)));
+                armourClass.setText(String.valueOf(randomWithRange(18)));
+                speed.setText(String.valueOf(randomWithRange(18)));
+                hitPoints.setText(String.valueOf(randomWithRange(18)));
+                level.setText(String.valueOf(randomWithRange(18)));
+                xp.setText(String.valueOf(randomWithRange(18)));
+                proficiencyBonus.setText(String.valueOf(randomWithRange(18)));
             }
         });
+        try {
+            sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getSaltString() {
+        String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 5) {
+            int index = (int)(rnd.nextFloat() * alpha.length());
+            salt.append(alpha.charAt(index));
+        }
+        Log.i("INFO", "CharacterName: " + salt.toString());
+        return salt.toString();
+    }
+
+    private int randomWithRange(int max) {
+        int range = ((max - 1) + 1);
+        return (int)(Math.random() * range) + 1;
     }
 }

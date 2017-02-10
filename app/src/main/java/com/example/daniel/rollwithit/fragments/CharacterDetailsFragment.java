@@ -32,13 +32,16 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
     private static final String BACKGROUND = "Background";
 
     private CharacterDAO characterDAO;
+    private String characterName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_character_details, container, false);
         CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
         characterDAO = new CharacterDAO(activity);
-        loadCharacterFromDB(fragmentView, activity.getCharacterName());
+        characterName = activity.getCharacterName();
+        Character character = loadCharacterFromDB(characterName);
+        displayCharacterDetails(character, fragmentView);
         createButtonOnListeners(fragmentView);
         return fragmentView;
     }
@@ -76,21 +79,23 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         activity.raiseDetailsDialog(attributeName);
     }
 
-    private void loadCharacterFromDB(View view, String characterName) {
+    private Character loadCharacterFromDB(String characterName) {
         ArrayList<Character> characters = characterDAO.getCharacter();
         if (characters.size() == 0) {
             Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT).show();
         } else {
             for (Character character : characters) {
                 if (characterName.equals(character.getCharacterName())) {
-                    displayCharacterDetails(character, view);
-                    break;
+                    return character;
                 }
             }
         }
+        return null;
     }
 
     private void displayCharacterDetails(Character character, View view) {
+        assert character != null;
+
         TextView characterName = (TextView)view.findViewById(R.id.characterName);
         characterName.setText(character.getCharacterName());
 
@@ -139,27 +144,26 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
     }
 
     public void reloadCharacterDetails(View view, String value, String attribute) {
-        characterDAO = new CharacterDAO(getActivity());
-        Character character = characterDAO.getCharacter().get(0);
-
+        Character reloadedCharacter = loadCharacterFromDB(characterName);
+        assert reloadedCharacter != null;
         switch (attribute) {
         case CHARACTER_NAME:
-            character.setCharacterName(value);
+            reloadedCharacter.setCharacterName(value);
             break;
         case DND_CLASS:
-            character.setDndClass(value);
+            reloadedCharacter.setDndClass(value);
             break;
         case RACE:
-            character.setRace(value);
+            reloadedCharacter.setRace(value);
             break;
         case ALIGNMENT:
-            character.setAlignment(value);
+            reloadedCharacter.setAlignment(value);
             break;
         case BACKGROUND:
-            character.setBackground(value);
+            reloadedCharacter.setBackground(value);
             break;
         case PLAYER_NAME:
-            character.setPlayerName(value);
+            reloadedCharacter.setPlayerName(value);
             break;
         case XP:
             Log.i("Steady", "XP Attribute");
@@ -167,7 +171,7 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         default:
             Log.i("Error", "Unknown Attribute");
         }
-        displayCharacterDetails(character, view);
+        displayCharacterDetails(reloadedCharacter, view);
     }
 
 }
