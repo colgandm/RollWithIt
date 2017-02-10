@@ -1,6 +1,6 @@
-package com.example.daniel.roll20.fragments;
+package com.example.daniel.rollwithit.fragments;
 
-import com.example.daniel.roll20.R;
+import com.example.daniel.rollwithit.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

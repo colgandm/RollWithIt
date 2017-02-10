@@ -1,12 +1,12 @@
-package com.example.daniel.roll20.activities;
+package com.example.daniel.rollwithit.activities;
 
 import java.util.ArrayList;
 
-import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.database.CharacterDAO;
-import com.example.daniel.roll20.dialogs.CharacterSelectionDialogFragment;
-import com.example.daniel.roll20.dndCharacter.Character;
-import com.example.daniel.roll20.interfaces.SelectionDialogListener;
+import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.database.CharacterDAO;
+import com.example.daniel.rollwithit.dialogs.CharacterSelectionDialogFragment;
+import com.example.daniel.rollwithit.dndCharacter.Character;
+import com.example.daniel.rollwithit.interfaces.SelectionDialogListener;
 import com.idescout.sql.SqlScoutServer;
 
 import android.content.Intent;
@@ -33,12 +33,6 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
         startActivity(characterCreationIntent);
     }
 
-    public void loadCharacter(String characterName) {
-        Intent characterDisplayIntent = new Intent(this, CharacterDisplayActivity.class);
-        characterDisplayIntent.putExtra("characterName", characterName);
-        startActivity(characterDisplayIntent);
-    }
-
     public void raiseCharacterSelectionDialog(View view) {
         CharacterDAO characterDAO = new CharacterDAO(getApplicationContext());
         ArrayList<Character> characterArrayList = characterDAO.getCharacter();
@@ -47,6 +41,12 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
         args.putParcelableArrayList("characters", characterArrayList);
         cSDF.setArguments(args);
         cSDF.show(getFragmentManager(), "selectionDialog");
+    }
+
+    private void loadCharacter(String characterName) {
+        Intent characterDisplayIntent = new Intent(this, CharacterDisplayActivity.class);
+        characterDisplayIntent.putExtra("characterName", characterName);
+        startActivity(characterDisplayIntent);
     }
 
     @Override

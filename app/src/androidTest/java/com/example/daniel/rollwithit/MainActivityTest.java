@@ -1,4 +1,4 @@
-package com.example.daniel.roll20;
+package com.example.daniel.rollwithit;
 
 import static android.support.test.InstrumentationRegistry.getInstrumentation;
 import static android.support.test.espresso.Espresso.onView;
@@ -11,10 +11,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.example.daniel.roll20.activities.CharacterDisplayActivity;
-import com.example.daniel.roll20.activities.CreateCharacterActivity;
-import com.example.daniel.roll20.activities.MainActivity;
-import com.example.daniel.roll20.activities.RollerActivity;
+import com.example.daniel.rollwithit.activities.CharacterDisplayActivity;
+import com.example.daniel.rollwithit.activities.CreateCharacterActivity;
+import com.example.daniel.rollwithit.activities.MainActivity;
+import com.example.daniel.rollwithit.activities.RollerActivity;
 
 import android.app.Activity;
 import android.app.Instrumentation;

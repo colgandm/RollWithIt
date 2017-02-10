@@ -5,7 +5,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.example.daniel.roll20"
+        applicationId "com.example.daniel.rollwithit"
         minSdkVersion 18
         targetSdkVersion 25
         multiDexEnabled true

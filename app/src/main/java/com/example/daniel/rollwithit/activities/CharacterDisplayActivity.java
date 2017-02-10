@@ -1,11 +1,11 @@
-package com.example.daniel.roll20.activities;
+package com.example.daniel.rollwithit.activities;
 
-import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.dialogs.AttributeDialogFragment;
-import com.example.daniel.roll20.dialogs.DetailsDialogFragment;
-import com.example.daniel.roll20.fragments.CharacterAttributesFragment;
-import com.example.daniel.roll20.fragments.CharacterDetailsFragment;
-import com.example.daniel.roll20.interfaces.AttributeDialogListener;
+import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.dialogs.AttributeDialogFragment;
+import com.example.daniel.rollwithit.dialogs.DetailsDialogFragment;
+import com.example.daniel.rollwithit.fragments.CharacterAttributesFragment;
+import com.example.daniel.rollwithit.fragments.CharacterDetailsFragment;
+import com.example.daniel.rollwithit.interfaces.AttributeDialogListener;
 
 import android.Manifest;
 import android.app.Activity;

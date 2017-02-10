@@ -1,4 +1,4 @@
-package com.example.daniel.roll20.interfaces;
+package com.example.daniel.rollwithit.interfaces;
 
 public interface SelectionDialogListener {
 

@@ -1,4 +1,4 @@
-package com.example.daniel.roll20.database;
+package com.example.daniel.rollwithit.database;
 
 import android.content.Context;
 import android.database.SQLException;

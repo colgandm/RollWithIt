@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.daniel.roll20">
+    package="com.example.daniel.rollwithit">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.example.daniel.rollwithit.activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,31 +23,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.RollerActivity"
+            android:name="com.example.daniel.rollwithit.activities.RollerActivity"
             android:label="@string/title_activity_roller"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName="com.example.daniel.rollwithit.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.daniel.roll20.activities.MainActivity" />
+                android:value="com.example.daniel.rollwithit.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.CreateCharacterActivity"
+            android:name="com.example.daniel.rollwithit.activities.CreateCharacterActivity"
             android:label="@string/title_activity_create_character"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName="com.example.daniel.rollwithit.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.daniel.roll20.activities.MainActivity" />
+                android:value="com.example.daniel.rollwithit.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.CharacterDisplayActivity"
+            android:name="com.example.daniel.rollwithit.activities.CharacterDisplayActivity"
             android:label="@string/title_activity_character_display"
-            android:parentActivityName=".activities.MainActivity"
+            android:parentActivityName="com.example.daniel.rollwithit.activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.daniel.roll20.activities.MainActivity" />
+                android:value="com.example.daniel.rollwithit.activities.MainActivity" />
         </activity>
     </application>
 

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="com.example.daniel.roll20.fragments.CharacterDetailsFragment">
+    tools:context="com.example.daniel.rollwithit.fragments.CharacterDetailsFragment">
 
     <TextView
         android:id="@+id/characterName"

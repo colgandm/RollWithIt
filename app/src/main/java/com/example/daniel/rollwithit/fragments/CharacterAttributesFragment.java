@@ -1,18 +1,18 @@
-package com.example.daniel.roll20.fragments;
+package com.example.daniel.rollwithit.fragments;
 
-import static com.example.daniel.roll20.utils.ConstAttributes.CHARISMA;
-import static com.example.daniel.roll20.utils.ConstAttributes.CONSTITUTION;
-import static com.example.daniel.roll20.utils.ConstAttributes.DEXTERITY;
-import static com.example.daniel.roll20.utils.ConstAttributes.INTELLIGENCE;
-import static com.example.daniel.roll20.utils.ConstAttributes.STRENGTH;
-import static com.example.daniel.roll20.utils.ConstAttributes.WISDOM;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.CHARISMA;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.CONSTITUTION;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.DEXTERITY;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.INTELLIGENCE;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.STRENGTH;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.WISDOM;
 
 import java.util.ArrayList;
 
-import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.activities.CharacterDisplayActivity;
-import com.example.daniel.roll20.database.CharacterDAO;
-import com.example.daniel.roll20.dndCharacter.Character;
+import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.activities.CharacterDisplayActivity;
+import com.example.daniel.rollwithit.database.CharacterDAO;
+import com.example.daniel.rollwithit.dndCharacter.Character;
 
 import android.app.Fragment;
 import android.os.Build;

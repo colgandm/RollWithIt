@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/d20back"
     android:fitsSystemWindows="true"
-    tools:context="com.example.daniel.roll20.activities.CreateCharacterActivity">
+    tools:context="com.example.daniel.rollwithit.activities.CreateCharacterActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,11 +18,11 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="com.example.daniel.roll20.activities.CharacterDisplayActivity">
+            tools:context="com.example.daniel.rollwithit.activities.CharacterDisplayActivity">
 
             <fragment
                 android:id="@+id/CharacterDetailsFragment"
-                android:name="com.example.daniel.roll20.fragments.CharacterDetailsFragment"
+                android:name="com.example.daniel.rollwithit.fragments.CharacterDetailsFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -44,7 +44,7 @@
 
             <fragment
                 android:id="@+id/characterAttributesFragment"
-                android:name="com.example.daniel.roll20.fragments.CharacterAttributesFragment"
+                android:name="com.example.daniel.rollwithit.fragments.CharacterAttributesFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -54,7 +54,7 @@
 
             <fragment
                 android:id="@+id/characterEquipmentFragment"
-                android:name="com.example.daniel.roll20.fragments.CharacterEquipmentFragment"
+                android:name="com.example.daniel.rollwithit.fragments.CharacterEquipmentFragment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

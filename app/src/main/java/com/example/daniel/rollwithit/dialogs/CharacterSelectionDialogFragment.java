@@ -1,10 +1,10 @@
-package com.example.daniel.roll20.dialogs;
+package com.example.daniel.rollwithit.dialogs;
 
 import java.util.ArrayList;
 
-import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.dndCharacter.Character;
-import com.example.daniel.roll20.interfaces.SelectionDialogListener;
+import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.dndCharacter.Character;
+import com.example.daniel.rollwithit.interfaces.SelectionDialogListener;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

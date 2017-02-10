@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.daniel.roll20.fragments.CharacterAttributesFragment">
+    tools:context="com.example.daniel.rollwithit.fragments.CharacterAttributesFragment">
 
     <TextView
         android:id="@+id/strength"

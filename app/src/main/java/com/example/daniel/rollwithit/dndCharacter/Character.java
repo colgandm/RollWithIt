@@ -1,4 +1,4 @@
-package com.example.daniel.roll20.dndCharacter;
+package com.example.daniel.rollwithit.dndCharacter;
 
 import java.io.Serializable;
 

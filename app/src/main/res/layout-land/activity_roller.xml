@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/dragonback"
     android:fitsSystemWindows="true"
-    tools:context="com.example.daniel.roll20.activities.MainActivity">
+    tools:context="com.example.daniel.rollwithit.activities.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

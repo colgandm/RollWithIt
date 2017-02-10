@@ -1,7 +1,7 @@
-package com.example.daniel.roll20.activities;
+package com.example.daniel.rollwithit.activities;
 
-import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.utils.DiceRoller;
+import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.utils.DiceRoller;
 
 import android.app.Activity;
 import android.content.Context;

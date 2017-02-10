@@ -1,4 +1,4 @@
-package com.example.daniel.roll20.utils;
+package com.example.daniel.rollwithit.utils;
 
 public class ConstAttributes {
 

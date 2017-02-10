@@ -1,27 +1,27 @@
-package com.example.daniel.roll20.activities;
+package com.example.daniel.rollwithit.activities;
 
-import static com.example.daniel.roll20.utils.ConstAttributes.ALIGNMENT;
-import static com.example.daniel.roll20.utils.ConstAttributes.ARMOUR_CLASS;
-import static com.example.daniel.roll20.utils.ConstAttributes.BACKGROUND;
-import static com.example.daniel.roll20.utils.ConstAttributes.CHARACTER_NAME;
-import static com.example.daniel.roll20.utils.ConstAttributes.CHARISMA;
-import static com.example.daniel.roll20.utils.ConstAttributes.CONSTITUTION;
-import static com.example.daniel.roll20.utils.ConstAttributes.DEXTERITY;
-import static com.example.daniel.roll20.utils.ConstAttributes.DND_CLASS;
-import static com.example.daniel.roll20.utils.ConstAttributes.HIT_POINTS;
-import static com.example.daniel.roll20.utils.ConstAttributes.INTELLIGENCE;
-import static com.example.daniel.roll20.utils.ConstAttributes.LEVEL;
-import static com.example.daniel.roll20.utils.ConstAttributes.PLAYER_NAME;
-import static com.example.daniel.roll20.utils.ConstAttributes.PROFICIENCY_BONUS;
-import static com.example.daniel.roll20.utils.ConstAttributes.RACE;
-import static com.example.daniel.roll20.utils.ConstAttributes.SPEED;
-import static com.example.daniel.roll20.utils.ConstAttributes.STRENGTH;
-import static com.example.daniel.roll20.utils.ConstAttributes.WISDOM;
-import static com.example.daniel.roll20.utils.ConstAttributes.XP;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.ALIGNMENT;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.ARMOUR_CLASS;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.BACKGROUND;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.CHARACTER_NAME;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.CHARISMA;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.CONSTITUTION;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.DEXTERITY;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.DND_CLASS;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.HIT_POINTS;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.INTELLIGENCE;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.PLAYER_NAME;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.PROFICIENCY_BONUS;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.RACE;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.SPEED;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.STRENGTH;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.WISDOM;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.XP;
 
-import com.example.daniel.roll20.R;
-import com.example.daniel.roll20.database.CharacterDAO;
-import com.example.daniel.roll20.dndCharacter.Character;
+import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.database.CharacterDAO;
+import com.example.daniel.rollwithit.dndCharacter.Character;
 
 import android.Manifest;
 import android.app.Activity;
@@ -61,7 +61,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
 
     public void createAndSaveCharacter(View view) {
         createCharacter();
-        characterDAO.save(character);
+        long result = characterDAO.save(character);
         characterDAO.close();
         finish();
     }
