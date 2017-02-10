@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -61,7 +62,9 @@ public class CreateCharacterActivity extends AppCompatActivity {
 
     public void createAndSaveCharacter(View view) {
         createCharacter();
-        long result = characterDAO.save(character);
+        if (characterDAO.save(character) < 0) {
+            Log.i("Error", "Error saving character during character creation.");
+        }
         characterDAO.close();
         finish();
     }
@@ -109,29 +112,41 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private Integer retrieveCharacterAttributes(String attribute) {
         switch (attribute) {
         case LEVEL:
-            return Integer.valueOf(((EditText)findViewById(R.id.level)).getText().toString());
+            return (((EditText)findViewById(R.id.level)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.level)).getText().toString()) : 0;
         case XP:
-            return Integer.valueOf(((EditText)findViewById(R.id.xp)).getText().toString());
+            return (((EditText)findViewById(R.id.xp)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.xp)).getText().toString()) : 0;
         case HIT_POINTS:
-            return Integer.valueOf(((EditText)findViewById(R.id.hitPoints)).getText().toString());
+            return (((EditText)findViewById(R.id.hitPoints)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.hitPoints)).getText().toString()) : 0;
         case ARMOUR_CLASS:
-            return Integer.valueOf(((EditText)findViewById(R.id.armourClass)).getText().toString());
+            return (((EditText)findViewById(R.id.armourClass)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.armourClass)).getText().toString()) : 0;
         case SPEED:
-            return Integer.valueOf(((EditText)findViewById(R.id.speed)).getText().toString());
+            return (((EditText)findViewById(R.id.speed)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.speed)).getText().toString()) : 0;
         case PROFICIENCY_BONUS:
-            return Integer.valueOf(((EditText)findViewById(R.id.proficiencyBonus)).getText().toString());
+            return (((EditText)findViewById(R.id.proficiencyBonus)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.proficiencyBonus)).getText().toString()) : 0;
         case STRENGTH:
-            return Integer.valueOf(((EditText)findViewById(R.id.strength)).getText().toString());
+            return (((EditText)findViewById(R.id.strength)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.strength)).getText().toString()) : 0;
         case DEXTERITY:
-            return Integer.valueOf(((EditText)findViewById(R.id.dexterity)).getText().toString());
+            return (((EditText)findViewById(R.id.dexterity)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.dexterity)).getText().toString()) : 0;
         case CONSTITUTION:
-            return Integer.valueOf(((EditText)findViewById(R.id.constitution)).getText().toString());
+            return (((EditText)findViewById(R.id.constitution)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.constitution)).getText().toString()) : 0;
         case INTELLIGENCE:
-            return Integer.valueOf(((EditText)findViewById(R.id.intelligence)).getText().toString());
+            return (((EditText)findViewById(R.id.intelligence)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.intelligence)).getText().toString()) : 0;
         case WISDOM:
-            return Integer.valueOf(((EditText)findViewById(R.id.wisdom)).getText().toString());
+            return (((EditText)findViewById(R.id.wisdom)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.wisdom)).getText().toString()) : 0;
         case CHARISMA:
-            return Integer.valueOf(((EditText)findViewById(R.id.charisma)).getText().toString());
+            return (((EditText)findViewById(R.id.charisma)).getText().toString().isEmpty())
+                ? Integer.valueOf(((EditText)findViewById(R.id.charisma)).getText().toString()) : 0;
         default:
             return 0;
         }
