@@ -52,19 +52,8 @@ public class CharacterSelectionDialogFragment extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 final String strName = characterArrayAdapter.getItem(which);
-                AlertDialog.Builder builderInner = new AlertDialog.Builder(getActivity());
-                builderInner.setMessage(strName);
-                builderInner.setTitle("Your Selected Item is");
-                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        System.out.println("Clicked List!");
-                        listener.onCharacterSelected(strName);
-                        dialog.dismiss();
-                    }
-                });
-                builderInner.show();
+                listener.onCharacterSelected(strName);
+                dialog.dismiss();
             }
         });
         return builder.create();

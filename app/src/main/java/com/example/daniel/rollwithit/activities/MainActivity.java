@@ -7,7 +7,6 @@ import com.example.daniel.rollwithit.database.CharacterDAO;
 import com.example.daniel.rollwithit.dialogs.CharacterSelectionDialogFragment;
 import com.example.daniel.rollwithit.dndCharacter.Character;
 import com.example.daniel.rollwithit.interfaces.SelectionDialogListener;
-import com.idescout.sql.SqlScoutServer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SqlScoutServer.create(this, getPackageName());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
