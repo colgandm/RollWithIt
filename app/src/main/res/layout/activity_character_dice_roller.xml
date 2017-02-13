@@ -1,50 +1,77 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/diceRollerContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context="com.example.daniel.rollwithit.activities.CharacterDiceRoller">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
-    <TextView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
-        android:textSize="50sp"
-        android:textStyle="bold" />
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+    <!--<fragment-->
+    <!--android:id="@+id/DiceHeadingFragment"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceHeadingFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_heading" />-->
 
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentD4"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
 
-            <Button
-                android:id="@+id/dummy_button"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentD6"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
 
-        </LinearLayout>
-    </FrameLayout>
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentD8"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
 
-</FrameLayout>
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentD10"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
+
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentD12"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
+
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentD20"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
+
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentD100"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
+
+    <!--<fragment-->
+    <!--android:id="@+id/DiceRollerFragmentDX"-->
+    <!--android:name="com.example.daniel.rollwithit.fragments.DiceRollerFragment"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--tools:layout="@layout/fragment_dice_roller" />-->
+
+
+</LinearLayout>
+

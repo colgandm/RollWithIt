@@ -1,69 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/d20back"
     android:fitsSystemWindows="true"
-    tools:context="com.example.daniel.rollwithit.activities.CreateCharacterActivity">
+    app:layout_collapseParallaxMultiplier="1.0"
+    tools:context="com.example.daniel.rollwithit.activities.CharacterDisplayActivity">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_collapseParallaxMultiplier="1.0">
+        android:layout_height="wrap_content"
+        tools:context="com.example.daniel.rollwithit.activities.CharacterDisplayActivity">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
+        <fragment
+            android:id="@+id/CharacterDetailsFragment"
+            android:name="com.example.daniel.rollwithit.fragments.CharacterDetailsFragment"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:context="com.example.daniel.rollwithit.activities.CharacterDisplayActivity">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            tools:layout="@layout/fragment_character_details" />
 
-            <fragment
-                android:id="@+id/CharacterDetailsFragment"
-                android:name="com.example.daniel.rollwithit.fragments.CharacterDetailsFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                tools:layout="@layout/fragment_character_details" />
+        <ProgressBar
+            android:id="@+id/experienceBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/CharacterDetailsFragment"
+            android:progress="65" />
 
-            <ProgressBar
-                android:id="@+id/experienceBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/CharacterDetailsFragment"
-                android:progress="65" />
+        <fragment
+            android:id="@+id/characterAttributesFragment"
+            android:name="com.example.daniel.rollwithit.fragments.CharacterAttributesFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/experienceBar"
+            tools:layout="@layout/fragment_character_attributes" />
 
-            <fragment
-                android:id="@+id/characterAttributesFragment"
-                android:name="com.example.daniel.rollwithit.fragments.CharacterAttributesFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/experienceBar"
-                tools:layout="@layout/fragment_character_attributes" />
+        <fragment
+            android:id="@+id/characterEquipmentFragment"
+            android:name="com.example.daniel.rollwithit.fragments.CharacterEquipmentFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/experienceBar"
+            android:layout_toEndOf="@+id/characterAttributesFragment"
+            tools:layout="@layout/fragment_character_equipment" />
 
-            <fragment
-                android:id="@+id/characterEquipmentFragment"
-                android:name="com.example.daniel.rollwithit.fragments.CharacterEquipmentFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/experienceBar"
-                android:layout_toEndOf="@+id/characterAttributesFragment"
-                android:layout_toRightOf="@+id/characterAttributesFragment"
-                tools:layout="@layout/fragment_character_equipment" />
+    </RelativeLayout>
 
-        </RelativeLayout>
-    </ScrollView>
-</android.support.design.widget.CoordinatorLayout>
+</ScrollView>

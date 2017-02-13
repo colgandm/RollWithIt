@@ -25,9 +25,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class CharacterAttributesFragment extends Fragment implements View.OnClickListener {
 
     private CharacterDAO characterDAO;

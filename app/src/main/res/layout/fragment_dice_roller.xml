@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.example.daniel.rollwithit.fragments.DiceRollerFragment">
+
+    <EditText
+        android:id="@+id/numberOfDie"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="@string/numberOne"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/typeOfDie"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/d4Dice"
+        android:textIsSelectable="false" />
+
+    <EditText
+        android:id="@+id/modifierValue"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:inputType="number"
+        android:text="@string/numberZero"
+        android:textIsSelectable="false" />
+
+    <Button
+        android:id="@+id/rollButton"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/roll_button"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:id="@+id/rollResult"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:hint="@string/roll_result"
+        android:textIsSelectable="false" />
+</LinearLayout>

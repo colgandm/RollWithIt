@@ -9,17 +9,20 @@ import com.example.daniel.rollwithit.interfaces.AttributeDialogListener;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-public class CharacterDisplayActivity extends FragmentActivity implements AttributeDialogListener {
+public class CharacterDisplayActivity extends AppCompatActivity implements AttributeDialogListener {
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
@@ -40,6 +43,26 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
         setCharacterName(getIntent().getStringExtra("characterName"));
         setContentView(R.layout.activity_character_display);
         verifyStoragePermissions(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this, CharacterDiceRoller.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -89,4 +112,8 @@ public class CharacterDisplayActivity extends FragmentActivity implements Attrib
         this.characterName = characterName;
     }
 
+    public void goToSecondDiceRoller(MenuItem item) {
+        Intent diceRollerIntent = new Intent(this, CharacterDiceRoller.class);
+        startActivity(diceRollerIntent);
+    }
 }

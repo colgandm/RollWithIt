@@ -65,8 +65,8 @@
                 android:id="@+id/rollAttributes"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:text="@string/roll_attributes"
-                android:onClick="rollCharacterAttributes"/>
+                android:onClick="rollCharacterAttributes"
+                android:text="@string/roll_attributes" />
 
             <EditText
                 android:id="@+id/strength"

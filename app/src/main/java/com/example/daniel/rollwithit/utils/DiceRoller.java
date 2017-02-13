@@ -20,6 +20,14 @@ public class DiceRoller {
         return resultArray;
     }
 
+    public int rollSumWithModifier(int numberOfDice, int numberOfSides, int modifier) {
+        int result = 0;
+        for (int i = 0; i < numberOfDice; i++) {
+            result += randomWithRange(numberOfSides) + modifier;
+        }
+        return result;
+    }
+
     public int[] rollAttributes() {
         int[] resultArray = new int[6];
         for (int i = 0; i < resultArray.length; i++) {

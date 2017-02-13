@@ -26,17 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/numberOfRolls"
-            android:layout_alignRight="@+id/numberOfRolls"
             android:layout_below="@+id/numberOfRolls"
-            android:layout_toEndOf="@+id/typeOfDice"
-            android:layout_toRightOf="@+id/typeOfDice" />
+            android:layout_toEndOf="@+id/typeOfDice" />
 
         <TextView
             android:id="@+id/typeOfDice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/dice_spinner"
-            android:layout_alignLeft="@+id/numberOfRolls"
             android:layout_alignStart="@+id/numberOfRolls"
             android:layout_below="@+id/numberOfRolls"
             android:text="@string/type_of_dice"

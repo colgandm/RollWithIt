@@ -39,10 +39,10 @@ import android.widget.EditText;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CreateCharacterActivity extends AppCompatActivity {
 
-    private final DiceRoller diceRoller = new DiceRoller();
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
+    private final DiceRoller diceRoller = new DiceRoller();
     private Character character;
     private CharacterDAO characterDAO;
 

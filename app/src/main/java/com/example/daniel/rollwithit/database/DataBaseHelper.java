@@ -46,11 +46,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onOpen(SQLiteDatabase db) {
-        super.onOpen(db);
-    }
-
-    @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_CHARACTER_TABLE);
     }
