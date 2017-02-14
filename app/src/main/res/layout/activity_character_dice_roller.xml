@@ -6,6 +6,6 @@
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.example.daniel.rollwithit.activities.DiceRoller">
+    tools:context="com.example.daniel.rollwithit.activities.DiceRollerActivity">
 </LinearLayout>
 

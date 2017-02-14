@@ -61,7 +61,7 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, DiceRoller.class));
+            startActivity(new Intent(this, DiceRollerActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -109,7 +109,7 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
     public void startDiceRollerActivity(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, DiceRoller.class));
+            startActivity(new Intent(this, DiceRollerActivity.class));
         }
     }
 

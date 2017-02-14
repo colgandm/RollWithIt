@@ -1,5 +1,7 @@
 package com.example.daniel.rollwithit.fragments;
 
+import static java.lang.Integer.parseInt;
+
 import java.util.ArrayList;
 
 import com.example.daniel.rollwithit.R;
@@ -30,19 +32,29 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
     private static final String XP = "Experience Points";
     private static final String ALIGNMENT = "Alignment";
     private static final String BACKGROUND = "Background";
+    private static final String CHAR_CREATION_TOAST = "Please Create a Character";
 
     private CharacterDAO characterDAO;
-    private String characterName;
+    private String charactersName;
+
+    private TextView characterName;
+    private TextView dndClass;
+    private TextView background;
+    private TextView playerName;
+    private TextView race;
+    private TextView alignment;
+    private TextView xp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_character_details, container, false);
         CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
         characterDAO = new CharacterDAO(activity);
-        characterName = activity.getCharacterName();
-        Character character = loadCharacterFromDB(characterName);
+        charactersName = activity.getCharacterName();
+        Character character = loadCharacterFromDB(charactersName);
+        initialiseViews(fragmentView);
         displayCharacterDetails(character, fragmentView);
-        createButtonOnListeners(fragmentView);
+        createButtonOnListeners();
         return fragmentView;
     }
 
@@ -82,7 +94,7 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
     private Character loadCharacterFromDB(String characterName) {
         ArrayList<Character> characters = characterDAO.getCharacter();
         if (characters.size() == 0) {
-            Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), CHAR_CREATION_TOAST, Toast.LENGTH_SHORT).show();
         } else {
             for (Character character : characters) {
                 if (characterName.equals(character.getCharacterName())) {
@@ -93,58 +105,40 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         return null;
     }
 
+    public void initialiseViews(View view) {
+        characterName = (TextView)view.findViewById(R.id.characterName);
+        dndClass = (TextView)view.findViewById(R.id.dndClass);
+        background = (TextView)view.findViewById(R.id.background);
+        playerName = (TextView)view.findViewById(R.id.playerName);
+        race = (TextView)view.findViewById(R.id.Race);
+        alignment = (TextView)view.findViewById(R.id.alignment);
+        xp = (TextView)view.findViewById(R.id.xp);
+    }
+
     private void displayCharacterDetails(Character character, View view) {
         assert character != null;
-
-        TextView characterName = (TextView)view.findViewById(R.id.characterName);
         characterName.setText(character.getCharacterName());
-
-        TextView dndClass = (TextView)view.findViewById(R.id.dndClass);
         dndClass.setText(character.getDndClass());
-
-        TextView background = (TextView)view.findViewById(R.id.background);
         background.setText(character.getBackground());
-
-        TextView playerName = (TextView)view.findViewById(R.id.playerName);
         playerName.setText(character.getPlayerName());
-
-        TextView race = (TextView)view.findViewById(R.id.Race);
         race.setText(character.getRace());
-
-        TextView alignment = (TextView)view.findViewById(R.id.alignment);
         alignment.setText(character.getAlignment());
-
-        TextView xp = (TextView)view.findViewById(R.id.xp);
         xp.setText(String.valueOf(character.getXp()));
-
         characterDAO.update(character);
     }
 
-    private void createButtonOnListeners(View view) {
-        TextView characterName = (TextView)view.findViewById(R.id.characterName);
+    private void createButtonOnListeners() {
         characterName.setOnClickListener(this);
-
-        TextView dndClass = (TextView)view.findViewById(R.id.dndClass);
         dndClass.setOnClickListener(this);
-
-        TextView background = (TextView)view.findViewById(R.id.background);
         background.setOnClickListener(this);
-
-        TextView playerName = (TextView)view.findViewById(R.id.playerName);
         playerName.setOnClickListener(this);
-
-        TextView race = (TextView)view.findViewById(R.id.Race);
         race.setOnClickListener(this);
-
-        TextView xp = (TextView)view.findViewById(R.id.xp);
         xp.setOnClickListener(this);
-
-        TextView alignment = (TextView)view.findViewById(R.id.alignment);
         alignment.setOnClickListener(this);
     }
 
     public void reloadCharacterDetails(View view, String value, String attribute) {
-        Character reloadedCharacter = loadCharacterFromDB(characterName);
+        Character reloadedCharacter = loadCharacterFromDB(charactersName);
         assert reloadedCharacter != null;
         switch (attribute) {
         case CHARACTER_NAME:
@@ -166,12 +160,11 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
             reloadedCharacter.setPlayerName(value);
             break;
         case XP:
-            Log.i("Steady", "XP Attribute");
+            reloadedCharacter.setXp(parseInt(value));
             break;
         default:
             Log.i("Error", "Unknown Attribute");
         }
         displayCharacterDetails(reloadedCharacter, view);
     }
-
 }

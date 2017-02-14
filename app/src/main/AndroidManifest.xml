@@ -63,7 +63,7 @@
                 android:value="com.example.daniel.rollwithit.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.DiceRoller"
+            android:name=".activities.DiceRollerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_character_dice_roller"
             android:parentActivityName=".activities.CharacterDisplayActivity"

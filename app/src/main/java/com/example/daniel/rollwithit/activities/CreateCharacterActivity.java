@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -65,9 +66,9 @@ public class CreateCharacterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         characterDAO = new CharacterDAO(getApplicationContext());
         character = new Character();
-        initialiseViews();
         setContentView(R.layout.activity_create_character);
         verifyStoragePermissions(this);
+        initialiseViews();
     }
 
     public void saveNewCharacter(@SuppressWarnings("UnusedParameters") View view) {
@@ -86,29 +87,22 @@ public class CreateCharacterActivity extends AppCompatActivity {
         character.setRace(race.getText().toString());
         character.setBackground(background.getText().toString());
         character.setAlignment(alignment.getText().toString());
-        character
-            .setLevel(level.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(level.getText().toString()));
-        character.setXp(xp.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(xp.getText().toString()));
-        character.setHitPoints(
-            hitPoints.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(hitPoints.getText().toString()));
-        character.setArmourClass(
-            armourClass.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(armourClass.getText().toString()));
-        character
-            .setSpeed(speed.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(speed.getText().toString()));
-        character.setProficiencyBonus(proficiencyBonus.getText().toString().equalsIgnoreCase(BLANK) ? 0
-            : parseInt(proficiencyBonus.getText().toString()));
-        character.setStrength(
-            strength.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(strength.getText().toString()));
-        character.setDexterity(
-            dexterity.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(dexterity.getText().toString()));
-        character.setConstitution(constitution.getText().toString().equalsIgnoreCase(BLANK) ? 0
-            : parseInt(constitution.getText().toString()));
-        character.setIntelligence(intelligence.getText().toString().equalsIgnoreCase(BLANK) ? 0
-            : parseInt(intelligence.getText().toString()));
-        character
-            .setWisdom(wisdom.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(wisdom.getText().toString()));
-        character.setCharisma(
-            charisma.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(charisma.getText().toString()));
+        character.setLevel(getNullSafeValue(level.getText()));
+        character.setXp(getNullSafeValue(xp.getText()));
+        character.setHitPoints(getNullSafeValue(hitPoints.getText()));
+        character.setArmourClass(getNullSafeValue(armourClass.getText()));
+        character.setSpeed(getNullSafeValue(speed.getText()));
+        character.setProficiencyBonus(getNullSafeValue(proficiencyBonus.getText()));
+        character.setStrength(getNullSafeValue(strength.getText()));
+        character.setDexterity(getNullSafeValue(dexterity.getText()));
+        character.setConstitution(getNullSafeValue(constitution.getText()));
+        character.setIntelligence(getNullSafeValue(intelligence.getText()));
+        character.setWisdom(getNullSafeValue(wisdom.getText()));
+        character.setCharisma(getNullSafeValue(charisma.getText()));
+    }
+
+    private int getNullSafeValue(Editable value) {
+        return value.toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(value.toString());
     }
 
     private void initialiseViews() {
