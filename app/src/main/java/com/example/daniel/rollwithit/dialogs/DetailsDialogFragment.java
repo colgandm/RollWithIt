@@ -20,8 +20,11 @@ import android.widget.TextView;
 
 public class DetailsDialogFragment extends DialogFragment {
 
+    private static final String DETAIL_NAME = "detailName";
     private AttributeDialogListener listener;
     private String detailName;
+    private String detailValue;
+    private TextView editDetail;
 
     @Override
     public void onAttach(Context context) {
@@ -29,13 +32,13 @@ public class DetailsDialogFragment extends DialogFragment {
         try {
             listener = (AttributeDialogListener)context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "attaching d fragment failed!");
+            throw new ClassCastException(context.toString() + "Attaching dialog fragment failed!");
         }
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        detailName = getArguments().getString("detailName");
+        detailName = getArguments().getString(DETAIL_NAME);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.fragment_detail_dialog, null);
@@ -45,15 +48,14 @@ public class DetailsDialogFragment extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                TextView editAttribute = (TextView)dialogView.findViewById(R.id.detailValue);
-                String attributeValue = editAttribute.getText().toString();
-                listener.onUpdatedDetail(attributeValue, detailName);
+                editDetail = (TextView)dialogView.findViewById(R.id.detailValue);
+                detailValue = editDetail.getText().toString();
+                listener.onCharacterDetailUpdated(detailValue, detailName);
                 dialog.dismiss();
             }
         }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                System.out.println("Canceled the attribute change!");
                 dialog.cancel();
             }
         });

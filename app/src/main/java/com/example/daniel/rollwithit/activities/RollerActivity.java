@@ -1,5 +1,7 @@
 package com.example.daniel.rollwithit.activities;
 
+import static java.lang.Integer.parseInt;
+
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.utils.DiceRoller;
 
@@ -17,7 +19,15 @@ import android.widget.Toast;
 
 public class RollerActivity extends AppCompatActivity {
 
+    private static final String BLANK = "";
+    private static final String NUMBER_OF_ROLLS_BLANK = "Please enter the number of rolls";
+    private static final String NUMBER_OF_ROLLS_TOO_HIGH = "Please enter a reasonable number of rolls David";
+
     private final DiceRoller diceRoller = new DiceRoller();
+    private Spinner diceSpinner;
+    private EditText numOfRollText;
+    private TextView rollResult;
+    private TextView rollTotal;
 
     private static void hideSoftKeyboard(Activity activity, View view) {
         InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -28,12 +38,14 @@ public class RollerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roller);
+        diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
+        numOfRollText = (EditText)findViewById(R.id.numberOfRolls);
+        rollResult = (TextView)findViewById(R.id.roll_result);
+        rollTotal = (TextView)findViewById(R.id.roll_total);
         initializeSpinner();
     }
 
     private void initializeSpinner() {
-        // Dice Spinner
-        Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
         ArrayAdapter<CharSequence> diceAdapter = ArrayAdapter.createFromResource(this, R.array.dice_array,
             android.R.layout.simple_spinner_item);
         diceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -42,43 +54,20 @@ public class RollerActivity extends AppCompatActivity {
 
     public void rollDice(View view) {
         hideSoftKeyboard(this, view);
-        Spinner diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
-        int numOfSides = Integer.parseInt(diceSpinner.getSelectedItem().toString());
-
-        EditText numOfRollText = (EditText)findViewById(R.id.numberOfRolls);
-        if (numOfRollText.getText().toString().matches("")) {
-            Toast.makeText(this, "Please enter the number of rolls", Toast.LENGTH_SHORT).show();
+        if (BLANK.equals(numOfRollText.getText().toString())) {
+            Toast.makeText(this, NUMBER_OF_ROLLS_BLANK, Toast.LENGTH_SHORT).show();
             return;
-        } else if (Integer.valueOf(numOfRollText.getText().toString()) > 100) {
-            // TODO reasonable error message needed
-            Toast.makeText(this, "Please enter a reasonable number of rolls David", Toast.LENGTH_SHORT).show();
-            return;
+        } else {
+            if (parseInt(numOfRollText.getText().toString()) > 100) {
+                Toast.makeText(this, NUMBER_OF_ROLLS_TOO_HIGH, Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
+        int numOfSides = parseInt(diceSpinner.getSelectedItem().toString());
+        int numOfRolls = parseInt(numOfRollText.getText().toString());
 
-        int numOfRolls = Integer.parseInt(numOfRollText.getText().toString());
-        int[] result = diceRoller.roll(numOfRolls, numOfSides);
-
-        TextView rollResult = (TextView)findViewById(R.id.roll_result);
-        rollResult.setText(prettyPrint(result));
-
-        TextView rollTotal = (TextView)findViewById(R.id.roll_total);
-        rollTotal.setText(totalPrint(result));
-    }
-
-    private String prettyPrint(int[] results) {
-        String resultString = "Results : ";
-        for (int result : results) {
-            resultString += result + " ";
-        }
-        return resultString;
-    }
-
-    private String totalPrint(int[] results) {
-        int resultsTotal = 0;
-        for (int result : results) {
-            resultsTotal += result;
-        }
-        return "Total : " + String.valueOf(resultsTotal);
+        rollResult.setText(diceRoller.allRolls(numOfRolls, numOfSides));
+        rollTotal.setText(diceRoller.totalOfRolls(numOfRolls, numOfSides));
     }
 
 }

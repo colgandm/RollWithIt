@@ -76,7 +76,7 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
             throw new RuntimeException("Unknown button ID");
         }
         CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
-        activity.raiseDetailsDialog(attributeName);
+        activity.raiseEditDetailsDialog(attributeName);
     }
 
     private Character loadCharacterFromDB(String characterName) {

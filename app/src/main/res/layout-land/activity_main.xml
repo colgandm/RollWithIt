@@ -19,7 +19,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:background="@android:color/transparent"
-            android:onClick="createCharacter"
+            android:onClick="startCharacterCreationActivity"
             android:text="@string/create_character"
             app:layout_anchorGravity="center_vertical|center_horizontal" />
 
@@ -43,7 +43,7 @@
             android:layout_alignLeft="@+id/CreateCharacterButton"
             android:layout_alignStart="@+id/CreateCharacterButton"
             android:background="@android:color/transparent"
-            android:onClick="goToDiceRoller"
+            android:onClick="startDiceRollerActivity"
             android:text="@string/dice_roller_button"
             app:layout_anchorGravity="center_vertical|center_horizontal" />
 

@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,9 +23,16 @@ import android.view.MenuItem;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CharacterDisplayActivity extends AppCompatActivity implements AttributeDialogListener {
 
+    private static final String CHARACTER_NAME = "characterName";
+    private static final String ATTRIBUTE_NAME = "attributeName";
+    private static final String DETAIL_NAME = "detailName";
+    private static final String ATTRIBUTE_DIALOG = "attributeDialog";
+    private static final String DETAIL_DIALOG = "detailsDialog";
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
+    private CharacterAttributesFragment characterAttributesFragment;
+    private CharacterDetailsFragment characterDetailsFragment;
     private String characterName;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -40,68 +46,71 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setCharacterName(getIntent().getStringExtra("characterName"));
+        setCharacterName(getIntent().getStringExtra(CHARACTER_NAME));
         setContentView(R.layout.activity_character_display);
         verifyStoragePermissions(this);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.detail, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, CharacterDiceRoller.class));
+            startActivity(new Intent(this, DiceRoller.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public void onUpdatedAttribute(int value, String attribute) {
-        CharacterAttributesFragment fragment = (CharacterAttributesFragment)getFragmentManager()
+    public void onCharacterAttributeUpdated(int value, String updatedAttribute) {
+        characterAttributesFragment = (CharacterAttributesFragment)getFragmentManager()
             .findFragmentById(R.id.characterAttributesFragment);
-        fragment.reloadCharacterAttributes(fragment.getView(), value, attribute);
+        characterAttributesFragment.reloadCharacterAttributes(characterAttributesFragment.getView(), value,
+            updatedAttribute);
     }
 
     @Override
-    public void onUpdatedDetail(String value, String attribute) {
-        CharacterDetailsFragment fragment = (CharacterDetailsFragment)getFragmentManager()
+    public void onCharacterDetailUpdated(String value, String updatedAttribute) {
+        characterDetailsFragment = (CharacterDetailsFragment)getFragmentManager()
             .findFragmentById(R.id.CharacterDetailsFragment);
-        fragment.reloadCharacterDetails(fragment.getView(), value, attribute);
+        characterDetailsFragment.reloadCharacterDetails(characterDetailsFragment.getView(), value, updatedAttribute);
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Log.i("INFO", "Back button pressed Activity finished");
             finish();
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    public void raiseAttributeDialog(String attributeName) {
+    public void raiseEditAttributeDialog(String attributeName) {
         Bundle args = new Bundle();
-        args.putString("attributeName", attributeName);
+        args.putString(ATTRIBUTE_NAME, attributeName);
         AttributeDialogFragment dialog = new AttributeDialogFragment();
         dialog.setArguments(args);
-        dialog.show(getFragmentManager(), "attributeDialog");
+        dialog.show(getFragmentManager(), ATTRIBUTE_DIALOG);
     }
 
-    public void raiseDetailsDialog(String detailName) {
+    public void raiseEditDetailsDialog(String detailName) {
         Bundle args = new Bundle();
-        args.putString("detailName", detailName);
+        args.putString(DETAIL_NAME, detailName);
         DetailsDialogFragment dialog = new DetailsDialogFragment();
         dialog.setArguments(args);
-        dialog.show(getFragmentManager(), "detailsDialog");
+        dialog.show(getFragmentManager(), DETAIL_DIALOG);
+    }
+
+    public void startDiceRollerActivity(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this, DiceRoller.class));
+        }
     }
 
     public String getCharacterName() {
@@ -110,10 +119,5 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
 
     private void setCharacterName(String characterName) {
         this.characterName = characterName;
-    }
-
-    public void goToSecondDiceRoller(MenuItem item) {
-        Intent diceRollerIntent = new Intent(this, CharacterDiceRoller.class);
-        startActivity(diceRollerIntent);
     }
 }

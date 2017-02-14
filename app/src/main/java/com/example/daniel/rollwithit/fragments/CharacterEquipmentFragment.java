@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CharacterEquipmentFragment extends Fragment {
+public class CharacterEquipmentFragment extends Fragment implements View.OnClickListener {
 
     public CharacterEquipmentFragment() {
         // Required empty public constructor
@@ -19,8 +19,18 @@ public class CharacterEquipmentFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_character_equipment, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_character_equipment, container, false);
+        createButtonOnListeners(fragmentView);
+        return fragmentView;
     }
 
+    private void createButtonOnListeners(View view) {
+        // TextView characterEquipment = (TextView)view.findViewById(R.id.characterEquipment);
+        // characterEquipment.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

@@ -20,8 +20,11 @@ import android.widget.TextView;
 
 public class AttributeDialogFragment extends DialogFragment {
 
+    private static final String ATTRIBUTE_NAME = "attributeName";
     private AttributeDialogListener listener;
     private String attributeName;
+    private int attributeValue;
+    private TextView editAttribute;
 
     @Override
     public void onAttach(Context context) {
@@ -35,7 +38,7 @@ public class AttributeDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        attributeName = getArguments().getString("attributeName");
+        attributeName = getArguments().getString(ATTRIBUTE_NAME);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.fragment_attribute_dialog, null);
@@ -45,15 +48,14 @@ public class AttributeDialogFragment extends DialogFragment {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                TextView editAttribute = (TextView)dialogView.findViewById(R.id.attributeValue);
-                int attributeValue = Integer.parseInt(editAttribute.getText().toString());
-                listener.onUpdatedAttribute(attributeValue, attributeName);
+                editAttribute = (TextView)dialogView.findViewById(R.id.attributeValue);
+                attributeValue = Integer.parseInt(editAttribute.getText().toString());
+                listener.onCharacterAttributeUpdated(attributeValue, attributeName);
                 dialog.dismiss();
             }
         }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                System.out.println("Canceled the attribute change!");
                 dialog.cancel();
             }
         });

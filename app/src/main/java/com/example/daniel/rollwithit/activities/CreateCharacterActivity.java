@@ -1,23 +1,7 @@
 package com.example.daniel.rollwithit.activities;
 
-import static com.example.daniel.rollwithit.utils.ConstAttributes.ALIGNMENT;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.ARMOUR_CLASS;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.BACKGROUND;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.CHARACTER_NAME;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.CHARISMA;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.CONSTITUTION;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.DEXTERITY;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.DND_CLASS;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.HIT_POINTS;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.INTELLIGENCE;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.PLAYER_NAME;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.PROFICIENCY_BONUS;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.RACE;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.SPEED;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.STRENGTH;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.WISDOM;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.XP;
+import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
 
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.database.CharacterDAO;
@@ -39,12 +23,35 @@ import android.widget.EditText;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CreateCharacterActivity extends AppCompatActivity {
 
+    private static final String ERROR = "ERROR";
+    private static final String BLANK = "";
+    private static final String CHARACTER_CREATION_ERROR = "Error saving character during character creation.";
+
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
     private final DiceRoller diceRoller = new DiceRoller();
     private Character character;
     private CharacterDAO characterDAO;
+
+    private EditText characterName;
+    private EditText playerName;
+    private EditText dndClass;
+    private EditText background;
+    private EditText race;
+    private EditText alignment;
+    private EditText strength;
+    private EditText dexterity;
+    private EditText constitution;
+    private EditText intelligence;
+    private EditText wisdom;
+    private EditText charisma;
+    private EditText armourClass;
+    private EditText speed;
+    private EditText hitPoints;
+    private EditText level;
+    private EditText xp;
+    private EditText proficiencyBonus;
 
     private static void verifyStoragePermissions(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -58,120 +65,79 @@ public class CreateCharacterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         characterDAO = new CharacterDAO(getApplicationContext());
         character = new Character();
+        initialiseViews();
         setContentView(R.layout.activity_create_character);
         verifyStoragePermissions(this);
     }
 
-    public void createAndSaveCharacter(View view) {
-        createCharacter();
+    public void saveNewCharacter(@SuppressWarnings("UnusedParameters") View view) {
+        createNewCharacter();
         if (characterDAO.save(character) < 0) {
-            Log.i("Error", "Error saving character during character creation.");
+            Log.e(ERROR, CHARACTER_CREATION_ERROR);
         }
         characterDAO.close();
         finish();
     }
 
-    public void rollCharacterAttributes(View view) {
-
-        EditText strength = (EditText)findViewById(R.id.strength);
-        strength.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
-
-        EditText dexterity = (EditText)findViewById(R.id.dexterity);
-        dexterity.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
-
-        EditText constitution = (EditText)findViewById(R.id.constitution);
-        constitution.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
-
-        EditText intelligence = (EditText)findViewById(R.id.intelligence);
-        intelligence.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
-
-        EditText wisdom = (EditText)findViewById(R.id.wisdom);
-        wisdom.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
-
-        EditText charisma = (EditText)findViewById(R.id.charisma);
-        charisma.setText(String.valueOf(diceRoller.roll4d6DropLowest()));
+    private void createNewCharacter() {
+        character.setCharacterName(characterName.getText().toString());
+        character.setPlayerName(playerName.getText().toString());
+        character.setDndClass(dndClass.getText().toString());
+        character.setRace(race.getText().toString());
+        character.setBackground(background.getText().toString());
+        character.setAlignment(alignment.getText().toString());
+        character
+            .setLevel(level.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(level.getText().toString()));
+        character.setXp(xp.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(xp.getText().toString()));
+        character.setHitPoints(
+            hitPoints.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(hitPoints.getText().toString()));
+        character.setArmourClass(
+            armourClass.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(armourClass.getText().toString()));
+        character
+            .setSpeed(speed.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(speed.getText().toString()));
+        character.setProficiencyBonus(proficiencyBonus.getText().toString().equalsIgnoreCase(BLANK) ? 0
+            : parseInt(proficiencyBonus.getText().toString()));
+        character.setStrength(
+            strength.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(strength.getText().toString()));
+        character.setDexterity(
+            dexterity.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(dexterity.getText().toString()));
+        character.setConstitution(constitution.getText().toString().equalsIgnoreCase(BLANK) ? 0
+            : parseInt(constitution.getText().toString()));
+        character.setIntelligence(intelligence.getText().toString().equalsIgnoreCase(BLANK) ? 0
+            : parseInt(intelligence.getText().toString()));
+        character
+            .setWisdom(wisdom.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(wisdom.getText().toString()));
+        character.setCharisma(
+            charisma.getText().toString().equalsIgnoreCase(BLANK) ? 0 : parseInt(charisma.getText().toString()));
     }
 
-    private void createCharacter() {
-        character.setPlayerName(retrieveStringCharacterAttributes(PLAYER_NAME));
-        character.setCharacterName(retrieveStringCharacterAttributes(CHARACTER_NAME));
-        character.setDndClass(retrieveStringCharacterAttributes(DND_CLASS));
-        character.setLevel(retrieveCharacterAttributes(LEVEL));
-        character.setXp(retrieveCharacterAttributes(XP));
-        character.setRace(retrieveStringCharacterAttributes(RACE));
-        character.setBackground(retrieveStringCharacterAttributes(BACKGROUND));
-        character.setAlignment(retrieveStringCharacterAttributes(ALIGNMENT));
-        character.setHitPoints(retrieveCharacterAttributes(HIT_POINTS));
-        character.setArmourClass(retrieveCharacterAttributes(ARMOUR_CLASS));
-        character.setSpeed(retrieveCharacterAttributes(SPEED));
-        character.setProficiencyBonus(retrieveCharacterAttributes(PROFICIENCY_BONUS));
-        character.setStrength(retrieveCharacterAttributes(STRENGTH));
-        character.setDexterity(retrieveCharacterAttributes(DEXTERITY));
-        character.setConstitution(retrieveCharacterAttributes(CONSTITUTION));
-        character.setIntelligence(retrieveCharacterAttributes(INTELLIGENCE));
-        character.setWisdom(retrieveCharacterAttributes(WISDOM));
-        character.setCharisma(retrieveCharacterAttributes(CHARISMA));
+    private void initialiseViews() {
+        characterName = ((EditText)findViewById(R.id.characterName));
+        playerName = ((EditText)findViewById(R.id.playerName));
+        dndClass = ((EditText)findViewById(R.id.dndClass));
+        race = ((EditText)findViewById(R.id.race));
+        background = ((EditText)findViewById(R.id.background));
+        alignment = ((EditText)findViewById(R.id.alignment));
+        strength = ((EditText)findViewById(R.id.strength));
+        dexterity = ((EditText)findViewById(R.id.dexterity));
+        constitution = ((EditText)findViewById(R.id.constitution));
+        intelligence = ((EditText)findViewById(R.id.intelligence));
+        wisdom = ((EditText)findViewById(R.id.wisdom));
+        charisma = ((EditText)findViewById(R.id.charisma));
+        armourClass = ((EditText)findViewById(R.id.armourClass));
+        speed = ((EditText)findViewById(R.id.speed));
+        hitPoints = ((EditText)findViewById(R.id.hitPoints));
+        level = ((EditText)findViewById(R.id.level));
+        xp = ((EditText)findViewById(R.id.xp));
+        proficiencyBonus = ((EditText)findViewById(R.id.proficiencyBonus));
     }
 
-    private String retrieveStringCharacterAttributes(String attribute) {
-        switch (attribute) {
-        case PLAYER_NAME:
-            return ((EditText)findViewById(R.id.playerName)).getText().toString();
-        case CHARACTER_NAME:
-            return ((EditText)findViewById(R.id.characterName)).getText().toString();
-        case DND_CLASS:
-            return ((EditText)findViewById(R.id.dndClass)).getText().toString();
-        case RACE:
-            return ((EditText)findViewById(R.id.race)).getText().toString();
-        case BACKGROUND:
-            return ((EditText)findViewById(R.id.background)).getText().toString();
-        case ALIGNMENT:
-            return ((EditText)findViewById(R.id.alignment)).getText().toString();
-        default:
-            return "default";
-        }
-    }
-
-    private Integer retrieveCharacterAttributes(String attribute) {
-        switch (attribute) {
-        case LEVEL:
-            return (((EditText)findViewById(R.id.level)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.level)).getText().toString());
-        case XP:
-            return (((EditText)findViewById(R.id.xp)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.xp)).getText().toString());
-        case HIT_POINTS:
-            return (((EditText)findViewById(R.id.hitPoints)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.hitPoints)).getText().toString());
-        case ARMOUR_CLASS:
-            return (((EditText)findViewById(R.id.armourClass)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.armourClass)).getText().toString());
-        case SPEED:
-            return (((EditText)findViewById(R.id.speed)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.speed)).getText().toString());
-        case PROFICIENCY_BONUS:
-            return (((EditText)findViewById(R.id.proficiencyBonus)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.proficiencyBonus)).getText().toString());
-        case STRENGTH:
-            return (((EditText)findViewById(R.id.strength)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.strength)).getText().toString());
-        case DEXTERITY:
-            return (((EditText)findViewById(R.id.dexterity)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.dexterity)).getText().toString());
-        case CONSTITUTION:
-            return (((EditText)findViewById(R.id.constitution)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.constitution)).getText().toString());
-        case INTELLIGENCE:
-            return (((EditText)findViewById(R.id.intelligence)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.intelligence)).getText().toString());
-        case WISDOM:
-            return (((EditText)findViewById(R.id.wisdom)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.wisdom)).getText().toString());
-        case CHARISMA:
-            return (((EditText)findViewById(R.id.charisma)).getText().toString().equalsIgnoreCase("")) ? 0
-                : Integer.valueOf(((EditText)findViewById(R.id.charisma)).getText().toString());
-        default:
-            return 0;
-        }
+    public void rollCharacterAttributes(@SuppressWarnings("UnusedParameters") View view) {
+        strength.setText(valueOf(diceRoller.roll4d6DropLowest()));
+        dexterity.setText(valueOf(diceRoller.roll4d6DropLowest()));
+        constitution.setText(valueOf(diceRoller.roll4d6DropLowest()));
+        intelligence.setText(valueOf(diceRoller.roll4d6DropLowest()));
+        wisdom.setText(valueOf(diceRoller.roll4d6DropLowest()));
+        charisma.setText(valueOf(diceRoller.roll4d6DropLowest()));
     }
 }

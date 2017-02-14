@@ -22,7 +22,10 @@ import android.widget.ArrayAdapter;
  */
 public class CharacterSelectionDialogFragment extends DialogFragment {
 
+    private static final String CHARACTERS = "characters";
+
     private SelectionDialogListener listener;
+    private String characterName;
 
     @Override
     public void onAttach(Context context) {
@@ -39,20 +42,19 @@ public class CharacterSelectionDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.fragment_character_selection_dialog, null);
-        ArrayList<Character> characterArrayList = getArguments().getParcelableArrayList("characters");
+        ArrayList<Character> characterArrayList = getArguments().getParcelableArrayList(CHARACTERS);
         final ArrayAdapter<String> characterArrayAdapter = populateAdapter(characterArrayList);
         builder.setView(dialogView).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                System.out.println("Clicked No!");
                 dialog.cancel();
             }
         }).setAdapter(characterArrayAdapter, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final String strName = characterArrayAdapter.getItem(which);
-                listener.onCharacterSelected(strName);
+                characterName = characterArrayAdapter.getItem(which);
+                listener.onCharacterSelected(characterName);
                 dialog.dismiss();
             }
         });

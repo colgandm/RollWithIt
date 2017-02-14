@@ -1,11 +1,6 @@
 package com.example.daniel.rollwithit.fragments;
 
-import static com.example.daniel.rollwithit.utils.ConstAttributes.CHARISMA;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.CONSTITUTION;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.DEXTERITY;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.INTELLIGENCE;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.STRENGTH;
-import static com.example.daniel.rollwithit.utils.ConstAttributes.WISDOM;
+import static java.lang.String.valueOf;
 
 import java.util.ArrayList;
 
@@ -27,8 +22,24 @@ import android.widget.Toast;
 
 public class CharacterAttributesFragment extends Fragment implements View.OnClickListener {
 
+    private static final String STRENGTH = "Strength";
+    private static final String DEXTERITY = "Dexterity";
+    private static final String CONSTITUTION = "Constitution";
+    private static final String INTELLIGENCE = "Intelligence";
+    private static final String WISDOM = "Wisdom";
+    private static final String CHARISMA = "Charisma";
+
+    private static final String CHAR_CREATION_TOAST = "Please Create a Character";
+
     private CharacterDAO characterDAO;
     private String characterName;
+
+    private TextView strength;
+    private TextView dexterity;
+    private TextView constitution;
+    private TextView intelligence;
+    private TextView wisdom;
+    private TextView charisma;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,8 +48,9 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         characterDAO = new CharacterDAO(activity);
         characterName = activity.getCharacterName();
         Character character = loadCharacterFromDB(characterName);
+        initialiseViews(fragmentView);
         displayCharacterAttributes(character, fragmentView);
-        createButtonOnListeners(fragmentView);
+        createButtonOnListeners();
         return fragmentView;
     }
 
@@ -48,34 +60,34 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         String attributeName;
         switch (v.getId()) {
         case R.id.strengthShield:
-            attributeName = "Strength";
+            attributeName = STRENGTH;
             break;
         case R.id.dexterityShield:
-            attributeName = "Dexterity";
+            attributeName = DEXTERITY;
             break;
         case R.id.constitutionShield:
-            attributeName = "Constitution";
+            attributeName = CONSTITUTION;
             break;
         case R.id.intelligenceShield:
-            attributeName = "Intelligence";
+            attributeName = INTELLIGENCE;
             break;
         case R.id.wisdomShield:
-            attributeName = "Wisdom";
+            attributeName = WISDOM;
             break;
         case R.id.charismaShield:
-            attributeName = "Charisma";
+            attributeName = CHARISMA;
             break;
         default:
             throw new RuntimeException("Unknown button ID");
         }
         CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
-        activity.raiseAttributeDialog(attributeName);
+        activity.raiseEditAttributeDialog(attributeName);
     }
 
     private Character loadCharacterFromDB(String characterName) {
         ArrayList<Character> characters = characterDAO.getCharacter();
         if (characters.size() == 0) {
-            Toast.makeText(getActivity(), "Please Create a Character", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), CHAR_CREATION_TOAST, Toast.LENGTH_SHORT).show();
         } else {
             for (Character character : characters) {
                 if (characterName.equals(character.getCharacterName())) {
@@ -86,53 +98,39 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         return null;
     }
 
+    public void initialiseViews(View view) {
+        strength = (TextView)view.findViewById(R.id.strengthShield);
+        dexterity = (TextView)view.findViewById(R.id.dexterityShield);
+        constitution = (TextView)view.findViewById(R.id.constitutionShield);
+        intelligence = (TextView)view.findViewById(R.id.intelligenceShield);
+        wisdom = (TextView)view.findViewById(R.id.wisdomShield);
+        charisma = (TextView)view.findViewById(R.id.charismaShield);
+    }
+
     private void displayCharacterAttributes(Character character, View view) {
         assert character != null;
-        TextView strength = (TextView)view.findViewById(R.id.strengthShield);
-        strength.setText(String.valueOf(character.getStrength()));
-
-        TextView dexterity = (TextView)view.findViewById(R.id.dexterityShield);
-        dexterity.setText(String.valueOf(character.getDexterity()));
-
-        TextView constitution = (TextView)view.findViewById(R.id.constitutionShield);
-        constitution.setText(String.valueOf(character.getConstitution()));
-
-        TextView intelligence = (TextView)view.findViewById(R.id.intelligenceShield);
-        intelligence.setText(String.valueOf(character.getIntelligence()));
-
-        TextView wisdom = (TextView)view.findViewById(R.id.wisdomShield);
-        wisdom.setText(String.valueOf(character.getWisdom()));
-
-        TextView charisma = (TextView)view.findViewById(R.id.charismaShield);
-        charisma.setText(String.valueOf(character.getCharisma()));
-
+        strength.setText(valueOf(character.getStrength()));
+        dexterity.setText(valueOf(character.getDexterity()));
+        constitution.setText(valueOf(character.getConstitution()));
+        intelligence.setText(valueOf(character.getIntelligence()));
+        wisdom.setText(valueOf(character.getWisdom()));
+        charisma.setText(valueOf(character.getCharisma()));
         characterDAO.update(character);
     }
 
-    private void createButtonOnListeners(View view) {
-        TextView strengthAtt = (TextView)view.findViewById(R.id.strengthShield);
-        strengthAtt.setOnClickListener(this);
-
-        TextView dexterityAtt = (TextView)view.findViewById(R.id.dexterityShield);
-        dexterityAtt.setOnClickListener(this);
-
-        TextView constitutionAtt = (TextView)view.findViewById(R.id.constitutionShield);
-        constitutionAtt.setOnClickListener(this);
-
-        TextView intelligenceAtt = (TextView)view.findViewById(R.id.intelligenceShield);
-        intelligenceAtt.setOnClickListener(this);
-
-        TextView wisdomAtt = (TextView)view.findViewById(R.id.wisdomShield);
-        wisdomAtt.setOnClickListener(this);
-
-        TextView charismaAtt = (TextView)view.findViewById(R.id.charismaShield);
-        charismaAtt.setOnClickListener(this);
+    private void createButtonOnListeners() {
+        strength.setOnClickListener(this);
+        dexterity.setOnClickListener(this);
+        constitution.setOnClickListener(this);
+        intelligence.setOnClickListener(this);
+        wisdom.setOnClickListener(this);
+        charisma.setOnClickListener(this);
     }
 
     public void reloadCharacterAttributes(View view, int value, String attribute) {
         Character reloadedCharacter = loadCharacterFromDB(characterName);
         assert reloadedCharacter != null;
-        switch (attribute.toLowerCase()) {
+        switch (attribute) {
         case STRENGTH:
             reloadedCharacter.setStrength(value);
             break;
