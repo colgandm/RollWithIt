@@ -1,0 +1,64 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="#0000FF"
+    android:orientation="horizontal"
+    tools:context="com.example.daniel.rollwithit.fragments.CharacterDetailsFragment">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/padding_blank_one"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.625"
+            android:gravity="center"
+
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/initiative_value"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.25"
+            android:background="@drawable/intiative_label"
+            android:gravity="center"
+            android:hint="@string/initiative"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/armour_class_value"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.25"
+            android:background="@drawable/ac_label"
+            android:gravity="center"
+            android:hint="@string/armourClassShort"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/level_value"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.25"
+            android:background="@drawable/level_label"
+            android:gravity="center"
+            android:hint="@string/level"
+            android:textIsSelectable="false" />
+
+        <TextView
+            android:id="@+id/padding_blank_two"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.625"
+            android:gravity="center"
+            android:textIsSelectable="false" />
+    </TableRow>
+
+</TableLayout>
+
+

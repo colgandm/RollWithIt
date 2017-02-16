@@ -59,22 +59,22 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
     public void onClick(View v) {
         String attributeName;
         switch (v.getId()) {
-        case R.id.strengthShield:
+        case R.id.strength_shield:
             attributeName = STRENGTH;
             break;
-        case R.id.dexterityShield:
+        case R.id.dexterity_shield:
             attributeName = DEXTERITY;
             break;
-        case R.id.constitutionShield:
+        case R.id.constitution_shield:
             attributeName = CONSTITUTION;
             break;
-        case R.id.intelligenceShield:
+        case R.id.intelligence_shield:
             attributeName = INTELLIGENCE;
             break;
-        case R.id.wisdomShield:
+        case R.id.wisdom_shield:
             attributeName = WISDOM;
             break;
-        case R.id.charismaShield:
+        case R.id.charisma_shield:
             attributeName = CHARISMA;
             break;
         default:
@@ -98,13 +98,13 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         return null;
     }
 
-    public void initialiseViews(View view) {
-        strength = (TextView)view.findViewById(R.id.strengthShield);
-        dexterity = (TextView)view.findViewById(R.id.dexterityShield);
-        constitution = (TextView)view.findViewById(R.id.constitutionShield);
-        intelligence = (TextView)view.findViewById(R.id.intelligenceShield);
-        wisdom = (TextView)view.findViewById(R.id.wisdomShield);
-        charisma = (TextView)view.findViewById(R.id.charismaShield);
+    private void initialiseViews(View view) {
+        strength = (TextView)view.findViewById(R.id.strength_shield);
+        dexterity = (TextView)view.findViewById(R.id.dexterity_shield);
+        constitution = (TextView)view.findViewById(R.id.constitution_shield);
+        intelligence = (TextView)view.findViewById(R.id.intelligence_shield);
+        wisdom = (TextView)view.findViewById(R.id.wisdom_shield);
+        charisma = (TextView)view.findViewById(R.id.charisma_shield);
     }
 
     private void displayCharacterAttributes(Character character, View view) {

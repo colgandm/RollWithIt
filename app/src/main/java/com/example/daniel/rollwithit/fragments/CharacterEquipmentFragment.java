@@ -31,7 +31,7 @@ public class CharacterEquipmentFragment extends Fragment implements View.OnClick
     }
 
     private void initialiseViews(View fragmentView) {
-        characterEquipment = (TextView)fragmentView.findViewById(R.id.characterEquipment);
+        characterEquipment = (TextView)fragmentView.findViewById(R.id.character_equipment);
     }
 
     private void createButtonOnListeners() {

@@ -23,55 +23,26 @@ public class DiceRollerFragment extends Fragment implements OnFragmentInteractio
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_dice_roller, container, false);
         createButtonOnListeners(fragmentView);
-        TextView nbrOfSides = (TextView)fragmentView.findViewById(R.id.typeOfDie);
+        TextView nbrOfSides = (TextView)fragmentView.findViewById(R.id.type_of_die);
         nbrOfSides.setText(String.valueOf(numberOfSides));
         return fragmentView;
     }
 
     @Override
     public void rollSumWithModifier(View view) {
-        // switch (((View)view.getParent()).getId()) {
-        // case R.id.DiceRollerFragmentD4:
-        // numberOfSides = 4;
-        // break;
-        // case R.id.DiceRollerFragmentD6:
-        // numberOfSides = 6;
-        // break;
-        // case R.id.DiceRollerFragmentD8:
-        // numberOfSides = 8;
-        // break;
-        // case R.id.DiceRollerFragmentD10:
-        // numberOfSides = 10;
-        // break;
-        // case R.id.DiceRollerFragmentD12:
-        // numberOfSides = 12;
-        // break;
-        // case R.id.DiceRollerFragmentD20:
-        // numberOfSides = 20;
-        // break;
-        // case R.id.DiceRollerFragmentD100:
-        // numberOfSides = 100;
-        // break;
-        // case R.id.DiceRollerFragmentDX:
-        // numberOfSides = 101;
-        // break;
-        // default:
-        // throw new RuntimeException("Unknown button ID");
-        // }
-        EditText nbrOfDice = (EditText)getView().findViewById(R.id.numberOfDie);
-        EditText modifierValue = (EditText)getView().findViewById(R.id.modifierValue);
-        TextView resultValue = (TextView)getView().findViewById(R.id.rollResult);
+        EditText nbrOfDice = (EditText)getView().findViewById(R.id.number_of_die);
+        EditText modifierValue = (EditText)getView().findViewById(R.id.modifier_value);
+        TextView resultValue = (TextView)getView().findViewById(R.id.roll_result);
 
         int numberOfDice = Integer.valueOf(nbrOfDice.getText().toString());
         int modifier = Integer.valueOf(modifierValue.getText().toString());
         int result = diceRoller.rollSumWithModifier(numberOfDice, numberOfSides, modifier);
 
         resultValue.setText(String.valueOf(result));
-
     }
 
     private void createButtonOnListeners(View view) {
-        Button rollButton = (Button)view.findViewById(R.id.rollButton);
+        Button rollButton = (Button)view.findViewById(R.id.roll_button);
         rollButton.setOnClickListener(this);
     }
 

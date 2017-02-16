@@ -18,6 +18,7 @@
 
     <string name="proficiencyBonus">Proficiency Bonus</string>
     <string name="armourClass">Armour Class</string>
+    <string name="armourClassShort">AC</string>
     <string name="speed">Speed</string>
     <string name="hitPoints">Hit Points</string>
     <string name="level">Level</string>
@@ -57,12 +58,9 @@
     <string name="new_value">New Value</string>
 
     <string name="title_activity_character_dice_roller">CharacterDiceRoller</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="roll_attributes">Roll Attributes</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="numberOne">1</string>
     <string name="d4Dice">4</string>
     <string name="numberZero">0</string>
@@ -71,5 +69,6 @@
     <string name="modifier">Modifier</string>
     <string name="results">Results</string>
     <string name="diceRoller">Dice Roller</string>
+    <string name="initiative">Initiative</string>
 
 </resources>

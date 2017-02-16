@@ -6,7 +6,7 @@
     tools:context="com.example.daniel.rollwithit.fragments.DiceRollerFragment">
 
     <EditText
-        android:id="@+id/numberOfDie"
+        android:id="@+id/number_of_die"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/typeOfDie"
+        android:id="@+id/type_of_die"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -25,7 +25,7 @@
         android:textIsSelectable="false" />
 
     <EditText
-        android:id="@+id/modifierValue"
+        android:id="@+id/modifier_value"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -35,7 +35,7 @@
         android:textIsSelectable="false" />
 
     <Button
-        android:id="@+id/rollButton"
+        android:id="@+id/roll_button"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -44,7 +44,7 @@
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/rollResult"
+        android:id="@+id/roll_result"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

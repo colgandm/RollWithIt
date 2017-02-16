@@ -4,7 +4,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/dialogText"
+        android:id="@+id/attribute_dialog_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -13,10 +13,10 @@
         android:text="@string/enter_new_attribute" />
 
     <EditText
-        android:id="@+id/attributeValue"
+        android:id="@+id/attribute_dialog_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dialogText"
+        android:layout_below="@+id/attribute_dialog_text"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:hint="@string/new_value"

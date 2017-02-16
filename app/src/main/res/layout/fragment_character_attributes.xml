@@ -1,20 +1,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.daniel.rollwithit.fragments.CharacterAttributesFragment">
 
     <TextView
-        android:id="@+id/strength"
+        android:id="@+id/strength_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/strength"
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/strengthShield"
+        android:id="@+id/strength_shield"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/ic_shield"
@@ -22,14 +22,14 @@
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/dexterity"
+        android:id="@+id/dexterity_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dexterity"
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/dexterityShield"
+        android:id="@+id/dexterity_shield"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/ic_shield"
@@ -37,14 +37,14 @@
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/constitution"
+        android:id="@+id/constitution_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/constitution"
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/constitutionShield"
+        android:id="@+id/constitution_shield"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/ic_shield"
@@ -52,14 +52,14 @@
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/intelligence"
+        android:id="@+id/intelligence_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/intelligence"
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/intelligenceShield"
+        android:id="@+id/intelligence_shield"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/ic_shield"
@@ -67,14 +67,14 @@
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/wisdom"
+        android:id="@+id/wisdom_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wisdom"
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/wisdomShield"
+        android:id="@+id/wisdom_shield"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/ic_shield"
@@ -82,14 +82,14 @@
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/charisma"
+        android:id="@+id/charisma_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/charisma"
         android:textIsSelectable="false" />
 
     <TextView
-        android:id="@+id/charismaShield"
+        android:id="@+id/charisma_shield"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:background="@drawable/ic_shield"

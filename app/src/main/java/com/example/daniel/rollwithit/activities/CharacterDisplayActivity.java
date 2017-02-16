@@ -3,8 +3,9 @@ package com.example.daniel.rollwithit.activities;
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.dialogs.AttributeDialogFragment;
 import com.example.daniel.rollwithit.dialogs.DetailsDialogFragment;
-import com.example.daniel.rollwithit.fragments.CharacterAttributesFragment;
+import com.example.daniel.rollwithit.dialogs.StatsDialogFragments;
 import com.example.daniel.rollwithit.fragments.CharacterDetailsFragment;
+import com.example.daniel.rollwithit.fragments.CharacterStatsFragment;
 import com.example.daniel.rollwithit.interfaces.AttributeDialogListener;
 
 import android.Manifest;
@@ -19,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CharacterDisplayActivity extends AppCompatActivity implements AttributeDialogListener {
@@ -26,13 +28,13 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
     private static final String CHARACTER_NAME = "characterName";
     private static final String ATTRIBUTE_NAME = "attributeName";
     private static final String DETAIL_NAME = "detailName";
+    private static final String STAT_NAME = "statName";
     private static final String ATTRIBUTE_DIALOG = "attributeDialog";
     private static final String DETAIL_DIALOG = "detailsDialog";
+    private static final String STATS_DIALOG = "statsDialog";
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
-    private CharacterAttributesFragment characterAttributesFragment;
-    private CharacterDetailsFragment characterDetailsFragment;
     private String characterName;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -48,7 +50,18 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
         super.onCreate(savedInstanceState);
         setCharacterName(getIntent().getStringExtra(CHARACTER_NAME));
         setContentView(R.layout.activity_character_display);
+        setExperienceBar();
         verifyStoragePermissions(this);
+    }
+
+    private void setExperienceBar() {
+        ProgressBar experienceBar = (ProgressBar)findViewById(R.id.experience_bar);
+        experienceBar.setProgress(determineLevelPercentage());
+
+    }
+
+    private int determineLevelPercentage() {
+        return 95;
     }
 
     @Override
@@ -69,17 +82,24 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
 
     @Override
     public void onCharacterAttributeUpdated(int value, String updatedAttribute) {
-        characterAttributesFragment = (CharacterAttributesFragment)getFragmentManager()
-            .findFragmentById(R.id.characterAttributesFragment);
-        characterAttributesFragment.reloadCharacterAttributes(characterAttributesFragment.getView(), value,
-            updatedAttribute);
+        // CharacterAttributesFragment characterAttributesFragment = (CharacterAttributesFragment) getFragmentManager()
+        // .findFragmentById(R.id.character_attributes_fragment);
+        // characterAttributesFragment.reloadCharacterAttributes(characterAttributesFragment.getView(), value,
+        // updatedAttribute);
     }
 
     @Override
     public void onCharacterDetailUpdated(String value, String updatedAttribute) {
-        characterDetailsFragment = (CharacterDetailsFragment)getFragmentManager()
-            .findFragmentById(R.id.CharacterDetailsFragment);
+        CharacterDetailsFragment characterDetailsFragment = (CharacterDetailsFragment)getFragmentManager()
+            .findFragmentById(R.id.character_details_fragment);
         characterDetailsFragment.reloadCharacterDetails(characterDetailsFragment.getView(), value, updatedAttribute);
+    }
+
+    @Override
+    public void onCharacterStatsUpdated(int value, String updatedAttribute) {
+        CharacterStatsFragment characterStatsFragment = (CharacterStatsFragment)getFragmentManager()
+            .findFragmentById(R.id.character_stats_fragment);
+        characterStatsFragment.reloadCharacterStats(characterStatsFragment.getView(), value, updatedAttribute);
     }
 
     @Override
@@ -104,6 +124,14 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
         DetailsDialogFragment dialog = new DetailsDialogFragment();
         dialog.setArguments(args);
         dialog.show(getFragmentManager(), DETAIL_DIALOG);
+    }
+
+    public void raiseEditStatsDialog(String statName) {
+        Bundle args = new Bundle();
+        args.putString(STAT_NAME, statName);
+        StatsDialogFragments dialog = new StatsDialogFragments();
+        dialog.setArguments(args);
+        dialog.show(getFragmentManager(), STATS_DIALOG);
     }
 
     public void startDiceRollerActivity(MenuItem item) {

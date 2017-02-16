@@ -5,7 +5,7 @@
     tools:context="com.example.daniel.rollwithit.fragments.CharacterEquipmentFragment">
 
     <TextView
-        android:id="@+id/characterEquipment"
+        android:id="@+id/character_equipment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top"

@@ -39,7 +39,7 @@ public class RollerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roller);
         diceSpinner = (Spinner)findViewById(R.id.dice_spinner);
-        numOfRollText = (EditText)findViewById(R.id.numberOfRolls);
+        numOfRollText = (EditText)findViewById(R.id.number_of_rolls);
         rollResult = (TextView)findViewById(R.id.roll_result);
         rollTotal = (TextView)findViewById(R.id.roll_total);
         initializeSpinner();

@@ -1,6 +1,7 @@
 package com.example.daniel.rollwithit.fragments;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.String.valueOf;
 
 import java.util.ArrayList;
 
@@ -35,9 +36,8 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
     private static final String CHAR_CREATION_TOAST = "Please Create a Character";
 
     private CharacterDAO characterDAO;
-    private String charactersName;
+    private String characterName;
 
-    private TextView characterName;
     private TextView dndClass;
     private TextView background;
     private TextView playerName;
@@ -50,10 +50,10 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         View fragmentView = inflater.inflate(R.layout.fragment_character_details, container, false);
         CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
         characterDAO = new CharacterDAO(activity);
-        charactersName = activity.getCharacterName();
-        Character character = loadCharacterFromDB(charactersName);
+        characterName = activity.getCharacterName();
+        Character character = loadCharacterFromDB(characterName);
         initialiseViews(fragmentView);
-        displayCharacterDetails(character, fragmentView);
+        displayCharacterDetails(character);
         createButtonOnListeners();
         return fragmentView;
     }
@@ -63,25 +63,25 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
     public void onClick(View v) {
         String attributeName;
         switch (v.getId()) {
-        case R.id.playerName:
+        case R.id.player_name_value:
             attributeName = PLAYER_NAME;
             break;
-        case R.id.characterName:
+        case R.id.character_name_value:
             attributeName = CHARACTER_NAME;
             break;
-        case R.id.Race:
+        case R.id.race_value:
             attributeName = RACE;
             break;
-        case R.id.dndClass:
+        case R.id.dnd_class_value:
             attributeName = DND_CLASS;
             break;
-        case R.id.xp:
+        case R.id.xp_value:
             attributeName = XP;
             break;
-        case R.id.background:
+        case R.id.background_value:
             attributeName = BACKGROUND;
             break;
-        case R.id.alignment:
+        case R.id.alignment_value:
             attributeName = ALIGNMENT;
             break;
         default:
@@ -105,30 +105,28 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         return null;
     }
 
-    public void initialiseViews(View view) {
-        characterName = (TextView)view.findViewById(R.id.characterName);
-        dndClass = (TextView)view.findViewById(R.id.dndClass);
-        background = (TextView)view.findViewById(R.id.background);
-        playerName = (TextView)view.findViewById(R.id.playerName);
-        race = (TextView)view.findViewById(R.id.Race);
-        alignment = (TextView)view.findViewById(R.id.alignment);
-        xp = (TextView)view.findViewById(R.id.xp);
+    private void initialiseViews(View view) {
+        dndClass = (TextView)view.findViewById(R.id.dnd_class_value);
+
+        background = (TextView)view.findViewById(R.id.background_value);
+        playerName = (TextView)view.findViewById(R.id.player_name_value);
+        race = (TextView)view.findViewById(R.id.race_value);
+        alignment = (TextView)view.findViewById(R.id.alignment_value);
+        xp = (TextView)view.findViewById(R.id.xp_value);
     }
 
-    private void displayCharacterDetails(Character character, View view) {
+    private void displayCharacterDetails(Character character) {
         assert character != null;
-        characterName.setText(character.getCharacterName());
         dndClass.setText(character.getDndClass());
         background.setText(character.getBackground());
         playerName.setText(character.getPlayerName());
         race.setText(character.getRace());
         alignment.setText(character.getAlignment());
-        xp.setText(String.valueOf(character.getXp()));
+        xp.setText(valueOf(character.getXp()));
         characterDAO.update(character);
     }
 
     private void createButtonOnListeners() {
-        characterName.setOnClickListener(this);
         dndClass.setOnClickListener(this);
         background.setOnClickListener(this);
         playerName.setOnClickListener(this);
@@ -138,12 +136,9 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
     }
 
     public void reloadCharacterDetails(View view, String value, String attribute) {
-        Character reloadedCharacter = loadCharacterFromDB(charactersName);
+        Character reloadedCharacter = loadCharacterFromDB(characterName);
         assert reloadedCharacter != null;
         switch (attribute) {
-        case CHARACTER_NAME:
-            reloadedCharacter.setCharacterName(value);
-            break;
         case DND_CLASS:
             reloadedCharacter.setDndClass(value);
             break;
@@ -165,6 +160,6 @@ public class CharacterDetailsFragment extends Fragment implements View.OnClickLi
         default:
             Log.i("Error", "Unknown Attribute");
         }
-        displayCharacterDetails(reloadedCharacter, view);
+        displayCharacterDetails(reloadedCharacter);
     }
 }

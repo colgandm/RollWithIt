@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/dragonback"
+    android:background="@drawable/dragon_background"
     android:fitsSystemWindows="true"
     tools:context="com.example.daniel.rollwithit.activities.MainActivity">
 
@@ -12,12 +12,13 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/numberOfRolls"
+            android:id="@+id/number_of_rolls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="22dp"
+            android:fontFamily="cursive"
             android:hint="@string/number_of_rolls"
             android:inputType="number" />
 
@@ -25,27 +26,28 @@
             android:id="@+id/dice_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/numberOfRolls"
-            android:layout_below="@+id/numberOfRolls"
-            android:layout_toEndOf="@+id/typeOfDice" />
+            android:layout_alignEnd="@+id/number_of_rolls"
+            android:layout_below="@+id/number_of_rolls"
+            android:layout_toEndOf="@+id/type_of_dice" />
 
         <TextView
-            android:id="@+id/typeOfDice"
+            android:id="@+id/type_of_dice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/dice_spinner"
-            android:layout_alignStart="@+id/numberOfRolls"
-            android:layout_below="@+id/numberOfRolls"
+            android:layout_alignStart="@+id/number_of_rolls"
+            android:layout_below="@+id/number_of_rolls"
             android:text="@string/type_of_dice"
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/RollButton"
+            android:id="@+id/roll_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dice_spinner"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="27dp"
+            android:fontFamily="cursive"
             android:onClick="rollDice"
             android:text="@string/roll_button" />
 

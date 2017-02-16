@@ -42,13 +42,13 @@ public class AttributeDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.fragment_attribute_dialog, null);
-        TextView textView = (TextView)dialogView.findViewById(R.id.dialogText);
+        TextView textView = (TextView)dialogView.findViewById(R.id.attribute_dialog_text);
         textView.setText("Enter new " + attributeName + " value.");
         builder.setView(dialogView).setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                editAttribute = (TextView)dialogView.findViewById(R.id.attributeValue);
+                editAttribute = (TextView)dialogView.findViewById(R.id.attribute_dialog_value);
                 attributeValue = Integer.parseInt(editAttribute.getText().toString());
                 listener.onCharacterAttributeUpdated(attributeValue, attributeName);
                 dialog.dismiss();

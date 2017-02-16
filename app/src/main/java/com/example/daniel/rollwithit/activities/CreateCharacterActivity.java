@@ -53,6 +53,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private EditText level;
     private EditText xp;
     private EditText proficiencyBonus;
+    private EditText initiative;
 
     private static void verifyStoragePermissions(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -99,6 +100,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
         character.setIntelligence(getNullSafeValue(intelligence.getText()));
         character.setWisdom(getNullSafeValue(wisdom.getText()));
         character.setCharisma(getNullSafeValue(charisma.getText()));
+        character.setInitiative(getNullSafeValue(initiative.getText()));
     }
 
     private int getNullSafeValue(Editable value) {
@@ -106,24 +108,25 @@ public class CreateCharacterActivity extends AppCompatActivity {
     }
 
     private void initialiseViews() {
-        characterName = ((EditText)findViewById(R.id.characterName));
-        playerName = ((EditText)findViewById(R.id.playerName));
-        dndClass = ((EditText)findViewById(R.id.dndClass));
-        race = ((EditText)findViewById(R.id.race));
-        background = ((EditText)findViewById(R.id.background));
-        alignment = ((EditText)findViewById(R.id.alignment));
-        strength = ((EditText)findViewById(R.id.strength));
-        dexterity = ((EditText)findViewById(R.id.dexterity));
-        constitution = ((EditText)findViewById(R.id.constitution));
-        intelligence = ((EditText)findViewById(R.id.intelligence));
-        wisdom = ((EditText)findViewById(R.id.wisdom));
-        charisma = ((EditText)findViewById(R.id.charisma));
-        armourClass = ((EditText)findViewById(R.id.armourClass));
-        speed = ((EditText)findViewById(R.id.speed));
-        hitPoints = ((EditText)findViewById(R.id.hitPoints));
-        level = ((EditText)findViewById(R.id.level));
-        xp = ((EditText)findViewById(R.id.xp));
-        proficiencyBonus = ((EditText)findViewById(R.id.proficiencyBonus));
+        characterName = ((EditText)findViewById(R.id.character_name_value));
+        playerName = ((EditText)findViewById(R.id.player_name_value));
+        dndClass = ((EditText)findViewById(R.id.dnd_class_value));
+        race = ((EditText)findViewById(R.id.race_value));
+        background = ((EditText)findViewById(R.id.background_value));
+        alignment = ((EditText)findViewById(R.id.alignment_value));
+        strength = ((EditText)findViewById(R.id.strength_value));
+        dexterity = ((EditText)findViewById(R.id.dexterity_value));
+        constitution = ((EditText)findViewById(R.id.constitution_value));
+        intelligence = ((EditText)findViewById(R.id.intelligence_value));
+        wisdom = ((EditText)findViewById(R.id.wisdom_value));
+        charisma = ((EditText)findViewById(R.id.charisma_value));
+        armourClass = ((EditText)findViewById(R.id.armour_class_value));
+        speed = ((EditText)findViewById(R.id.speed_value));
+        hitPoints = ((EditText)findViewById(R.id.hit_points_value));
+        level = ((EditText)findViewById(R.id.level_value));
+        xp = ((EditText)findViewById(R.id.xp_value));
+        proficiencyBonus = ((EditText)findViewById(R.id.proficiency_bonus_value));
+        initiative = ((EditText)findViewById(R.id.initiative_value));
     }
 
     public void rollCharacterAttributes(@SuppressWarnings("UnusedParameters") View view) {
