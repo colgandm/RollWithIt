@@ -112,13 +112,13 @@ public class CharacterStatsFragment extends Fragment implements View.OnClickList
         assert reloadedCharacter != null;
         switch (attribute) {
         case INITIATIVE:
-            reloadedCharacter.setCharacterName(valueOf(value));
+            reloadedCharacter.setInitiative(value);
             break;
         case ARMOUR_CLASS:
-            reloadedCharacter.setDndClass(valueOf(value));
+            reloadedCharacter.setArmourClass(value);
             break;
         case LEVEL:
-            reloadedCharacter.setRace(valueOf(value));
+            reloadedCharacter.setLevel(value);
             break;
         default:
             Log.i("Error", "Unknown Attribute");

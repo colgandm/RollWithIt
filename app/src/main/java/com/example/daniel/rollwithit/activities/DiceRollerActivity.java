@@ -39,14 +39,11 @@ public class DiceRollerActivity extends AppCompatActivity {
         DiceRollerFragment fragmentD20 = new DiceRollerFragment();
         fragmentD20.setNumberOfSides(20);
 
-        getSupportFragmentManager().beginTransaction()
-            .add(R.id.diceRollerContainer, fragmentD4, "fragmentD4")
+        getSupportFragmentManager().beginTransaction().add(R.id.diceRollerContainer, fragmentD4, "fragmentD4")
             .add(R.id.diceRollerContainer, fragmentD6, "fragmentD6")
             .add(R.id.diceRollerContainer, fragmentD8, "fragmentD8")
             .add(R.id.diceRollerContainer, fragmentD10, "fragmentD10")
             .add(R.id.diceRollerContainer, fragmentD12, "fragmentD12")
-            .add(R.id.diceRollerContainer, fragmentD20, "fragmentD20")
-                .commit();
+            .add(R.id.diceRollerContainer, fragmentD20, "fragmentD20").commit();
     }
 }
-

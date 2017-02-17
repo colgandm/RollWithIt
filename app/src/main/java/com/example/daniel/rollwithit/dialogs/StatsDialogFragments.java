@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class StatsDialogFragments extends DialogFragment {
 
-    private static final String ATTRIBUTE_NAME = "attributeName";
+    private static final String STAT_NAME = "statName";
     private AttributeDialogListener listener;
     private String attributeName;
     private int attributeValue;
@@ -34,19 +34,19 @@ public class StatsDialogFragments extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        attributeName = getArguments().getString(ATTRIBUTE_NAME);
+        attributeName = getArguments().getString(STAT_NAME);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_attribute_dialog, null);
-        TextView textView = (TextView)dialogView.findViewById(R.id.attribute_dialog_text);
+        final View dialogView = inflater.inflate(R.layout.fragment_stats_dialog, null);
+        TextView textView = (TextView)dialogView.findViewById(R.id.stats_dialog_text);
         textView.setText("Enter new " + attributeName + " value.");
         builder.setView(dialogView).setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                editAttribute = (TextView)dialogView.findViewById(R.id.attribute_dialog_value);
+                editAttribute = (TextView)dialogView.findViewById(R.id.stats_dialog_value);
                 attributeValue = Integer.parseInt(editAttribute.getText().toString());
-                listener.onCharacterAttributeUpdated(attributeValue, attributeName);
+                listener.onCharacterStatsUpdated(attributeValue, attributeName);
                 dialog.dismiss();
             }
         }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

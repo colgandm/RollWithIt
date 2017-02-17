@@ -1,9 +1,12 @@
 package com.example.daniel.rollwithit.activities;
 
+import static java.lang.Integer.parseInt;
+
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.dialogs.AttributeDialogFragment;
 import com.example.daniel.rollwithit.dialogs.DetailsDialogFragment;
 import com.example.daniel.rollwithit.dialogs.StatsDialogFragments;
+import com.example.daniel.rollwithit.fragments.CharacterAttributesFragment;
 import com.example.daniel.rollwithit.fragments.CharacterDetailsFragment;
 import com.example.daniel.rollwithit.fragments.CharacterStatsFragment;
 import com.example.daniel.rollwithit.interfaces.AttributeDialogListener;
@@ -26,6 +29,7 @@ import android.widget.ProgressBar;
 public class CharacterDisplayActivity extends AppCompatActivity implements AttributeDialogListener {
 
     private static final String CHARACTER_NAME = "characterName";
+    private static final String XP = "Experience Points";
     private static final String ATTRIBUTE_NAME = "attributeName";
     private static final String DETAIL_NAME = "detailName";
     private static final String STAT_NAME = "statName";
@@ -50,18 +54,7 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
         super.onCreate(savedInstanceState);
         setCharacterName(getIntent().getStringExtra(CHARACTER_NAME));
         setContentView(R.layout.activity_character_display);
-        setExperienceBar();
         verifyStoragePermissions(this);
-    }
-
-    private void setExperienceBar() {
-        ProgressBar experienceBar = (ProgressBar)findViewById(R.id.experience_bar);
-        experienceBar.setProgress(determineLevelPercentage());
-
-    }
-
-    private int determineLevelPercentage() {
-        return 95;
     }
 
     @Override
@@ -82,14 +75,17 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
 
     @Override
     public void onCharacterAttributeUpdated(int value, String updatedAttribute) {
-        // CharacterAttributesFragment characterAttributesFragment = (CharacterAttributesFragment) getFragmentManager()
-        // .findFragmentById(R.id.character_attributes_fragment);
-        // characterAttributesFragment.reloadCharacterAttributes(characterAttributesFragment.getView(), value,
-        // updatedAttribute);
+        CharacterAttributesFragment characterAttributesFragment = (CharacterAttributesFragment)getFragmentManager()
+            .findFragmentById(R.id.character_attributes_fragment);
+        characterAttributesFragment.reloadCharacterAttributes(characterAttributesFragment.getView(), value,
+            updatedAttribute);
     }
 
     @Override
     public void onCharacterDetailUpdated(String value, String updatedAttribute) {
+        if (XP.equals(updatedAttribute)) {
+            setExperienceBar(parseInt(value));
+        }
         CharacterDetailsFragment characterDetailsFragment = (CharacterDetailsFragment)getFragmentManager()
             .findFragmentById(R.id.character_details_fragment);
         characterDetailsFragment.reloadCharacterDetails(characterDetailsFragment.getView(), value, updatedAttribute);
@@ -147,5 +143,33 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
 
     private void setCharacterName(String characterName) {
         this.characterName = characterName;
+    }
+
+    private void setExperienceBar(int value) {
+        ProgressBar experienceBar = (ProgressBar)findViewById(R.id.experience_bar);
+        experienceBar.setProgress(determineLevelPercentage(value));
+    }
+
+    private int determineLevelPercentage(double value) {
+        if (value < 300) {
+            return (int)((value / 300) * 100);
+        } else if (value < 900) {
+            return (int)((value / 900) * 100);
+        } else if (value < 2700) {
+            return (int)((value / 2700) * 100);
+        } else if (value < 6500) {
+            return (int)((value / 6500) * 100);
+        } else if (value < 14000) {
+            return (int)((value / 14000) * 100);
+        } else if (value < 23000) {
+            return (int)((value / 23000) * 100);
+        } else if (value < 34000) {
+            return (int)((value / 34000) * 100);
+        } else if (value < 48000) {
+            return (int)((value / 48000) * 100);
+        } else if (value < 64000) {
+            return (int)((value / 64000) * 100);
+        }
+        return 0;
     }
 }

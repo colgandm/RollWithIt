@@ -6,7 +6,6 @@
     android:background="#FFFFFF"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:textViewStyle="@style/cursive"
-    tools:context="com.example.daniel.rollwithit.activities.DiceRollerActivity">
-</LinearLayout>
+    android:textViewStyle="@style/text_font"
+    tools:context="com.example.daniel.rollwithit.activities.DiceRollerActivity"></LinearLayout>
 

@@ -18,7 +18,6 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="22dp"
-            android:fontFamily="cursive"
             android:hint="@string/number_of_rolls"
             android:inputType="number" />
 
@@ -47,7 +46,6 @@
             android:layout_below="@+id/dice_spinner"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="27dp"
-            android:fontFamily="cursive"
             android:onClick="rollDice"
             android:text="@string/roll_button" />
 

@@ -23,7 +23,7 @@
                 android:id="@+id/character_name_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/characterName"
                 android:textSize="14sp" />
 
@@ -31,7 +31,7 @@
                 android:id="@+id/player_name_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/playerName"
                 android:textSize="14sp" />
 
@@ -39,7 +39,7 @@
                 android:id="@+id/dnd_class_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/dndClass"
                 android:textSize="14sp" />
 
@@ -47,7 +47,7 @@
                 android:id="@+id/background_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/background"
                 android:textSize="14sp" />
 
@@ -55,7 +55,7 @@
                 android:id="@+id/race_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/race"
                 android:textSize="14sp" />
 
@@ -63,7 +63,7 @@
                 android:id="@+id/alignment_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/alignment"
                 android:textSize="14sp" />
 
@@ -73,7 +73,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:fontFamily="cursive"
+
                 android:gravity="center"
                 android:onClick="rollCharacterAttributes"
                 android:text="@string/roll_attributes" />
@@ -82,7 +82,7 @@
                 android:id="@+id/strength_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/strength"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -91,7 +91,7 @@
                 android:id="@+id/dexterity_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/dexterity"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -100,7 +100,7 @@
                 android:id="@+id/constitution_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/constitution"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -109,7 +109,7 @@
                 android:id="@+id/intelligence_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/intelligence"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -118,7 +118,7 @@
                 android:id="@+id/wisdom_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/wisdom"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -127,7 +127,7 @@
                 android:id="@+id/charisma_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/charisma"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -136,7 +136,7 @@
                 android:id="@+id/armour_class_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/armourClass"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -145,7 +145,7 @@
                 android:id="@+id/speed_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/speed"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -154,7 +154,7 @@
                 android:id="@+id/hit_points_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/hitPoints"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -163,7 +163,7 @@
                 android:id="@+id/level_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/level"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -172,7 +172,7 @@
                 android:id="@+id/xp_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/xp"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -181,7 +181,7 @@
                 android:id="@+id/proficiency_bonus_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/proficiencyBonus"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -190,7 +190,7 @@
                 android:id="@+id/initiative_value"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:fontFamily="cursive"
+
                 android:hint="@string/initiative"
                 android:inputType="number"
                 android:textSize="14sp" />
@@ -200,7 +200,7 @@
                 android:layout_width="300dp"
                 android:layout_height="100dp"
                 android:background="@android:color/transparent"
-                android:fontFamily="cursive"
+
                 android:onClick="saveNewCharacter"
                 android:text="@string/save_character"
                 app:layout_anchorGravity="center_vertical|center_horizontal" />
