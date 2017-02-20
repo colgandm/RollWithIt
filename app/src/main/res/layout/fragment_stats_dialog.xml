@@ -5,21 +5,22 @@
 
     <TextView
         android:id="@+id/stats_dialog_text"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="@string/enter_new_detail" />
+        android:text="@string/enter_new_stat" />
 
     <EditText
         android:id="@+id/stats_dialog_value"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/stats_dialog_text"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:hint="@string/new_value" />
+        android:hint="@string/new_value"
+        android:inputType="number" />
 
 
 </RelativeLayout>

@@ -30,7 +30,7 @@ public class MainActivityTest extends ActivityTestRule {
     private static final String BACKGROUND = "Urchin";
     private static final String ALIGNMENT = "LG";
     private static final String RACE = "Elf";
-    private static final String DND_CLASS = "Rouge";
+    private static final String DND_CLASS = "Rogue";
     private static final String PROFICIENCY_BONUS = "3";
     private static final String ARMOUR_CLASS = "16";
     private static final String SPEED = "30";

@@ -11,6 +11,9 @@ import com.example.daniel.rollwithit.interfaces.SelectionDialogListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements SelectionDialogListener {
@@ -23,6 +26,23 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.create_random_character) {
+            // startActivity(new Intent(this, DiceRollerActivity.class));
+            Log.i("INFO", "Create Random Character");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -51,4 +71,5 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
         characterSelectionDialogFragment.setArguments(args);
         characterSelectionDialogFragment.show(getFragmentManager(), SELECTION_DIALOG);
     }
+
 }

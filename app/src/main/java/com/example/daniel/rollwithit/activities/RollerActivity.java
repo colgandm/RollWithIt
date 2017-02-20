@@ -7,8 +7,11 @@ import com.example.daniel.rollwithit.utils.DiceRoller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -45,6 +48,22 @@ public class RollerActivity extends AppCompatActivity {
         initializeSpinner();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this, DiceRollerActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void initializeSpinner() {
         ArrayAdapter<CharSequence> diceAdapter = ArrayAdapter.createFromResource(this, R.array.dice_array,
             android.R.layout.simple_spinner_item);
@@ -68,6 +87,13 @@ public class RollerActivity extends AppCompatActivity {
 
         rollResult.setText(diceRoller.allRolls(numOfRolls, numOfSides));
         rollTotal.setText(diceRoller.totalOfRolls(numOfRolls, numOfSides));
+    }
+
+    public void startDiceRollerActivity(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            startActivity(new Intent(this, DiceRollerActivity.class));
+        }
     }
 
 }

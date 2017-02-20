@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/dragon_background"
     android:fitsSystemWindows="true"
-    tools:context="com.example.daniel.rollwithit.activities.MainActivity">
+    tools:context="com.example.daniel.rollwithit.activities.RollerActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="22dp"
             android:hint="@string/number_of_rolls"
             android:inputType="number" />
 
@@ -45,7 +44,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/dice_spinner"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="27dp"
             android:onClick="rollDice"
             android:text="@string/roll_button" />
 

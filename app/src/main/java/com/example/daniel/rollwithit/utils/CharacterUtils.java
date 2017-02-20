@@ -1,70 +1,26 @@
-package com.example.daniel.rollwithit.activities;
+package com.example.daniel.rollwithit.utils;
 
-import static android.support.test.InstrumentationRegistry.getInstrumentation;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static java.lang.String.valueOf;
 import static java.lang.Thread.sleep;
 
 import java.util.Random;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
 import com.example.daniel.rollwithit.R;
 
 import android.app.Activity;
-import android.app.Instrumentation;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 import android.widget.EditText;
 
-@RunWith(AndroidJUnit4.class)
-public class CreateCharacterActivityTest extends ActivityTestRule {
+public class CharacterUtils {
 
-    // private static final String CHARACTER_NAME = "Hippy";
     private static final String PLAYER_NAME = "Daniel Colgan";
     private static final String BACKGROUND = "Urchin";
     private static final String ALIGNMENT = "LG";
     private static final String RACE = "Elf";
     private static final String DND_CLASS = "Rogue";
     private static final int MAX_ATT_VALUE = 18;
-    // private static final String PROFICIENCY_BONUS = "3";
-    // private static final String ARMOUR_CLASS = "16";
-    // private static final String SPEED = "30";
-    // private static final String HIT_POINTS = "48";
-    // private static final String LEVEL;
-    // private static final String XP = "17500";
-    // private static final String STRENGTH = "10";
-    // private static final String DEXTERITY = "18";
-    // private static final String CONSTITUTION = "14";
-    // private static final String INTELLIGENCE = "11";
-    // private static final String WISDOM = "11";
-    // private static final String CHARISMA = "12";
 
-    @Rule
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
-
-    public CreateCharacterActivityTest() {
-        super(MainActivity.class);
-    }
-
-    @Test
-    public void successfullyCreateAndLoadNewCharacter() {
-        Instrumentation.ActivityMonitor activityMonitor = getInstrumentation()
-            .addMonitor(CreateCharacterActivity.class.getName(), null, false);
-        onView(withId(R.id.create_character_button)).perform(click());
-        Activity createCharacterActivity = getInstrumentation().waitForMonitorWithTimeout(activityMonitor, 5000);
-        createNewCharacter(createCharacterActivity);
-        onView(withId(R.id.save_character_button)).perform(scrollTo(), click());
-        createCharacterActivity.finish();
-    }
-
-    private void createNewCharacter(Activity activity) {
+    public void createNewCharacter(Activity activity) {
         final EditText characterName = (EditText)activity.findViewById(R.id.character_name_value);
         final EditText playerName = (EditText)activity.findViewById(R.id.player_name_value);
         final EditText dndClass = (EditText)activity.findViewById(R.id.dnd_class_value);

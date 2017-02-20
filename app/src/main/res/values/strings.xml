@@ -55,6 +55,7 @@
     <string name="cancel">Cancel</string>
     <string name="enter_new_attribute">Enter new attribute value</string>
     <string name="enter_new_detail">Enter new character detail</string>
+    <string name="enter_new_stat">Enter new stat</string>
     <string name="new_value">New Value</string>
 
     <string name="title_activity_character_dice_roller">CharacterDiceRoller</string>
@@ -69,6 +70,8 @@
     <string name="modifier">Modifier</string>
     <string name="results">Results</string>
     <string name="diceRoller">Dice Roller</string>
+    <string name="create_random_character_label">Create Random Character</string>
+    <string name="auto_fill_label">Auto Fill</string>
     <string name="initiative">Initiative</string>
 
 </resources>

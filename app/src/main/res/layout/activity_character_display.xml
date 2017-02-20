@@ -67,7 +67,7 @@
             android:layout_below="@+id/character_stats_fragment"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
-            tools:layout="@layout/test" />
+            tools:layout="@layout/fragment_character_attributes" />
 
 
     </RelativeLayout>

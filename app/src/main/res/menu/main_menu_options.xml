@@ -1,9 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:onClick="startDiceRollerActivity"
+        android:id="@+id/create_random_character"
         android:orderInCategory="100"
-        android:title="@string/diceRoller"
+        android:title="@string/create_random_character_label"
         app:showAsAction="collapseActionView" />
 </menu>

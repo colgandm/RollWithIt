@@ -63,7 +63,7 @@ public class CharacterSelectionDialogFragment extends DialogFragment {
 
     private ArrayAdapter<String> populateAdapter(ArrayList<Character> characterArrayList) {
         ArrayAdapter<String> characterArrayAdapter = new ArrayAdapter<>(getActivity(),
-            android.R.layout.select_dialog_singlechoice);
+            R.layout.character_selection_dialog);
         for (Character c : characterArrayList) {
             characterArrayAdapter.add(c.getCharacterName());
         }

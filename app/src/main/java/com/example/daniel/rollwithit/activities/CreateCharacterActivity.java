@@ -6,6 +6,7 @@ import static java.lang.String.valueOf;
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.database.CharacterDAO;
 import com.example.daniel.rollwithit.dndCharacter.Character;
+import com.example.daniel.rollwithit.utils.CharacterUtils;
 import com.example.daniel.rollwithit.utils.DiceRoller;
 
 import android.Manifest;
@@ -18,8 +19,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CreateCharacterActivity extends AppCompatActivity {
@@ -37,10 +41,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
 
     private EditText characterName;
     private EditText playerName;
-    private EditText dndClass;
-    private EditText background;
-    private EditText race;
-    private EditText alignment;
     private EditText strength;
     private EditText dexterity;
     private EditText constitution;
@@ -54,6 +54,11 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private EditText xp;
     private EditText proficiencyBonus;
     private EditText initiative;
+
+    private Spinner dndClass;
+    private Spinner background;
+    private Spinner race;
+    private Spinner alignment;
 
     private static void verifyStoragePermissions(Activity activity) {
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -72,6 +77,24 @@ public class CreateCharacterActivity extends AppCompatActivity {
         initialiseViews();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.character_creation_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.auto_fill) {
+            // startActivity(new Intent(this, DiceRollerActivity.class));
+            Log.i("INFO", "Auto fill Character");
+            autoFillCharacter(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void saveNewCharacter(@SuppressWarnings("UnusedParameters") View view) {
         createNewCharacter();
         if (characterDAO.save(character) < 0) {
@@ -84,10 +107,10 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private void createNewCharacter() {
         character.setCharacterName(characterName.getText().toString());
         character.setPlayerName(playerName.getText().toString());
-        character.setDndClass(dndClass.getText().toString());
-        character.setRace(race.getText().toString());
-        character.setBackground(background.getText().toString());
-        character.setAlignment(alignment.getText().toString());
+        character.setDndClass(dndClass.getSelectedItem().toString());
+        character.setRace(race.getSelectedItem().toString());
+        character.setBackground(background.getSelectedItem().toString());
+        character.setAlignment(alignment.getSelectedItem().toString());
         character.setLevel(getNullSafeValue(level.getText()));
         character.setXp(getNullSafeValue(xp.getText()));
         character.setHitPoints(getNullSafeValue(hitPoints.getText()));
@@ -110,10 +133,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private void initialiseViews() {
         characterName = ((EditText)findViewById(R.id.character_name_value));
         playerName = ((EditText)findViewById(R.id.player_name_value));
-        dndClass = ((EditText)findViewById(R.id.dnd_class_value));
-        race = ((EditText)findViewById(R.id.race_value));
-        background = ((EditText)findViewById(R.id.background_value));
-        alignment = ((EditText)findViewById(R.id.alignment_value));
         strength = ((EditText)findViewById(R.id.strength_value));
         dexterity = ((EditText)findViewById(R.id.dexterity_value));
         constitution = ((EditText)findViewById(R.id.constitution_value));
@@ -127,6 +146,11 @@ public class CreateCharacterActivity extends AppCompatActivity {
         xp = ((EditText)findViewById(R.id.xp_value));
         proficiencyBonus = ((EditText)findViewById(R.id.proficiency_bonus_value));
         initiative = ((EditText)findViewById(R.id.initiative_value));
+
+        dndClass = ((Spinner)findViewById(R.id.dnd_class_value));
+        race = ((Spinner)findViewById(R.id.race_value));
+        background = ((Spinner)findViewById(R.id.background_value));
+        alignment = ((Spinner)findViewById(R.id.alignment_value));
     }
 
     public void rollCharacterAttributes(@SuppressWarnings("UnusedParameters") View view) {
@@ -136,5 +160,10 @@ public class CreateCharacterActivity extends AppCompatActivity {
         intelligence.setText(valueOf(diceRoller.roll4d6DropLowest()));
         wisdom.setText(valueOf(diceRoller.roll4d6DropLowest()));
         charisma.setText(valueOf(diceRoller.roll4d6DropLowest()));
+    }
+
+    private void autoFillCharacter(Activity activity) {
+        CharacterUtils characterUtils = new CharacterUtils();
+        characterUtils.createNewCharacter(activity);
     }
 }

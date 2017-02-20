@@ -1,9 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:onClick="startDiceRollerActivity"
+        android:id="@+id/auto_fill"
         android:orderInCategory="100"
-        android:title="@string/diceRoller"
+        android:title="@string/auto_fill_label"
         app:showAsAction="collapseActionView" />
 </menu>
