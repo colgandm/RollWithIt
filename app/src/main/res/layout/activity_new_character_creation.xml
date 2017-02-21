@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/d20_background"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.daniel.rollwithit.activities.CreateCharacterActivity">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/character_creation_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/character_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/characterName"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/player_name_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/playerName"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/dnd_class_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/dndClass"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/background_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/background"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/race_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/race"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/alignment_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/alignment"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/roll_attributes_blank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+
+                    />
+
+                <TextView
+                    android:id="@+id/strength_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/strength"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/dexterity_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/dexterity"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/constitution_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/constitution"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/intelligence_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/intelligence"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/wisdom_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/wisdom"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/charisma_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:text="@string/charisma"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/save_character_blank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:background="@android:color/transparent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/character_name_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/characterName"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/player_name_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/playerName"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/dnd_class_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="@string/dndClass"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/background_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="@string/background"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/race_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="@string/race"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/alignment_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="@string/alignment"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/roll_attributes_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:onClick="rollCharacterAttributes"
+                    android:text="@string/roll_attributes" />
+
+                <EditText
+                    android:id="@+id/strength_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/strength"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/dexterity_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/dexterity"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/constitution_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/constitution"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/intelligence_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/intelligence"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/wisdom_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/wisdom"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/charisma_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/charisma"
+                    android:inputType="number"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/save_character_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:background="@android:color/transparent"
+                    android:onClick="saveNewCharacter"
+                    android:text="@string/save_character" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

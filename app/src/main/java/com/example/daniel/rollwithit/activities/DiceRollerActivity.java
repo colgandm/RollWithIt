@@ -1,6 +1,7 @@
 package com.example.daniel.rollwithit.activities;
 
 import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.fragments.DiceHeadingFragment;
 import com.example.daniel.rollwithit.fragments.DiceRollerFragment;
 
 import android.os.Bundle;
@@ -21,6 +22,9 @@ public class DiceRollerActivity extends AppCompatActivity {
     }
 
     private void createDiceRollers() {
+
+        DiceHeadingFragment headingFragment = new DiceHeadingFragment();
+
         DiceRollerFragment fragmentD4 = new DiceRollerFragment();
         fragmentD4.setNumberOfSides(4);
 
@@ -39,7 +43,8 @@ public class DiceRollerActivity extends AppCompatActivity {
         DiceRollerFragment fragmentD20 = new DiceRollerFragment();
         fragmentD20.setNumberOfSides(20);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.diceRollerContainer, fragmentD4, "fragmentD4")
+        getSupportFragmentManager().beginTransaction().add(R.id.diceRollerContainer, headingFragment, "headingFragment")
+            .add(R.id.diceRollerContainer, fragmentD4, "fragmentD4")
             .add(R.id.diceRollerContainer, fragmentD6, "fragmentD6")
             .add(R.id.diceRollerContainer, fragmentD8, "fragmentD8")
             .add(R.id.diceRollerContainer, fragmentD10, "fragmentD10")

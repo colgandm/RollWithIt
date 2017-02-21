@@ -4,18 +4,23 @@ import java.util.Arrays;
 
 public class DiceRoller {
 
+    public static int roll(int numberOfDice, int numberOfSides, int modifier) {
+        int result = 0;
+        for (int i = 0; i < numberOfDice; i++) {
+            result += randomWithRange(numberOfSides) + modifier;
+        }
+        return result;
+    }
+
+    private static int randomWithRange(int max) {
+        int range = ((max - 1) + 1);
+        return (int)(Math.random() * range) + 1;
+    }
+
     public int[] roll(int numberOfDice, int numberOfSides) {
         int[] resultArray = new int[numberOfDice];
         for (int i = 0; i < numberOfDice; i++) {
             resultArray[i] = randomWithRange(numberOfSides);
-        }
-        return resultArray;
-    }
-
-    public int[] roll(int numberOfDice, int numberOfSides, int modifier) {
-        int[] resultArray = new int[numberOfDice];
-        for (int i = 0; i < numberOfDice; i++) {
-            resultArray[i] = randomWithRange(numberOfSides) + modifier;
         }
         return resultArray;
     }
@@ -39,11 +44,6 @@ public class DiceRoller {
             sum += resultArray[j];
         }
         return sum;
-    }
-
-    private int randomWithRange(int max) {
-        int range = ((max - 1) + 1);
-        return (int)(Math.random() * range) + 1;
     }
 
     public String allRolls(int numberOfDice, int numberOfSides) {

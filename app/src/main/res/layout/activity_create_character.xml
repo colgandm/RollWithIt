@@ -218,7 +218,6 @@
                     android:id="@+id/dnd_class_value"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:background="@android:color/transparent"
                     android:hint="@string/dndClass"
                     android:textSize="14sp" />
 
@@ -226,7 +225,6 @@
                     android:id="@+id/background_value"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:background="@android:color/transparent"
                     android:hint="@string/background"
                     android:textSize="14sp" />
 
@@ -234,7 +232,6 @@
                     android:id="@+id/race_value"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:background="@android:color/transparent"
                     android:hint="@string/race"
                     android:textSize="14sp" />
 
@@ -242,7 +239,6 @@
                     android:id="@+id/alignment_value"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:background="@android:color/transparent"
                     android:hint="@string/alignment"
                     android:textSize="14sp" />
 

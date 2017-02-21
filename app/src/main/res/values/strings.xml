@@ -2,6 +2,7 @@
     <!--Main Activity-->
     <string name="dice_roller_button">Dice Roller</string>
     <string name="create_character">Create Character</string>
+    <string name="new_create_character">New Create  Character</string>
     <string name="load_character">Load Character</string>
 
     <string name="test_string">Test String</string>
@@ -47,6 +48,58 @@
         <item>20</item>
     </string-array>
 
+    <string-array name="race_array">
+        <item>Human</item>
+        <item>Dwarf</item>
+        <item>Elf</item>
+        <item>Gnome</item>
+        <item>Half Elf</item>
+        <item>Half Orc</item>
+        <item>Halfling</item>
+    </string-array>
+
+    <string-array name="class_array">
+        <item>Barbarian</item>
+        <item>Bard</item>
+        <item>Cleric</item>
+        <item>Druid</item>
+        <item>Fighter</item>
+        <item>Monk</item>
+        <item>Paladin</item>
+        <item>Ranger</item>
+        <item>Rogue</item>
+        <item>Sorcerer</item>
+        <item>Wizard</item>
+    </string-array>
+
+    <string-array name="alignment_array">
+        <item>Lawful Good</item>
+        <item>Neutral Good</item>
+        <item>Chaotic Good</item>
+        <item>Lawful Neutral</item>
+        <item>Neutral</item>
+        <item>Chaotic Neutral</item>
+        <item>Lawful Evil</item>
+        <item>Neutral Evil</item>
+        <item>Chaotic Evil</item>
+    </string-array>
+
+    <string-array name="background_array">
+        <item>Acolyte</item>
+        <item>Charlatan</item>
+        <item>Criminal</item>
+        <item>Entertainer</item>
+        <item>Folk Hero</item>
+        <item>Guild Artisan</item>
+        <item>Hermit</item>
+        <item>Noble</item>
+        <item>Outlander</item>
+        <item>Sage</item>
+        <item>Sailor</item>
+        <item>Soldier</item>
+        <item>Urchin</item>
+    </string-array>
+
     <!--Other-->
     <string name="app_name">RollWithIt</string>
     <string name="title_activity_roller">RollerActivity</string>
@@ -61,7 +114,6 @@
     <string name="title_activity_character_dice_roller">CharacterDiceRoller</string>
     <string name="roll_attributes">Roll Attributes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="numberOne">1</string>
     <string name="d4Dice">4</string>
     <string name="numberZero">0</string>
@@ -73,5 +125,5 @@
     <string name="create_random_character_label">Create Random Character</string>
     <string name="auto_fill_label">Auto Fill</string>
     <string name="initiative">Initiative</string>
-
+    <string name="title_activity_new_character_creation">newCharacterCreation</string>
 </resources>

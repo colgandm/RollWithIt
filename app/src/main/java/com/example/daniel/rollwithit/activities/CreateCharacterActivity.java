@@ -6,7 +6,6 @@ import static java.lang.String.valueOf;
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.database.CharacterDAO;
 import com.example.daniel.rollwithit.dndCharacter.Character;
-import com.example.daniel.rollwithit.utils.CharacterUtils;
 import com.example.daniel.rollwithit.utils.DiceRoller;
 
 import android.Manifest;
@@ -22,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -107,16 +107,20 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private void createNewCharacter() {
         character.setCharacterName(characterName.getText().toString());
         character.setPlayerName(playerName.getText().toString());
+
         character.setDndClass(dndClass.getSelectedItem().toString());
         character.setRace(race.getSelectedItem().toString());
         character.setBackground(background.getSelectedItem().toString());
         character.setAlignment(alignment.getSelectedItem().toString());
+
+        character.setArmourClass(getNullSafeValue(armourClass.getText()));
         character.setLevel(getNullSafeValue(level.getText()));
         character.setXp(getNullSafeValue(xp.getText()));
-        character.setHitPoints(getNullSafeValue(hitPoints.getText()));
-        character.setArmourClass(getNullSafeValue(armourClass.getText()));
-        character.setSpeed(getNullSafeValue(speed.getText()));
-        character.setProficiencyBonus(getNullSafeValue(proficiencyBonus.getText()));
+
+        character.setHitPoints();
+        character.setSpeed();
+        character.setProficiencyBonus();
+
         character.setStrength(getNullSafeValue(strength.getText()));
         character.setDexterity(getNullSafeValue(dexterity.getText()));
         character.setConstitution(getNullSafeValue(constitution.getText()));
@@ -151,6 +155,28 @@ public class CreateCharacterActivity extends AppCompatActivity {
         race = ((Spinner)findViewById(R.id.race_value));
         background = ((Spinner)findViewById(R.id.background_value));
         alignment = ((Spinner)findViewById(R.id.alignment_value));
+        initializeSpinners();
+    }
+
+    private void initializeSpinners() {
+        ArrayAdapter<CharSequence> classAdapter = ArrayAdapter.createFromResource(this, R.array.class_array,
+            android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> raceAdapter = ArrayAdapter.createFromResource(this, R.array.race_array,
+            android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> alignmentAdapter = ArrayAdapter.createFromResource(this, R.array.alignment_array,
+            android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> backgroundAdapter = ArrayAdapter.createFromResource(this, R.array.background_array,
+            android.R.layout.simple_spinner_item);
+
+        classAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        raceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        alignmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        backgroundAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        dndClass.setAdapter(classAdapter);
+        race.setAdapter(raceAdapter);
+        background.setAdapter(backgroundAdapter);
+        alignment.setAdapter(alignmentAdapter);
     }
 
     public void rollCharacterAttributes(@SuppressWarnings("UnusedParameters") View view) {
@@ -163,7 +189,7 @@ public class CreateCharacterActivity extends AppCompatActivity {
     }
 
     private void autoFillCharacter(Activity activity) {
-        CharacterUtils characterUtils = new CharacterUtils();
-        characterUtils.createNewCharacter(activity);
+        // CharacterUtils characterUtils = new CharacterUtils();
+        // characterUtils.createNewCharacter(activity);
     }
 }

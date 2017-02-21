@@ -72,4 +72,8 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
         characterSelectionDialogFragment.show(getFragmentManager(), SELECTION_DIALOG);
     }
 
+    private void startNewCreateCharacterActivity(View view) {
+        startActivity(new Intent(this, NewCharacterCreationActivity.class));
+    }
+
 }

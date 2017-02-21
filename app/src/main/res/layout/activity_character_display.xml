@@ -44,8 +44,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/character_details_fragment"
-            android:layout_marginTop="10dp"
-            android:progress="65" />
+            android:layout_marginTop="10dp" />
 
         <fragment
             android:id="@+id/character_stats_fragment"

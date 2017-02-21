@@ -3,7 +3,7 @@
     android:id="@+id/diceRollerContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/d20_background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:textViewStyle="@style/text_font"
