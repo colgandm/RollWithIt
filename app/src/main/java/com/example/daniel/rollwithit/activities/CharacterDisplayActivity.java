@@ -1,9 +1,19 @@
 package com.example.daniel.rollwithit.activities;
 
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_1;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_2;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_3;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_4;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_5;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_6;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_7;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_8;
+import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_9;
 import static java.lang.Integer.parseInt;
 
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.dialogs.AttributeDialogFragment;
+import com.example.daniel.rollwithit.dialogs.CharacterDetailsDialogFragment;
 import com.example.daniel.rollwithit.dialogs.DetailsDialogFragment;
 import com.example.daniel.rollwithit.dialogs.StatsDialogFragments;
 import com.example.daniel.rollwithit.fragments.CharacterAttributesFragment;
@@ -59,7 +69,7 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail, menu);
+        getMenuInflater().inflate(R.menu.dice_roller_options, menu);
         return true;
     }
 
@@ -122,6 +132,14 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
         dialog.show(getFragmentManager(), DETAIL_DIALOG);
     }
 
+    public void raiseEditCharacterDetailsDialog(String detailName) {
+        Bundle args = new Bundle();
+        args.putString(DETAIL_NAME, detailName);
+        CharacterDetailsDialogFragment dialog = new CharacterDetailsDialogFragment();
+        dialog.setArguments(args);
+        dialog.show(getFragmentManager(), DETAIL_DIALOG);
+    }
+
     public void raiseEditStatsDialog(String statName) {
         Bundle args = new Bundle();
         args.putString(STAT_NAME, statName);
@@ -151,24 +169,24 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
     }
 
     private int determineLevelPercentage(double value) {
-        if (value < 300) {
-            return (int)((value / 300) * 100);
-        } else if (value < 900) {
-            return (int)((value / 900) * 100);
-        } else if (value < 2700) {
-            return (int)((value / 2700) * 100);
-        } else if (value < 6500) {
-            return (int)((value / 6500) * 100);
-        } else if (value < 14000) {
-            return (int)((value / 14000) * 100);
-        } else if (value < 23000) {
-            return (int)((value / 23000) * 100);
-        } else if (value < 34000) {
-            return (int)((value / 34000) * 100);
-        } else if (value < 48000) {
-            return (int)((value / 48000) * 100);
-        } else if (value < 64000) {
-            return (int)((value / 64000) * 100);
+        if (value <= LEVEL_1) {
+            return (int)((value / LEVEL_1) * 100);
+        } else if (value <= LEVEL_2) {
+            return (int)((value - LEVEL_1) / (6));
+        } else if (value <= LEVEL_3) {
+            return (int)((value - LEVEL_2) / (18));
+        } else if (value <= LEVEL_4) {
+            return (int)((value - LEVEL_3) / (38));
+        } else if (value <= LEVEL_5) {
+            return (int)((value - LEVEL_4) / (75));
+        } else if (value <= LEVEL_6) {
+            return (int)((value - LEVEL_5) / (90));
+        } else if (value <= LEVEL_7) {
+            return (int)((value - LEVEL_6) / (110));
+        } else if (value <= LEVEL_8) {
+            return (int)((value - LEVEL_7) / (140));
+        } else if (value <= LEVEL_9) {
+            return (int)((value - LEVEL_8) / (160));
         }
         return 0;
     }

@@ -32,11 +32,6 @@ public class RollerActivity extends AppCompatActivity {
     private TextView rollResult;
     private TextView rollTotal;
 
-    private static void hideSoftKeyboard(Activity activity, View view) {
-        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,17 +45,19 @@ public class RollerActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail, menu);
+        getMenuInflater().inflate(R.menu.dice_roller_options, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        switch (id) {
+        case R.id.action_settings:
             startActivity(new Intent(this, DiceRollerActivity.class));
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -76,11 +73,9 @@ public class RollerActivity extends AppCompatActivity {
         if (BLANK.equals(numOfRollText.getText().toString())) {
             Toast.makeText(this, NUMBER_OF_ROLLS_BLANK, Toast.LENGTH_SHORT).show();
             return;
-        } else {
-            if (parseInt(numOfRollText.getText().toString()) > 100) {
-                Toast.makeText(this, NUMBER_OF_ROLLS_TOO_HIGH, Toast.LENGTH_SHORT).show();
-                return;
-            }
+        } else if (parseInt(numOfRollText.getText().toString()) > 100) {
+            Toast.makeText(this, NUMBER_OF_ROLLS_TOO_HIGH, Toast.LENGTH_SHORT).show();
+            return;
         }
         int numOfSides = parseInt(diceSpinner.getSelectedItem().toString());
         int numOfRolls = parseInt(numOfRollText.getText().toString());
@@ -89,11 +84,9 @@ public class RollerActivity extends AppCompatActivity {
         rollTotal.setText(diceRoller.totalOfRolls(numOfRolls, numOfSides));
     }
 
-    public void startDiceRollerActivity(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(this, DiceRollerActivity.class));
-        }
+    private void hideSoftKeyboard(Activity activity, View view) {
+        InputMethodManager imm = (InputMethodManager)activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 
 }

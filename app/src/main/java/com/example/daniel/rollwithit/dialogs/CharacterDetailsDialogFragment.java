@@ -6,25 +6,27 @@ import com.example.daniel.rollwithit.interfaces.AttributeDialogListener;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-
-public class DetailsDialogFragment extends DialogFragment {
+public class CharacterDetailsDialogFragment extends DialogFragment {
 
     private static final String DETAIL_NAME = "detailName";
     private AttributeDialogListener listener;
     private String detailName;
     private String detailValue;
-    private TextView editDetail;
+    private Spinner spinner;
+    private ArrayAdapter<CharSequence> arrayAdapter;
+
+    public CharacterDetailsDialogFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -32,24 +34,25 @@ public class DetailsDialogFragment extends DialogFragment {
         try {
             listener = (AttributeDialogListener)context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "Attaching dialog fragment failed!");
+            throw new RuntimeException(context.toString() + "\"Attaching dialog fragment failed!r");
         }
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        detailName = getArguments().getString(DETAIL_NAME);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.dialog_fragment_edit_character_detail, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_fragment_edit_character_details, null);
+        spinner = (Spinner)dialogView.findViewById(R.id.detail_spinner_value);
+        detailName = getArguments().getString(DETAIL_NAME);
+        initializeSpinners();
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         TextView textView = (TextView)dialogView.findViewById(R.id.detail_dialog_text);
         textView.setText("Enter new " + detailName + " value.");
         builder.setView(dialogView).setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int id) {
-                editDetail = (TextView)dialogView.findViewById(R.id.detail_dialog_value);
-                detailValue = editDetail.getText().toString();
+                detailValue = spinner.getSelectedItem().toString();
                 listener.onCharacterDetailUpdated(detailValue, detailName);
                 dialog.dismiss();
             }
@@ -61,4 +64,29 @@ public class DetailsDialogFragment extends DialogFragment {
         });
         return builder.create();
     }
+
+    private void initializeSpinners() {
+        switch (detailName) {
+        case "Alignment":
+            arrayAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.alignment_array,
+                android.R.layout.simple_spinner_item);
+            break;
+        case "Background":
+            arrayAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.background_array,
+                android.R.layout.simple_spinner_item);
+            break;
+        case "Class":
+            arrayAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.class_array,
+                android.R.layout.simple_spinner_item);
+            break;
+        case "Race":
+            arrayAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.race_array,
+                android.R.layout.simple_spinner_item);
+            break;
+        }
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+
+    }
+
 }

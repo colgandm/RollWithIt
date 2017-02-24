@@ -41,7 +41,7 @@ public class CharacterSelectionDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_character_selection_dialog, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_fragment_character_selection, null);
         ArrayList<Character> characterArrayList = getArguments().getParcelableArrayList(CHARACTERS);
         final ArrayAdapter<String> characterArrayAdapter = populateAdapter(characterArrayList);
         builder.setView(dialogView).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -63,7 +63,7 @@ public class CharacterSelectionDialogFragment extends DialogFragment {
 
     private ArrayAdapter<String> populateAdapter(ArrayList<Character> characterArrayList) {
         ArrayAdapter<String> characterArrayAdapter = new ArrayAdapter<>(getActivity(),
-            R.layout.character_selection_dialog);
+            R.layout.dialog_character_selection);
         for (Character c : characterArrayList) {
             characterArrayAdapter.add(c.getCharacterName());
         }

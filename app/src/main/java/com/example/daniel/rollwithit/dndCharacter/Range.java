@@ -32,8 +32,7 @@ public class Range {
 
     @Override
     public String toString() {
-        return new StringBuilder("Range [min=").append(min).append(", value=").append(value).append(", max=")
-            .append(max).append("]").toString();
+        return "Range [min=" + min + ", value=" + value + ", max=" + max + "]";
     }
 
 }

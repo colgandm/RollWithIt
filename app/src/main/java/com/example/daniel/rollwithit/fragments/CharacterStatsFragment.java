@@ -95,7 +95,7 @@ public class CharacterStatsFragment extends Fragment implements View.OnClickList
     private void displayCharacterDetails(Character character, View view) {
         assert character != null;
         initiative.setText(valueOf(character.getInitiative()));
-        armourClass.setText(valueOf(character.getArmourClass()));
+        armourClass.setText(valueOf(character.getArmor()));
         level.setText(valueOf(character.getLevel()));
         characterDAO.update(character);
     }
@@ -115,7 +115,7 @@ public class CharacterStatsFragment extends Fragment implements View.OnClickList
             reloadedCharacter.setInitiative(value);
             break;
         case ARMOUR_CLASS:
-            reloadedCharacter.setArmourClass(value);
+            reloadedCharacter.setDefense(value);
             break;
         case LEVEL:
             reloadedCharacter.setLevel(value);

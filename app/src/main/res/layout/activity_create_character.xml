@@ -371,7 +371,7 @@
                     android:id="@+id/save_character_button"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
-                android:background="@android:color/transparent"
+                    android:background="@android:color/transparent"
 
                     android:onClick="saveNewCharacter"
                     android:text="@string/save_character" />

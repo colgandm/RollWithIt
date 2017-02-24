@@ -5,31 +5,31 @@ import static java.lang.String.valueOf;
 
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.database.CharacterDAO;
+import com.example.daniel.rollwithit.dndCharacter.Abilities;
 import com.example.daniel.rollwithit.dndCharacter.Character;
+import com.example.daniel.rollwithit.dndCharacter.classes.Class.ClassType;
+import com.example.daniel.rollwithit.dndCharacter.races.Race.RaceType;
 import com.example.daniel.rollwithit.utils.DiceRoller;
+import com.example.daniel.rollwithit.utils.Utils;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-public class CreateCharacterActivity extends AppCompatActivity {
+public class CharacterCreationActivity extends AppCompatActivity {
 
     private static final String ERROR = "ERROR";
     private static final String BLANK = "";
+    private static final int ZERO = 0;
     private static final String CHARACTER_CREATION_ERROR = "Error saving character during character creation.";
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -47,13 +47,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
     private EditText intelligence;
     private EditText wisdom;
     private EditText charisma;
-    private EditText armourClass;
-    private EditText speed;
-    private EditText hitPoints;
-    private EditText level;
-    private EditText xp;
-    private EditText proficiencyBonus;
-    private EditText initiative;
 
     private Spinner dndClass;
     private Spinner background;
@@ -71,28 +64,9 @@ public class CreateCharacterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         characterDAO = new CharacterDAO(getApplicationContext());
-        character = new Character();
         setContentView(R.layout.activity_create_character);
         verifyStoragePermissions(this);
         initialiseViews();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.character_creation_options, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.auto_fill) {
-            // startActivity(new Intent(this, DiceRollerActivity.class));
-            Log.i("INFO", "Auto fill Character");
-            autoFillCharacter(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void saveNewCharacter(@SuppressWarnings("UnusedParameters") View view) {
@@ -105,29 +79,26 @@ public class CreateCharacterActivity extends AppCompatActivity {
     }
 
     private void createNewCharacter() {
-        character.setCharacterName(characterName.getText().toString());
-        character.setPlayerName(playerName.getText().toString());
+        RaceType raceType = Utils.determineRace(race.getSelectedItem().toString());
+        ClassType classType = Utils.determineClass(dndClass.getSelectedItem().toString());
+        String name = characterName.getText().toString();
+        character = new Character(name, classType, raceType);
 
-        character.setDndClass(dndClass.getSelectedItem().toString());
-        character.setRace(race.getSelectedItem().toString());
+        character.setPlayerName(playerName.getText().toString());
         character.setBackground(background.getSelectedItem().toString());
         character.setAlignment(alignment.getSelectedItem().toString());
+        character.setLevel(ZERO);
+        character.setInspiration(ZERO);
 
-        character.setArmourClass(getNullSafeValue(armourClass.getText()));
-        character.setLevel(getNullSafeValue(level.getText()));
-        character.setXp(getNullSafeValue(xp.getText()));
+        Abilities abilities = new Abilities(10);
+        abilities.setStrength(getNullSafeValue(strength.getText()));
+        abilities.setDexterity(getNullSafeValue(dexterity.getText()));
+        abilities.setConstitution(getNullSafeValue(constitution.getText()));
+        abilities.setIntelligence(getNullSafeValue(intelligence.getText()));
+        abilities.setWisdom(getNullSafeValue(wisdom.getText()));
+        abilities.setCharisma(getNullSafeValue(charisma.getText()));
+        character.setAbilities(abilities);
 
-        character.setHitPoints();
-        character.setSpeed();
-        character.setProficiencyBonus();
-
-        character.setStrength(getNullSafeValue(strength.getText()));
-        character.setDexterity(getNullSafeValue(dexterity.getText()));
-        character.setConstitution(getNullSafeValue(constitution.getText()));
-        character.setIntelligence(getNullSafeValue(intelligence.getText()));
-        character.setWisdom(getNullSafeValue(wisdom.getText()));
-        character.setCharisma(getNullSafeValue(charisma.getText()));
-        character.setInitiative(getNullSafeValue(initiative.getText()));
     }
 
     private int getNullSafeValue(Editable value) {
@@ -143,14 +114,6 @@ public class CreateCharacterActivity extends AppCompatActivity {
         intelligence = ((EditText)findViewById(R.id.intelligence_value));
         wisdom = ((EditText)findViewById(R.id.wisdom_value));
         charisma = ((EditText)findViewById(R.id.charisma_value));
-        armourClass = ((EditText)findViewById(R.id.armour_class_value));
-        speed = ((EditText)findViewById(R.id.speed_value));
-        hitPoints = ((EditText)findViewById(R.id.hit_points_value));
-        level = ((EditText)findViewById(R.id.level_value));
-        xp = ((EditText)findViewById(R.id.xp_value));
-        proficiencyBonus = ((EditText)findViewById(R.id.proficiency_bonus_value));
-        initiative = ((EditText)findViewById(R.id.initiative_value));
-
         dndClass = ((Spinner)findViewById(R.id.dnd_class_value));
         race = ((Spinner)findViewById(R.id.race_value));
         background = ((Spinner)findViewById(R.id.background_value));
@@ -192,4 +155,5 @@ public class CreateCharacterActivity extends AppCompatActivity {
         // CharacterUtils characterUtils = new CharacterUtils();
         // characterUtils.createNewCharacter(activity);
     }
+
 }

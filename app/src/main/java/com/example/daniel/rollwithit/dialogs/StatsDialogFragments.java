@@ -37,7 +37,7 @@ public class StatsDialogFragments extends DialogFragment {
         attributeName = getArguments().getString(STAT_NAME);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_stats_dialog, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_fragment_edit_character_stats, null);
         TextView textView = (TextView)dialogView.findViewById(R.id.stats_dialog_text);
         textView.setText("Enter new " + attributeName + " value.");
         builder.setView(dialogView).setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {

@@ -41,7 +41,7 @@ public class AttributeDialogFragment extends DialogFragment {
         attributeName = getArguments().getString(ATTRIBUTE_NAME);
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.fragment_attribute_dialog, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_fragment_edit_character_attribute, null);
         TextView textView = (TextView)dialogView.findViewById(R.id.attribute_dialog_text);
         textView.setText("Enter new " + attributeName + " value.");
         builder.setView(dialogView).setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {

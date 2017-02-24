@@ -21,11 +21,9 @@ public class DiceRollerFragment extends Fragment implements OnFragmentInteractio
     private static final String BLANK = "";
     private final DiceRoller diceRoller = new DiceRoller();
     private int numberOfSides;
-    private TextView typeOfDie;
     private TextView resultValue;
     private EditText nbrOfDice;
     private EditText modifierValue;
-    private Button rollButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,12 +33,12 @@ public class DiceRollerFragment extends Fragment implements OnFragmentInteractio
     }
 
     private void initializeViews(View fragmentView) {
-        typeOfDie = (TextView)fragmentView.findViewById(R.id.type_of_die);
+        TextView typeOfDie = (TextView)fragmentView.findViewById(R.id.type_of_die);
         typeOfDie.setText(String.valueOf(numberOfSides));
         resultValue = (TextView)fragmentView.findViewById(R.id.roll_result);
         nbrOfDice = (EditText)fragmentView.findViewById(R.id.number_of_die);
         modifierValue = (EditText)fragmentView.findViewById(R.id.modifier_value);
-        rollButton = (Button)fragmentView.findViewById(R.id.roll_button);
+        Button rollButton = (Button)fragmentView.findViewById(R.id.roll_button);
         rollButton.setOnClickListener(this);
     }
 

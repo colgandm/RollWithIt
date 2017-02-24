@@ -25,10 +25,26 @@ public class Class {
         typeToClassMap.put(ClassType.WIZARD, new Wizard());
     }
 
-    private Map<ClassSkills, Abilities.AbilityType> skillToAbilityMap = new HashMap<ClassSkills, Abilities.AbilityType>();
+    private ClassType classType;
+    private Map<ClassSkills, Abilities.AbilityType> skillToAbilityMap = new HashMap<>();
 
-    public static Class getClassFromMap(ClassType type) {
-        return typeToClassMap.get(type);
+    public static Class getClassFromMap(ClassType classType) {
+        return typeToClassMap.get(classType);
+    }
+
+    public ClassType getClassType() {
+        return classType;
+    }
+
+    public void setClassType(ClassType classType) {
+        this.classType = classType;
+    }
+    // public Abilities getAbilityModifier(){
+    // Abilities abilities = new Abilities(10);
+    // }
+
+    public String getClassTypeName() {
+        return classType.name();
     }
 
     public int getHPModifier() {
@@ -75,4 +91,5 @@ public class Class {
         RIDE,
         SWIM
     }
+
 }

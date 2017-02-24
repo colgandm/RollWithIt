@@ -1,8 +1,9 @@
 package com.example.daniel.rollwithit.dndCharacter.races;
 
-/**
- * Created by daniel on 20/02/17.
- */
-
 public class Gnome extends Race {
+
+    public Gnome() {
+        setRaceType(RaceType.GNOME);
+        setSize(Size.SMALL);
+    }
 }

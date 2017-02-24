@@ -2,7 +2,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/create_random_character"
-        android:orderInCategory="100"
+        android:orderInCategory="1"
         android:title="@string/create_random_character_label"
+        app:showAsAction="collapseActionView" />
+    <item
+        android:id="@+id/settings_menu_item"
+        android:orderInCategory="2"
+        android:title="@string/settings_label"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/blank_menu_item"
+        android:orderInCategory="3"
+        android:title="@string/blank_menu_item_label"
         app:showAsAction="collapseActionView" />
 </menu>

@@ -1,8 +1,10 @@
 package com.example.daniel.rollwithit.dndCharacter.races;
 
-/**
- * Created by daniel on 20/02/17.
- */
-
 public class HalfElf extends Race {
+
+    public HalfElf() {
+        setRaceType(RaceType.HALFELF);
+        setSize(Size.MEDIUM);
+    }
+
 }

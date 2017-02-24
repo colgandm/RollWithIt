@@ -2,6 +2,16 @@ package com.example.daniel.rollwithit.dndCharacter;
 
 import java.io.Serializable;
 
+import com.example.daniel.rollwithit.dndCharacter.classes.Class;
+import com.example.daniel.rollwithit.dndCharacter.classes.Class.ClassType;
+import com.example.daniel.rollwithit.dndCharacter.classes.Fighter;
+import com.example.daniel.rollwithit.dndCharacter.classes.Rogue;
+import com.example.daniel.rollwithit.dndCharacter.races.Human;
+import com.example.daniel.rollwithit.dndCharacter.races.Race;
+import com.example.daniel.rollwithit.dndCharacter.races.Race.RaceType;
+import com.example.daniel.rollwithit.utils.DiceRoller;
+import com.example.daniel.rollwithit.utils.Utils;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -17,25 +27,26 @@ public class Character implements Serializable, Parcelable {
             return new Character[size];
         }
     };
-    private String playerName;
+
     private String characterName;
-    private String dndClass;
+    private Class classType;
     private int level;
-    private int xp;
-    private String race;
     private String background;
+    private String playerName;
+    private Race raceType;
     private String alignment;
-    private int hitPoints;
-    private int armourClass;
-    private int speed;
+    private Experience xp;
+    private Abilities abilities;
+    private int inspiration;
     private int proficiencyBonus;
-    private int strength;
-    private int dexterity;
-    private int constitution;
-    private int intelligence;
-    private int wisdom;
-    private int charisma;
+    private Defense armor;
     private int initiative;
+    private int speed;
+    private Range hitPoints;
+    private Gender gender;
+    private int weight;
+    private int height;
+    private int age;
 
     public Character() {
         super();
@@ -43,61 +54,54 @@ public class Character implements Serializable, Parcelable {
 
     private Character(Parcel in) {
         super();
-        this.playerName = in.readString();
         this.characterName = in.readString();
-        this.dndClass = in.readString();
+        this.classType = Class.getClassFromMap(Utils.determineClass(in.readString()));
         this.level = in.readInt();
-        this.xp = in.readInt();
-        this.race = in.readString();
         this.background = in.readString();
+        this.playerName = in.readString();
+        this.raceType = Race.getRaceFromMap(Utils.determineRace(in.readString()));
         this.alignment = in.readString();
-        this.hitPoints = in.readInt();
-        this.armourClass = in.readInt();
-        this.speed = in.readInt();
+        this.xp = new Experience(in.readInt());
+        int strength = in.readInt();
+        int dex = in.readInt();
+        int con = in.readInt();
+        int intelligence = in.readInt();
+        int wisdom = in.readInt();
+        int charisma = in.readInt();
+        this.abilities = new Abilities(strength, dex, con, intelligence, wisdom, charisma);
+        this.inspiration = in.readInt();
         this.proficiencyBonus = in.readInt();
-        this.strength = in.readInt();
-        this.dexterity = in.readInt();
-        this.constitution = in.readInt();
-        this.intelligence = in.readInt();
-        this.wisdom = in.readInt();
-        this.charisma = in.readInt();
+        this.armor = new Defense();
+        setDefense(in.readInt());
         this.initiative = in.readInt();
+        this.speed = in.readInt();
+        this.hitPoints = new Range(0, in.readInt(), Integer.MAX_VALUE);
+        this.gender = Utils.determineGender(in.readString());
+        this.weight = in.readInt();
+        this.height = in.readInt();
+        this.age = in.readInt();
+
     }
 
-    public Character(String characterName) {
-        this.characterName = characterName;
+    public Character(String name) {
+        this(name, ClassType.DEFAULT, RaceType.DEFAULT);
     }
 
-    public Character(String playerName, String characterName, String dndClass, int level, int xp, String race,
-            String background, String alignment, int hitPoints, int armourClass, int speed, int proficiencyBonus,
-            int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma, int initiative) {
-        this.playerName = playerName;
-        this.characterName = characterName;
-        this.dndClass = dndClass;
-        this.level = level;
-        this.xp = xp;
-        this.race = race;
-        this.background = background;
-        this.alignment = alignment;
-        this.hitPoints = hitPoints;
-        this.armourClass = armourClass;
-        this.speed = speed;
-        this.proficiencyBonus = proficiencyBonus;
-        this.strength = strength;
-        this.dexterity = dexterity;
-        this.constitution = constitution;
-        this.intelligence = intelligence;
-        this.wisdom = wisdom;
-        this.charisma = charisma;
-        this.initiative = initiative;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public Character(String name, ClassType classType, RaceType raceType) {
+        this.setCharacterName(name);
+        this.setArmor(new Defense());
+        this.classType = Class.getClassFromMap(classType);
+        this.raceType = Race.getRaceFromMap(raceType);
+        this.hitPoints = new Range(0, this.classType.getHPModifier(), Integer.MAX_VALUE);
+        this.abilities = new Abilities(10);
+        this.xp = new Experience(0);
+        this.speed = this.raceType.getSpeed();
+        this.setAge(generateAge());
+        this.setWeight(generateWeight());
+        this.setHeight(generateHeight());
+        this.setGender(Gender.MALE);
+        this.proficiencyBonus = getProficiencyBonus();
+        this.initiative = getInitiative();
     }
 
     public String getCharacterName() {
@@ -108,36 +112,21 @@ public class Character implements Serializable, Parcelable {
         this.characterName = characterName;
     }
 
-    public String getDndClass() {
-        return dndClass;
+    public Class getClassType() {
+        return classType;
     }
 
-    public void setDndClass(String dndClass) {
-        this.dndClass = dndClass;
+    public void setClassType(Class classType) {
+        this.classType = classType;
     }
 
     public int getLevel() {
+
         return level;
     }
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public int getXp() {
-        return xp;
-    }
-
-    public void setXp(int xp) {
-        this.xp = xp;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
     }
 
     public String getBackground() {
@@ -148,6 +137,22 @@ public class Character implements Serializable, Parcelable {
         this.background = background;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public Race getRaceType() {
+        return raceType;
+    }
+
+    public void setRaceType(Race raceType) {
+        this.raceType = raceType;
+    }
+
     public String getAlignment() {
         return alignment;
     }
@@ -156,28 +161,28 @@ public class Character implements Serializable, Parcelable {
         this.alignment = alignment;
     }
 
-    public int getHitPoints() {
-        return hitPoints;
+    public Experience getXp() {
+        return xp;
     }
 
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
+    public void setXp(Experience xp) {
+        this.xp = xp;
     }
 
-    public int getArmourClass() {
-        return armourClass;
+    public Abilities getAbilities() {
+        return abilities;
     }
 
-    public void setArmourClass(int armourClass) {
-        this.armourClass = armourClass;
+    public void setAbilities(Abilities abilities) {
+        this.abilities = abilities;
     }
 
-    public int getSpeed() {
-        return speed;
+    public int getInspiration() {
+        return inspiration;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public void setInspiration(int inspiration) {
+        this.inspiration = inspiration;
     }
 
     public int getProficiencyBonus() {
@@ -188,60 +193,222 @@ public class Character implements Serializable, Parcelable {
         this.proficiencyBonus = proficiencyBonus;
     }
 
-    public int getStrength() {
-        return strength;
+    public int getArmor() {
+        return Math.max(0, armor.getArmor() + abilities.getModifier(abilities.getDexterity()));
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
+    public void setArmor(Defense armor) {
+        this.armor = armor;
     }
 
-    public int getDexterity() {
-        return dexterity;
-    }
-
-    public void setDexterity(int dexterity) {
-        this.dexterity = dexterity;
-    }
-
-    public int getConstitution() {
-        return constitution;
-    }
-
-    public void setConstitution(int constitution) {
-        this.constitution = constitution;
-    }
-
-    public int getIntelligence() {
-        return intelligence;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public int getWisdom() {
-        return wisdom;
-    }
-
-    public void setWisdom(int wisdom) {
-        this.wisdom = wisdom;
-    }
-
-    public int getCharisma() {
-        return charisma;
-    }
-
-    public void setCharisma(int charisma) {
-        this.charisma = charisma;
+    public void setDefense(int defense) {
+        armor.setArmor(defense);
     }
 
     public int getInitiative() {
-        return initiative;
+        switch (this.abilities.getDexterity()) {
+        case 10:
+        case 11:
+            return 0;
+        case 12:
+        case 13:
+            return 1;
+        case 14:
+        case 15:
+            return 2;
+        case 16:
+        case 17:
+            return 3;
+        case 18:
+        case 19:
+            return 4;
+        case 20:
+            return 5;
+
+        default:
+            return 0;
+        }
     }
 
     public void setInitiative(int initiative) {
         this.initiative = initiative;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public Range getHitPoints() {
+        return hitPoints;
+    }
+
+    public void setHitPoints(Range hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weights) {
+        this.weight = weights;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getStrength() {
+        return abilities.getStrength();
+    }
+
+    public void setStrength(int strength) {
+        abilities.setStrength(strength);
+    }
+
+    public int getDexterity() {
+        return abilities.getDexterity();
+    }
+
+    public void setDexterity(int dexterity) {
+        abilities.setDexterity(dexterity);
+    }
+
+    public int getConstitution() {
+        return abilities.getConstitution();
+    }
+
+    public void setConstitution(int constitution) {
+        abilities.setConstitution(constitution);
+    }
+
+    public int getWisdom() {
+        return abilities.getWisdom();
+    }
+
+    public void setWisdom(int wisdom) {
+        abilities.setWisdom(wisdom);
+    }
+
+    public int getIntelligence() {
+        return abilities.getIntelligence();
+    }
+
+    public void setIntelligence(int intelligence) {
+        abilities.setIntelligence(intelligence);
+    }
+
+    public int getCharisma() {
+        return abilities.getCharisma();
+    }
+
+    public void setCharisma(int charisma) {
+        abilities.setCharisma(charisma);
+    }
+
+    public int getCurrentXP() {
+        return xp.getTotalExperience();
+    }
+
+    public void addExperience(int points) {
+        int oldLevel = getLevel();
+
+        xp.addToExperience(points);
+
+        int levelsGained = getLevel() - oldLevel;
+        for (int level = 0; level < levelsGained; level++) { // only if level gained
+            levelGained();
+        }
+
+    }
+
+    protected void levelGained() {
+        hitPoints.add(classType.getHPModifier() + abilities.getModifier(getConstitution()));
+    }
+
+    private int generateAge() {
+        if ((raceType.getClass() == Human.class) && (classType.getClass().equals(Rogue.class))) {
+            return DiceRoller.roll(1, 4, 15);
+        } else {
+            if ((raceType.getClass() == Human.class) && classType.getClass().equals(Fighter.class)) {
+                return DiceRoller.roll(1, 6, 15);
+            }
+        }
+        return 0;
+    }
+
+    // TODO Write method to generate Weight
+    private int generateWeight() {
+        if ((raceType.getClass() == Human.class) && (classType.getClass().equals(Rogue.class))) {
+            return DiceRoller.roll(1, 4, 15);
+        } else {
+            if ((raceType.getClass() == Human.class) && classType.getClass().equals(Fighter.class)) {
+                return DiceRoller.roll(1, 6, 15);
+            }
+        }
+        return 0;
+    }
+
+    // TODO Write method to generate Height
+    private int generateHeight() {
+        if ((raceType.getClass() == Human.class) && (classType.getClass().equals(Rogue.class))) {
+            return DiceRoller.roll(1, 4, 15);
+        } else {
+            if ((raceType.getClass() == Human.class) && classType.getClass().equals(Fighter.class)) {
+                return DiceRoller.roll(1, 6, 15);
+            }
+        }
+        return 0;
+    }
+
+    public void decrementHP(int hp) {
+        hitPoints.add(-hp);
+    }
+
+    public int getHP() {
+
+        if (hitPoints.getValue() == 0) {
+            return 0;
+        }
+
+        int constitutionModifier = abilities.getModifier(abilities.getConstitution());
+        if (hitPoints.getValue() + constitutionModifier < 1) {
+            return 1;
+        }
+
+        return hitPoints.getValue() + constitutionModifier;
+    }
+
+    public void setHP(int hitPoints) {
+        this.hitPoints.setValue(hitPoints);
+    }
+
+    public boolean isDead() {
+        return getHP() <= 0;
     }
 
     @Override
@@ -251,83 +418,35 @@ public class Character implements Serializable, Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeInt(getArmourClass());
-        parcel.writeInt(getCharisma());
-        parcel.writeInt(getConstitution());
-        parcel.writeInt(getDexterity());
-        parcel.writeInt(getArmourClass());
-        parcel.writeInt(getHitPoints());
-        parcel.writeInt(getInitiative());
-        parcel.writeInt(getIntelligence());
-        parcel.writeInt(getLevel());
-        parcel.writeInt(getProficiencyBonus());
-        parcel.writeInt(getSpeed());
-        parcel.writeInt(getStrength());
-        parcel.writeInt(getWisdom());
-        parcel.writeInt(getXp());
-        parcel.writeString(getAlignment());
-        parcel.writeString(getBackground());
         parcel.writeString(getCharacterName());
-        parcel.writeString(getDndClass());
+        parcel.writeString(getClassType().toString());
+        parcel.writeInt(getLevel());
+        parcel.writeString(getBackground());
         parcel.writeString(getPlayerName());
-        parcel.writeString(getRace());
-
+        parcel.writeString(getRaceType().getRaceTypeName());
+        parcel.writeString(getAlignment());
+        parcel.writeInt(getCurrentXP());
+        parcel.writeInt(getStrength());
+        parcel.writeInt(getDexterity());
+        parcel.writeInt(getConstitution());
+        parcel.writeInt(getIntelligence());
+        parcel.writeInt(getWisdom());
+        parcel.writeInt(getCharisma());
+        parcel.writeInt(getInspiration());
+        parcel.writeInt(getProficiencyBonus());
+        parcel.writeInt(getArmor());
+        parcel.writeInt(getInitiative());
+        parcel.writeInt(getSpeed());
+        parcel.writeInt(getHP());
+        parcel.writeString(getGender().toString());
+        parcel.writeInt(getWeight());
+        parcel.writeInt(getHeight());
+        parcel.writeInt(getAge());
     }
 
-    public int setHitPoints() {
-        return 0;
-    }
-
-    public int setProficiencyBonus() {
-        switch (level) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-            return 2;
-        case 5:
-        case 6:
-        case 7:
-        case 8:
-            return 3;
-        case 9:
-        case 10:
-        case 11:
-        case 12:
-            return 4;
-        case 13:
-        case 14:
-        case 15:
-        case 16:
-            return 5;
-        case 17:
-        case 18:
-        case 19:
-        case 20:
-            return 6;
-        default:
-            return 0;
-        }
-    }
-
-    public int setSpeed() {
-        switch (race) {
-        case "Human":
-            return 30;
-        case "Dwarf":
-            return 25;
-        case "Elf":
-            return 30;
-        case "Gnome":
-            return 25;
-        case "HalfElf":
-            return 30;
-        case "HalfOrc":
-            return 30;
-        case "Halfling":
-            return 25;
-        }
-        return 0;
+    public enum Gender {
+        MALE,
+        FEMALE
     }
 
 }

@@ -4,15 +4,24 @@ public class Abilities {
 
     public static int MINIMUM_ABILITY_VALUE = 1;
     public static int MAXIMUM_ABILITY_VALUE = 20;
-    private Range strength, dexterity, constitution, wisdom, intelligence, charisma;
+    private Range strength, dexterity, constitution, intelligence, wisdom, charisma;
 
     public Abilities(int defaultValue) {
         strength = createAbility(defaultValue);
         dexterity = createAbility(defaultValue);
         constitution = createAbility(defaultValue);
-        wisdom = createAbility(defaultValue);
         intelligence = createAbility(defaultValue);
+        wisdom = createAbility(defaultValue);
         charisma = createAbility(defaultValue);
+    }
+
+    public Abilities(int s, int d, int con, int i, int w, int c) {
+        strength = createAbility(s);
+        dexterity = createAbility(d);
+        constitution = createAbility(con);
+        intelligence = createAbility(i);
+        wisdom = createAbility(w);
+        charisma = createAbility(c);
     }
 
     protected Range createAbility(int defaultValue) {

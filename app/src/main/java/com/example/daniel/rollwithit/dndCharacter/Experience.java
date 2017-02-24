@@ -2,7 +2,7 @@ package com.example.daniel.rollwithit.dndCharacter;
 
 public class Experience {
 
-    private Range totalExperience = new Range(0, 0, 20);
+    private Range totalExperience = new Range(0, 0, Integer.MAX_VALUE);
 
     public Experience(int experience) {
         this.totalExperience.setValue(experience);

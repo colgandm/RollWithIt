@@ -37,9 +37,19 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.create_random_character) {
+
+        switch (id) {
+        case R.id.create_random_character:
             // startActivity(new Intent(this, DiceRollerActivity.class));
             Log.i("INFO", "Create Random Character");
+            return true;
+        case R.id.settings_menu_item:
+            // startActivity(new Intent(this, DiceRollerActivity.class));
+            Log.i("INFO", "Settings Menu");
+            return true;
+        case R.id.blank_menu_item:
+            // startActivity(new Intent(this, DiceRollerActivity.class));
+            Log.i("INFO", "Blank Blank Blank");
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -55,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
     }
 
     public void startCharacterCreationActivity(View view) {
-        startActivity(new Intent(this, CreateCharacterActivity.class));
+        startActivity(new Intent(this, CharacterCreationActivity.class));
     }
 
     private void startCharacterDisplayActivity(String characterName) {
@@ -70,10 +80,6 @@ public class MainActivity extends AppCompatActivity implements SelectionDialogLi
         args.putParcelableArrayList(CHARACTERS, characterArrayList);
         characterSelectionDialogFragment.setArguments(args);
         characterSelectionDialogFragment.show(getFragmentManager(), SELECTION_DIALOG);
-    }
-
-    private void startNewCreateCharacterActivity(View view) {
-        startActivity(new Intent(this, NewCharacterCreationActivity.class));
     }
 
 }

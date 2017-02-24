@@ -33,6 +33,7 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
 
     private CharacterDAO characterDAO;
     private String characterName;
+    private CharacterDisplayActivity parentActivity;
 
     private TextView strength;
     private TextView dexterity;
@@ -44,9 +45,9 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_character_attributes, container, false);
-        CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
-        characterDAO = new CharacterDAO(activity);
-        characterName = activity.getCharacterName();
+        parentActivity = (CharacterDisplayActivity)getActivity();
+        characterDAO = new CharacterDAO(parentActivity);
+        characterName = parentActivity.getCharacterName();
         Character character = loadCharacterFromDB(characterName);
         initialiseViews(fragmentView);
         displayCharacterAttributes(character, fragmentView);
@@ -80,8 +81,7 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         default:
             throw new RuntimeException("Unknown button ID");
         }
-        CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
-        activity.raiseEditAttributeDialog(attributeName);
+        parentActivity.raiseEditAttributeDialog(attributeName);
     }
 
     private Character loadCharacterFromDB(String characterName) {

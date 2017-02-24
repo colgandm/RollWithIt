@@ -2,7 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-    <TextView
+
+<TextView
         android:id="@+id/dnd_class_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

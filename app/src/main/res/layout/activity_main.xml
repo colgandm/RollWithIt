@@ -13,7 +13,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-        <Button
+
+    <Button
             android:id="@+id/create_character_button"
             android:layout_width="300dp"
             android:layout_height="100dp"
@@ -21,6 +22,7 @@
             android:onClick="startCharacterCreationActivity"
             android:text="@string/create_character"
             app:layout_anchorGravity="center_vertical|center_horizontal" />
+
         <Button
             android:id="@+id/load_character_button"
             android:layout_width="300dp"
@@ -29,6 +31,7 @@
             android:onClick="raiseCharacterSelectionDialog"
             android:text="@string/load_character"
             app:layout_anchorGravity="center_vertical|center_horizontal" />
+
         <Button
             android:id="@+id/roll_button"
             android:layout_width="300dp"
@@ -36,15 +39,6 @@
             android:background="@android:color/transparent"
             android:onClick="startDiceRollerActivity"
             android:text="@string/dice_roller_button"
-            app:layout_anchorGravity="center_vertical|center_horizontal" />
-
-        <Button
-            android:id="@+id/new_character_creation"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:background="@android:color/transparent"
-            android:onClick="startNewCreateCharacterActivity"
-            android:text="@string/new_create_character"
             app:layout_anchorGravity="center_vertical|center_horizontal" />
 
     </LinearLayout>

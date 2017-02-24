@@ -19,11 +19,24 @@ public class Race {
         typeToRaceMap.put(RaceType.HALFLING, new Halfling());
     }
 
+    private RaceType raceType;
     private Size size;
     private int speed;
 
     public static Race getRaceFromMap(RaceType type) {
         return typeToRaceMap.get(type);
+    }
+
+    public RaceType getRaceType() {
+        return raceType;
+    }
+
+    public void setRaceType(RaceType raceType) {
+        this.raceType = raceType;
+    }
+
+    public String getRaceTypeName() {
+        return raceType.name();
     }
 
     public Size getSize() {
