@@ -41,6 +41,30 @@ public class RollerActivity extends AppCompatActivity {
         rollResult = (TextView)findViewById(R.id.roll_result);
         rollTotal = (TextView)findViewById(R.id.roll_total);
         initializeSpinner();
+        // doMaths();
+    }
+
+    private void doMaths() {
+        System.out.println("Level 1 : " + (Math.ceil((double)1 / 4) + 1));
+        System.out.println("Level 2 : " + (Math.ceil((double)2 / 4) + 1));
+        System.out.println("Level 3 : " + (Math.ceil((double)3 / 4) + 1));
+        System.out.println("Level 4 : " + (Math.ceil((double)4 / 4) + 1));
+        System.out.println("Level 5 : " + (Math.ceil((double)5 / 4) + 1));
+        System.out.println("Level 6 : " + (Math.ceil((double)6 / 4) + 1));
+        System.out.println("Level 7 : " + (Math.ceil((double)7 / 4) + 1));
+        System.out.println("Level 8 : " + (Math.ceil((double)8 / 4) + 1));
+        System.out.println("Level 9 : " + (Math.ceil((double)9 / 4) + 1));
+        System.out.println("Level 10 : " + (Math.ceil((double)10 / 4) + 1));
+        System.out.println("Level 11 : " + (Math.ceil((double)11 / 4) + 1));
+        System.out.println("Level 12 : " + (Math.ceil((double)12 / 4) + 1));
+        System.out.println("Level 13 : " + (Math.ceil((double)13 / 4) + 1));
+        System.out.println("Level 14 : " + (Math.ceil((double)14 / 4) + 1));
+        System.out.println("Level 15 : " + (Math.ceil((double)15 / 4) + 1));
+        System.out.println("Level 16 : " + (Math.ceil((double)16 / 4) + 1));
+        System.out.println("Level 17 : " + (Math.ceil((double)17 / 4) + 1));
+        System.out.println("Level 18 : " + (Math.ceil((double)18 / 4) + 1));
+        System.out.println("Level 19 : " + (Math.ceil((double)19 / 4) + 1));
+        System.out.println("Level 20 : " + (Math.ceil((double)20 / 4) + 1));
     }
 
     @Override
@@ -57,7 +81,6 @@ public class RollerActivity extends AppCompatActivity {
             startActivity(new Intent(this, DiceRollerActivity.class));
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 

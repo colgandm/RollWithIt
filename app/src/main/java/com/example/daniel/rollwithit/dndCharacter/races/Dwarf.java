@@ -4,6 +4,7 @@ public class Dwarf extends Race {
 
     public Dwarf() {
         setRaceType(RaceType.DWARF);
-        setSize(Size.SMALL);
+        setSize(Size.MEDIUM);
+        setSpeed(25);
     }
 }

@@ -130,62 +130,6 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/armour_class_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="@string/armourClass"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/speed_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="@string/speed"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/hit_points_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="@string/hitPoints"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/level_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="@string/level"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/xp_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="@string/xp"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/proficiency_bonus_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="@string/proficiencyBonus"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/initiative_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:gravity="center"
-                    android:text="@string/initiative"
-                    android:textSize="14sp" />
-
-                <TextView
                     android:id="@+id/save_character_blank"
                     android:layout_width="wrap_content"
                     android:layout_height="100dp"
@@ -301,69 +245,6 @@
                     android:layout_height="50dp"
                     android:background="@android:color/transparent"
                     android:hint="@string/charisma"
-                    android:inputType="number"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/armour_class_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/armourClass"
-                    android:inputType="number"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/speed_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/speed"
-                    android:inputType="number"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/hit_points_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/hitPoints"
-                    android:inputType="number"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/level_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/level"
-                    android:inputType="number"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/xp_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/xp"
-                    android:inputType="number"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/proficiency_bonus_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/proficiencyBonus"
-                    android:inputType="number"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/initiative_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/initiative"
                     android:inputType="number"
                     android:textSize="14sp" />
 

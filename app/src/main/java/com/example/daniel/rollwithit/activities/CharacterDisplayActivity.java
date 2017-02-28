@@ -12,10 +12,12 @@ import static com.example.daniel.rollwithit.utils.ConstAttributes.LEVEL_9;
 import static java.lang.Integer.parseInt;
 
 import com.example.daniel.rollwithit.R;
+import com.example.daniel.rollwithit.database.CharacterDAO;
 import com.example.daniel.rollwithit.dialogs.AttributeDialogFragment;
 import com.example.daniel.rollwithit.dialogs.CharacterDetailsDialogFragment;
 import com.example.daniel.rollwithit.dialogs.DetailsDialogFragment;
 import com.example.daniel.rollwithit.dialogs.StatsDialogFragments;
+import com.example.daniel.rollwithit.dndCharacter.Character;
 import com.example.daniel.rollwithit.fragments.CharacterAttributesFragment;
 import com.example.daniel.rollwithit.fragments.CharacterDetailsFragment;
 import com.example.daniel.rollwithit.fragments.CharacterStatsFragment;
@@ -34,6 +36,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class CharacterDisplayActivity extends AppCompatActivity implements AttributeDialogListener {
@@ -49,6 +52,7 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static final String[] PERMISSIONS_STORAGE = {
         Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
+    private Character character;
     private String characterName;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -63,8 +67,16 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCharacterName(getIntent().getStringExtra(CHARACTER_NAME));
+        loadCharacter();
         setContentView(R.layout.activity_character_display);
+        TextView characterNameTextView = (TextView)findViewById(R.id.character_name_value);
+        characterNameTextView.setText(characterName);
         verifyStoragePermissions(this);
+    }
+
+    private void loadCharacter() {
+        CharacterDAO characterDAO = new CharacterDAO(this);
+        character = characterDAO.getCharacterByName(characterName);
     }
 
     @Override
@@ -161,6 +173,10 @@ public class CharacterDisplayActivity extends AppCompatActivity implements Attri
 
     private void setCharacterName(String characterName) {
         this.characterName = characterName;
+    }
+
+    public Character getCharacter() {
+        return character;
     }
 
     private void setExperienceBar(int value) {

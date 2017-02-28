@@ -1,9 +1,9 @@
 package com.example.daniel.rollwithit.dndCharacter.races;
 
-public class HalfOrc extends Race {
+public class Tiefling extends Race {
 
-    public HalfOrc() {
-        setRaceType(RaceType.HALFORC);
+    public Tiefling() {
+        setRaceType(RaceType.TIEFLING);
         setSize(Size.MEDIUM);
         setSpeed(30);
     }

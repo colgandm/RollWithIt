@@ -151,9 +151,4 @@ public class CharacterCreationActivity extends AppCompatActivity {
         charisma.setText(valueOf(diceRoller.roll4d6DropLowest()));
     }
 
-    private void autoFillCharacter(Activity activity) {
-        // CharacterUtils characterUtils = new CharacterUtils();
-        // characterUtils.createNewCharacter(activity);
-    }
-
 }

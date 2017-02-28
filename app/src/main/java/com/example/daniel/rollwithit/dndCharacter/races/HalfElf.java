@@ -5,6 +5,7 @@ public class HalfElf extends Race {
     public HalfElf() {
         setRaceType(RaceType.HALFELF);
         setSize(Size.MEDIUM);
+        setSpeed(30);
     }
 
 }

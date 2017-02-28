@@ -19,7 +19,9 @@ public class DiceRollerActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         createDiceRollers();
+
     }
+
 
     private void createDiceRollers() {
 

@@ -38,6 +38,11 @@
     <string name="charisma">Charisma</string>
     <string name="save">Save</string>
 
+
+    <string name="armorProficiencies">Armor Proficiencies</string>
+    <string name="weaponProficiencies">Weapon Proficiencies</string>
+    <string name="toolProficiencies">Tool Proficiencies</string>
+
     <!--Array to store Types of Dice-->
     <string-array name="dice_array">
         <item>4</item>

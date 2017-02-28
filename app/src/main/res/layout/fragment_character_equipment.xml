@@ -1,14 +1,48 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.daniel.rollwithit.fragments.CharacterEquipmentFragment">
 
     <TextView
-        android:id="@+id/character_equipment"
+        android:id="@+id/armor_proficiencies_label"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:text="@string/test_string" />
+        android:layout_height="wrap_content"
+        android:text="@string/armorProficiencies"
+        android:textAlignment="center" />
 
-</FrameLayout>
+    <ListView
+        android:id="@+id/armor_proficiency_values"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null" />
+
+    <TextView
+        android:id="@+id/weapon_proficiencies_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/weaponProficiencies"
+        android:textAlignment="center" />
+
+    <ListView
+        android:id="@+id/weapon_proficiency_values"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null" />
+
+    <TextView
+        android:id="@+id/tool_proficiencies_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/toolProficiencies"
+        android:textAlignment="center" />
+
+    <ListView
+        android:id="@+id/tool_proficiency_values"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null" />
+
+
+</LinearLayout>

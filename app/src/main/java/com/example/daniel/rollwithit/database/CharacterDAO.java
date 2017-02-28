@@ -113,7 +113,7 @@ public class CharacterDAO extends CharacterDBDAO {
             character.setWisdom(cursor.getInt(12));
             character.setCharisma(cursor.getInt(13));
             character.setInspiration(cursor.getInt(14));
-            character.setProficiencyBonus(cursor.getInt(15));
+            character.setProficiencyBonus(cursor.getInt(3)); // uses level to calculate pb
             character.setArmor(new Defense());
             character.setDefense(cursor.getInt(16));
             character.setSpeed(cursor.getInt(17));
@@ -129,6 +129,20 @@ public class CharacterDAO extends CharacterDBDAO {
         }
         cursor.close();
         return characters;
+    }
+
+    public Character getCharacterByName(String characterName) {
+        ArrayList<Character> characters = getCharacter();
+        if (characters.size() == 0) {
+            return null;
+        } else {
+            for (Character character : characters) {
+                if (characterName.equals(character.getCharacterName())) {
+                    return character;
+                }
+            }
+        }
+        return null;
     }
 
     public long update(Character character) {

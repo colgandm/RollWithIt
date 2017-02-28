@@ -87,12 +87,13 @@ public class Character implements Serializable, Parcelable {
         this(name, ClassType.DEFAULT, RaceType.DEFAULT);
     }
 
+    // Constructor for creating a new Character
     public Character(String name, ClassType classType, RaceType raceType) {
         this.setCharacterName(name);
-        this.setArmor(new Defense());
         this.classType = Class.getClassFromMap(classType);
         this.raceType = Race.getRaceFromMap(raceType);
         this.hitPoints = new Range(0, this.classType.getHPModifier(), Integer.MAX_VALUE);
+        this.setArmor(new Defense());
         this.abilities = new Abilities(10);
         this.xp = new Experience(0);
         this.speed = this.raceType.getSpeed();
@@ -121,7 +122,6 @@ public class Character implements Serializable, Parcelable {
     }
 
     public int getLevel() {
-
         return level;
     }
 
@@ -189,8 +189,8 @@ public class Character implements Serializable, Parcelable {
         return proficiencyBonus;
     }
 
-    public void setProficiencyBonus(int proficiencyBonus) {
-        this.proficiencyBonus = proficiencyBonus;
+    public void setProficiencyBonus(int level) {
+        this.proficiencyBonus = (int)(Math.ceil(level / 4) + 1);
     }
 
     public int getArmor() {
@@ -330,7 +330,7 @@ public class Character implements Serializable, Parcelable {
         abilities.setCharisma(charisma);
     }
 
-    public int getCurrentXP() {
+    private int getCurrentXP() {
         return xp.getTotalExperience();
     }
 
@@ -346,7 +346,7 @@ public class Character implements Serializable, Parcelable {
 
     }
 
-    protected void levelGained() {
+    private void levelGained() {
         hitPoints.add(classType.getHPModifier() + abilities.getModifier(getConstitution()));
     }
 
@@ -389,7 +389,7 @@ public class Character implements Serializable, Parcelable {
         hitPoints.add(-hp);
     }
 
-    public int getHP() {
+    private int getHP() {
 
         if (hitPoints.getValue() == 0) {
             return 0;

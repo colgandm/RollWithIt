@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_settings"
-        android:onClick="startDiceRollerActivity"
         android:orderInCategory="100"
         android:title="@string/diceRoller"
         app:showAsAction="collapseActionView" />

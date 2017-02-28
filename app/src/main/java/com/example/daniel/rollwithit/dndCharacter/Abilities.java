@@ -2,8 +2,8 @@ package com.example.daniel.rollwithit.dndCharacter;
 
 public class Abilities {
 
-    public static int MINIMUM_ABILITY_VALUE = 1;
-    public static int MAXIMUM_ABILITY_VALUE = 20;
+    private static final int MINIMUM_ABILITY_VALUE = 1;
+    private static final int MAXIMUM_ABILITY_VALUE = 20;
     private Range strength, dexterity, constitution, intelligence, wisdom, charisma;
 
     public Abilities(int defaultValue) {
@@ -24,7 +24,7 @@ public class Abilities {
         charisma = createAbility(c);
     }
 
-    protected Range createAbility(int defaultValue) {
+    private Range createAbility(int defaultValue) {
         return new Range(MINIMUM_ABILITY_VALUE, defaultValue, MAXIMUM_ABILITY_VALUE);
     }
 

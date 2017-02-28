@@ -2,8 +2,6 @@ package com.example.daniel.rollwithit.fragments;
 
 import static java.lang.String.valueOf;
 
-import java.util.ArrayList;
-
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.activities.CharacterDisplayActivity;
 import com.example.daniel.rollwithit.database.CharacterDAO;
@@ -18,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class CharacterAttributesFragment extends Fragment implements View.OnClickListener {
 
@@ -28,11 +25,9 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
     private static final String INTELLIGENCE = "Intelligence";
     private static final String WISDOM = "Wisdom";
     private static final String CHARISMA = "Charisma";
-
     private static final String CHAR_CREATION_TOAST = "Please Create a Character";
 
-    private CharacterDAO characterDAO;
-    private String characterName;
+    private Character character;
     private CharacterDisplayActivity parentActivity;
 
     private TextView strength;
@@ -46,9 +41,7 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_character_attributes, container, false);
         parentActivity = (CharacterDisplayActivity)getActivity();
-        characterDAO = new CharacterDAO(parentActivity);
-        characterName = parentActivity.getCharacterName();
-        Character character = loadCharacterFromDB(characterName);
+        character = parentActivity.getCharacter();
         initialiseViews(fragmentView);
         displayCharacterAttributes(character, fragmentView);
         createButtonOnListeners();
@@ -84,20 +77,6 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         parentActivity.raiseEditAttributeDialog(attributeName);
     }
 
-    private Character loadCharacterFromDB(String characterName) {
-        ArrayList<Character> characters = characterDAO.getCharacter();
-        if (characters.size() == 0) {
-            Toast.makeText(getActivity(), CHAR_CREATION_TOAST, Toast.LENGTH_SHORT).show();
-        } else {
-            for (Character character : characters) {
-                if (characterName.equals(character.getCharacterName())) {
-                    return character;
-                }
-            }
-        }
-        return null;
-    }
-
     private void initialiseViews(View view) {
         strength = (TextView)view.findViewById(R.id.strength_shield);
         dexterity = (TextView)view.findViewById(R.id.dexterity_shield);
@@ -115,7 +94,6 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
         intelligence.setText(valueOf(character.getIntelligence()));
         wisdom.setText(valueOf(character.getWisdom()));
         charisma.setText(valueOf(character.getCharisma()));
-        characterDAO.update(character);
     }
 
     private void createButtonOnListeners() {
@@ -128,31 +106,32 @@ public class CharacterAttributesFragment extends Fragment implements View.OnClic
     }
 
     public void reloadCharacterAttributes(View view, int value, String attribute) {
-        Character reloadedCharacter = loadCharacterFromDB(characterName);
-        assert reloadedCharacter != null;
         switch (attribute) {
         case STRENGTH:
-            reloadedCharacter.setStrength(value);
+            character.setStrength(value);
             break;
         case DEXTERITY:
-            reloadedCharacter.setDexterity(value);
+            character.setDexterity(value);
             break;
         case CONSTITUTION:
-            reloadedCharacter.setConstitution(value);
+            character.setConstitution(value);
             break;
         case INTELLIGENCE:
-            reloadedCharacter.setIntelligence(value);
+            character.setIntelligence(value);
             break;
         case WISDOM:
-            reloadedCharacter.setWisdom(value);
+            character.setWisdom(value);
             break;
         case CHARISMA:
-            reloadedCharacter.setCharisma(value);
+            character.setCharisma(value);
             break;
         default:
             Log.i("Error", "Unknown Attribute");
         }
-        displayCharacterAttributes(reloadedCharacter, view);
+        CharacterDAO characterDAO = new CharacterDAO(parentActivity);
+        characterDAO.update(character);
+        characterDAO.close();
+        displayCharacterAttributes(character, view);
     }
 
 }

@@ -2,8 +2,6 @@ package com.example.daniel.rollwithit.fragments;
 
 import static java.lang.String.valueOf;
 
-import java.util.ArrayList;
-
 import com.example.daniel.rollwithit.R;
 import com.example.daniel.rollwithit.activities.CharacterDisplayActivity;
 import com.example.daniel.rollwithit.database.CharacterDAO;
@@ -18,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +27,8 @@ public class CharacterStatsFragment extends Fragment implements View.OnClickList
     private static final String LEVEL = "Level";
     private static final String CHAR_CREATION_TOAST = "Please Create a Character";
 
-    private CharacterDAO characterDAO;
-    private String charactersName;
+    private Character character;
+    private CharacterDisplayActivity parentActivity;
 
     private TextView initiative;
     private TextView armourClass;
@@ -40,12 +37,10 @@ public class CharacterStatsFragment extends Fragment implements View.OnClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_character_stats, container, false);
-        CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
-        characterDAO = new CharacterDAO(activity);
-        charactersName = activity.getCharacterName();
-        Character character = loadCharacterFromDB(charactersName);
+        parentActivity = (CharacterDisplayActivity)getActivity();
+        character = parentActivity.getCharacter();
         initialiseViews(fragmentView);
-        displayCharacterDetails(character, fragmentView);
+        displayCharacterDetails();
         createButtonOnListeners();
         return fragmentView;
     }
@@ -67,63 +62,46 @@ public class CharacterStatsFragment extends Fragment implements View.OnClickList
         default:
             throw new RuntimeException("Unknown button ID");
         }
-        CharacterDisplayActivity activity = (CharacterDisplayActivity)getActivity();
-        activity.raiseEditStatsDialog(attributeName);
-    }
-
-    private Character loadCharacterFromDB(String characterName) {
-        ArrayList<Character> characters = characterDAO.getCharacter();
-        if (characters.size() == 0) {
-            Toast.makeText(getActivity(), CHAR_CREATION_TOAST, Toast.LENGTH_SHORT).show();
-        } else {
-            for (Character character : characters) {
-                if (characterName.equals(character.getCharacterName())) {
-                    return character;
-                }
-            }
-        }
-        return null;
+        parentActivity.raiseEditStatsDialog(attributeName);
     }
 
     private void initialiseViews(View view) {
         initiative = (TextView)view.findViewById(R.id.initiative_value);
         armourClass = (TextView)view.findViewById(R.id.armour_class_value);
         level = (TextView)view.findViewById(R.id.level_value);
-
     }
 
-    private void displayCharacterDetails(Character character, View view) {
+    private void displayCharacterDetails() {
         assert character != null;
         initiative.setText(valueOf(character.getInitiative()));
         armourClass.setText(valueOf(character.getArmor()));
         level.setText(valueOf(character.getLevel()));
-        characterDAO.update(character);
     }
 
     private void createButtonOnListeners() {
         initiative.setOnClickListener(this);
         armourClass.setOnClickListener(this);
         level.setOnClickListener(this);
-
     }
 
     public void reloadCharacterStats(View view, int value, String attribute) {
-        Character reloadedCharacter = loadCharacterFromDB(charactersName);
-        assert reloadedCharacter != null;
+        assert character != null;
         switch (attribute) {
         case INITIATIVE:
-            reloadedCharacter.setInitiative(value);
+            character.setInitiative(value);
             break;
         case ARMOUR_CLASS:
-            reloadedCharacter.setDefense(value);
+            character.setDefense(value);
             break;
         case LEVEL:
-            reloadedCharacter.setLevel(value);
+            character.setLevel(value);
             break;
         default:
             Log.i("Error", "Unknown Attribute");
         }
-        displayCharacterDetails(reloadedCharacter, view);
+        CharacterDAO characterDAO = new CharacterDAO(parentActivity);
+        characterDAO.update(character);
+        characterDAO.close();
+        displayCharacterDetails();
     }
-
 }

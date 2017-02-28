@@ -5,5 +5,6 @@ public class Gnome extends Race {
     public Gnome() {
         setRaceType(RaceType.GNOME);
         setSize(Size.SMALL);
+        setSpeed(25);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.daniel.rollwithit.dndCharacter.races;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Race {
@@ -16,12 +17,16 @@ public class Race {
         typeToRaceMap.put(RaceType.GNOME, new Gnome());
         typeToRaceMap.put(RaceType.HALFELF, new HalfElf());
         typeToRaceMap.put(RaceType.HALFORC, new HalfOrc());
+        typeToRaceMap.put(RaceType.DRAGONBORN, new Dragonborn());
+        typeToRaceMap.put(RaceType.TIEFLING, new Tiefling());
         typeToRaceMap.put(RaceType.HALFLING, new Halfling());
     }
 
     private RaceType raceType;
     private Size size;
     private int speed;
+
+    private List<String> traits;
 
     public static Race getRaceFromMap(RaceType type) {
         return typeToRaceMap.get(type);
@@ -37,6 +42,14 @@ public class Race {
 
     public String getRaceTypeName() {
         return raceType.name();
+    }
+
+    public List<String> getTraits() {
+        return traits;
+    }
+
+    public void setTraits(List<String> traits) {
+        this.traits = traits;
     }
 
     public Size getSize() {
@@ -65,6 +78,8 @@ public class Race {
         HUMAN,
         DWARF,
         ELF,
+        DRAGONBORN,
+        TIEFLING,
         GNOME,
         HALFELF,
         HALFORC,

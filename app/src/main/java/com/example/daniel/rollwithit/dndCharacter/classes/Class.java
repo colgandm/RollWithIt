@@ -1,9 +1,12 @@
 package com.example.daniel.rollwithit.dndCharacter.classes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.daniel.rollwithit.dndCharacter.Abilities;
+import com.example.daniel.rollwithit.dndCharacter.Dice;
 
 public class Class {
 
@@ -22,9 +25,15 @@ public class Class {
         typeToClassMap.put(ClassType.RANGER, new Ranger());
         typeToClassMap.put(ClassType.ROGUE, new Rogue());
         typeToClassMap.put(ClassType.SORCERER, new Sorcerer());
+        typeToClassMap.put(ClassType.WARLOCK, new Warlock());
         typeToClassMap.put(ClassType.WIZARD, new Wizard());
     }
 
+    private List<String> armorProficiencies = new ArrayList<>();
+    private List<String> weaponProficiencies = new ArrayList<>();
+    private List<String> toolProficiencies = new ArrayList<>();
+    private List<String> savingThrows = new ArrayList<>();
+    private List<String> skills = new ArrayList<>();
     private ClassType classType;
     private Map<ClassSkills, Abilities.AbilityType> skillToAbilityMap = new HashMap<>();
 
@@ -32,16 +41,18 @@ public class Class {
         return typeToClassMap.get(classType);
     }
 
+    public String proficienciesToString() {
+        return "Armor Proficiencies = " + armorProficiencies + "\n Weapon Proficiencies= " + weaponProficiencies
+            + "\n Tool Proficiencies = " + toolProficiencies + "\n Saving Throws = " + savingThrows;
+    }
+
     public ClassType getClassType() {
         return classType;
     }
 
-    public void setClassType(ClassType classType) {
+    void setClassType(ClassType classType) {
         this.classType = classType;
     }
-    // public Abilities getAbilityModifier(){
-    // Abilities abilities = new Abilities(10);
-    // }
 
     public String getClassTypeName() {
         return classType.name();
@@ -67,6 +78,78 @@ public class Class {
         this.skillToAbilityMap = skillToAbilityMap;
     }
 
+    public Dice getHitDice() {
+        return new Dice(8);
+    }
+
+    public int getLevelOneHitPoints() {
+        return 0;
+    }
+
+    public List<String> getArmorProficiencies() {
+        return armorProficiencies;
+    }
+
+    public void setArmorProficiencies(List<String> armorProficiencies) {
+        this.armorProficiencies = armorProficiencies;
+    }
+
+    public List<String> getWeaponProficiencies() {
+        return weaponProficiencies;
+    }
+
+    public void setWeaponProficiencies(List<String> weaponProficiencies) {
+        this.weaponProficiencies = weaponProficiencies;
+    }
+
+    public List<String> getToolProficiencies() {
+        return toolProficiencies;
+    }
+
+    public void setToolProficiencies(List<String> toolProficiencies) {
+        this.toolProficiencies = toolProficiencies;
+    }
+
+    public List<String> getSavingThrows() {
+        return savingThrows;
+    }
+
+    public void setSavingThrows(List<String> savingThrows) {
+        this.savingThrows = savingThrows;
+    }
+
+    public void addArmorProficiency(String armorProficiency) {
+        this.armorProficiencies.add(armorProficiency);
+    }
+
+    public void removeArmorProficiency(String armorProficiency) {
+        this.armorProficiencies.remove(armorProficiency);
+    }
+
+    public void addWeaponProficiency(String weaponProficiency) {
+        this.weaponProficiencies.add(weaponProficiency);
+    }
+
+    public void removeWeaponProficiency(String weaponProficiency) {
+        this.weaponProficiencies.remove(weaponProficiency);
+    }
+
+    public void addToolProficiency(String toolProficiency) {
+        this.toolProficiencies.add(toolProficiency);
+    }
+
+    public void removeToolProficiency(String toolProficiency) {
+        this.toolProficiencies.remove(toolProficiency);
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+
     public enum ClassType {
         DEFAULT,
         BARBARIAN,
@@ -79,6 +162,7 @@ public class Class {
         RANGER,
         ROGUE,
         SORCERER,
+        WARLOCK,
         WIZARD
     }
 
